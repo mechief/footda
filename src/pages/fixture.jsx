@@ -61,6 +61,7 @@ const Fixture = () => {
         try {
           getFixture(id)
             .then((res) => {
+              // 커밋 테스트
               console.log(res);
               dispatch(setFixture(res));
             })
