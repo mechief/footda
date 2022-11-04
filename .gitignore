@@ -1,0 +1,42 @@
+!.gitignore
+.aws
+.bash_history
+.bash_logout
+.bash_profile
+.bashrc
+.emacs
+.config
+.DS_Store
+.idea
+.gnome2
+.mozilla
+.mysql_history
+.pki
+.settings
+.ssh
+.vim
+.viminfo
+.buildpath
+.project
+.svn
+.subversion
+.rediscli_history
+.vscode
+
+# backup file
+*.back
+*.backup
+
+*.swp
+
+vendor
+.env
+
+# node.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+node_modules
+
+# yarn build files
+dist
