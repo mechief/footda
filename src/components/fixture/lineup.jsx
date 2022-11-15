@@ -109,13 +109,17 @@ const Lineup = memo(({ lineup, events }) => {
   return (
     <>
       <div className="lineup">
-        {playingLineup.map(v => <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />)}
+        {playingLineup.map(v => 
+          <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />
+        )}
       </div>
       {
         substOutLineup.length > 0 && (
           <div className="lineup">
             <p>교체 아웃</p>
-            {substOutLineup.map(v => <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />)}
+            {substOutLineup.map(v => 
+              <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />
+            )}
           </div>
         )
       }
@@ -123,7 +127,9 @@ const Lineup = memo(({ lineup, events }) => {
         substLineup.length > 0 && (
           <div className="lineup">
             <p>교체 명단</p>
-            {substLineup.map(v => <LineupPlayer key={v.player.id} player={v.player} />)}
+            {substLineup.map(v => 
+              <LineupPlayer key={v.player.id} player={v.player} />
+            )}
           </div>
         )
       }

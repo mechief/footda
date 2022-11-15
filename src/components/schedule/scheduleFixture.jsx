@@ -1,10 +1,13 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
 
+import { FIXTURE_STATUS } from "../../service/apiFootballService";
+
 import FixtureDate from "../fixture/fixtureDate";
 import FixtureLeagueRound from "../fixture/fixtureLeagueRound";
 import FixtureStatus from "../fixture/fixtureStatus";
 import FixtureTeam from "../fixture/fixtureTeam";
+import FixtureScore from "../fixture/fixtureScore";
 
 const ScheduleFixture = memo(({ fixture }) => {
   return (

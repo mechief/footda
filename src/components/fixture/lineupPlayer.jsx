@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import { useSelector } from "react-redux";
 
-import StatTooltipPlayerButton from "../stapTooltip/statTooltipPlayerButton";
-import StatTooltipPlayer from "../stapTooltip/statTooltipPlayer";
+import StatTooltipPlayerButton from "../statTooltip/statTooltipPlayerButton";
+import StatTooltipPlayer from "../statTooltip/statTooltipPlayer";
 
 const LineupPlayer = memo(({ player, playerEvent }) => {
   const activeTooltip = useSelector((state) => state.statTooltip.activeTooltip);
