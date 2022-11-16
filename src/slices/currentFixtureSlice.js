@@ -19,7 +19,7 @@ const currentFixtureSlice = createSlice({
   },
 
   reducers: {
-    setId: (state, action) => {
+    setFixtureId: (state, action) => {
       state.id = action.payload;
     },
     setFixture: (state, action) => {
@@ -43,7 +43,7 @@ const currentFixtureSlice = createSlice({
 });
 
 export const {
-  setId,
+  setFixtureId,
   setFixture,
 } = currentFixtureSlice.actions;
 

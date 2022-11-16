@@ -1,6 +1,13 @@
 import React, { useState, useEffect, memo } from "react";
+import styled from "styled-components";
 
 import LineupPlayer from "./lineupPlayer";
+
+const LineupWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+`;
 
 const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false, subst: {}};
 
@@ -107,7 +114,7 @@ const Lineup = memo(({ lineup, events }) => {
   }, [eventCards]);
 
   return (
-    <>
+    <LineupWrapper>
       <div className="lineup">
         {playingLineup.map(v => 
           <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />
@@ -133,7 +140,7 @@ const Lineup = memo(({ lineup, events }) => {
           </div>
         )
       }
-    </>
+    </LineupWrapper>
   );
 });
 

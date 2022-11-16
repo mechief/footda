@@ -15,7 +15,7 @@ const LeagueStat = ({ leagueStat, position, isSeasonTotal = false }) => {
 
   return (
     <div>
-      <span>{isSeasonTotal ? '시즌 종합 기록' : getLeagueNameKr(leagueStat.leagueId)}</span>
+      <div>{isSeasonTotal ? '시즌 종합 기록' : getLeagueNameKr(leagueStat.leagueId)}</div>
       {showLeagueStatByPosition()}
     </div>
   );

@@ -1,8 +1,18 @@
 import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components";
 
 import { initTooltip } from "../actions/statTooltip";
 import { openTooltip } from "../../slices/statTooltipSlice";
+import { IconPlayer } from "../icons/fixtureIcons";
+
+const ButtonTooltip = styled.button`
+  background: inherit;
+  padding: 2px;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+`;
 
 const StatTooltipPlayerButton = memo(({ playerId }) => {
   const statTooltipPlayers = useSelector((state) => state.statTooltip.players);
@@ -17,7 +27,10 @@ const StatTooltipPlayerButton = memo(({ playerId }) => {
   }
 
   return (
-    <button type="button" onClick={onClickTooltip}>선수 정보 보기</button>
+    <ButtonTooltip onClick={onClickTooltip}>
+      <IconPlayer />
+      {/* <SoundOnly>선수 정보 보기</SoundOnly> */}
+    </ButtonTooltip>
   );
 });
 

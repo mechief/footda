@@ -4,7 +4,10 @@ import { Provider } from 'react-redux';
 
 import store from './store/store';
 
+import styled from "styled-components";
+
 import SiteHeader from './components/layout/siteHeader';
+import SiteContents from './components/layout/siteContents';
 import SiteFooter from './components/layout/siteFooter';
 
 import Home from './pages/home';
@@ -16,11 +19,13 @@ const Main = () => {
     <Provider store={store}>
       <BrowserRouter>
         <SiteHeader></SiteHeader>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/mypage" element={<MyPage />}></Route>
-          <Route path="/fixture/:id" element={<Fixture />}></Route>
-        </Routes>
+        <SiteContents>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            <Route path="/mypage" element={<MyPage />}></Route>
+            <Route path="/fixture/:id" element={<Fixture />}></Route>
+          </Routes>
+        </SiteContents>
         <SiteFooter></SiteFooter>
       </BrowserRouter>
     </Provider>

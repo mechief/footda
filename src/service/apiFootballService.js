@@ -193,7 +193,9 @@ export const SERVICE_LEAGUES = {
 }
 
 export const isServiceLeague = (leagueId) => {
-  return SERVICE_LEAGUES.hasOwnProperty(leagueId);
+  const id = typeof leagueId === 'number' ? leagueId.toString() : leagueId;
+
+  return SERVICE_LEAGUES.hasOwnProperty(id);
 }
 
 export const getLeagueNameKr = (leagueId) => {

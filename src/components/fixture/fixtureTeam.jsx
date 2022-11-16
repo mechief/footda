@@ -1,16 +1,39 @@
 import React, { memo } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const Logo = styled.img`
-  width: 20px;
+const FixtureTeamColumn = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  width: 50%;
+  padding: 0 80px;
+  ${props => props.isHome && css`
+    flex-direction: row-reverse;
+  `}
 `;
 
-const FixtureTeam = memo(({ team }) => {
+const TeamName = styled.span`
+  display: inline-block;
+  line-height: 1.2;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+`;
+
+const TeamLogo = styled.img`
+  display: inline-block;
+  width: 42px;
+  padding: 0 15px;
+  box-sizing: content-box;
+`;
+
+const FixtureTeam = memo(({ team, isHome = false }) => {
   return (
-    <span>
-      <Logo src={team.logo} />
-      <span>{team.name}</span>
-    </span>
+    <FixtureTeamColumn isHome={isHome}>
+      <TeamName>{team.name}</TeamName>
+      <TeamLogo src={team.logo} />
+    </FixtureTeamColumn>
   );
 });
 

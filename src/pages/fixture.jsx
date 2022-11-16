@@ -3,17 +3,19 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getFixture } from "../apiFootball/fixtures";
-import { setId, setFixture } from "../slices/currentFixtureSlice";
+import { setFixtureId, setFixture } from "../slices/currentFixtureSlice";
 
 import { FIXTURE_STATUS } from "../service/apiFootballService";
 
 import FixtureDate from "../components/fixture/fixtureDate";
-import FixtureLeagueRound from "../components/fixture/fixtureLeagueRound";
+import FixtureLeague from "../components/fixture/fixtureLeague";
 import FixtureStatus from "../components/fixture/fixtureStatus";
-import FixtureSummary from "../components/fixture/fixtureSummary";
+import FixtureEventSummary from "../components/fixture/fixtureEventSummary";
 import FixtureTeam from "../components/fixture/fixtureTeam";
 import FixtureScore from "../components/fixture/fixtureScore";
 import Lineup from "../components/fixture/lineup";
+
+import { FixtureWrapper, FixtureInfo, FixtureSummary, FixtureLineups } from "../components/fixture/fixtureStyled";
 
 const Fixture = () => {
   const id = useSelector((state) => state.currentFixture.id);
@@ -52,7 +54,7 @@ const Fixture = () => {
   }, [events]);
 
   useEffect(() => {
-    dispatch(setId(params.id));
+    dispatch(setFixtureId(params.id));
   }, [params.id]);
 
   useEffect(() => {
@@ -79,50 +81,38 @@ const Fixture = () => {
     <>
       {
         id != '' && date && (  
-          <div>
-            <div>
-              {
-                date && 
-                <FixtureDate date={date} />
+          <FixtureWrapper>
+            <FixtureInfo>
+              <FixtureDate date={date} />
+              { league?.id &&
+                <FixtureLeague league={league} />
               }
-            </div>
-            <div>
-              <span>{league.name} </span>
-              {
-                league?.round && 
-                <FixtureLeagueRound round={league.round} />
-              }
-            </div>
-            <div>
-              { 
-                status?.short &&
+              { status?.short &&
                 <FixtureStatus shortStatus={status.short} />
               }
-              {
-                teams?.home?.id && teams?.away?.id &&
-                <span>
-                  <FixtureTeam team={teams.home} />
+            </FixtureInfo>
+            <FixtureSummary>
+              { teams?.home?.id && teams?.away?.id && <>
+                  <FixtureTeam team={teams.home} isHome={true} />
                   <FixtureTeam team={teams.away} />
-                </span>
+                </>
               }
-              {
-                FIXTURE_STATUS[status?.short]?.code >= 0
+              { FIXTURE_STATUS[status?.short]?.code >= 0
                   && goals?.home
                   && goals?.away
                   && <FixtureScore goals={goals} score={score} shortStatus={status.short} />
               }
-              <FixtureSummary events={teamEvents.home} />
-              <FixtureSummary events={teamEvents.away} />
-            </div>
-            {
-              lineups[0]?.team?.id && (
-                <div className="lineups">
+              <FixtureEventSummary events={teamEvents.home} isHome={true} />
+              <FixtureEventSummary events={teamEvents.away} />
+            </FixtureSummary>
+            { lineups[0]?.team?.id && (
+                <FixtureLineups className="lineups">
                   <Lineup lineup={lineups[0]} events={teamEvents.home} />
                   <Lineup lineup={lineups[1]} events={teamEvents.away} />
-                </div>
+                </FixtureLineups>
               )
             }
-          </div>
+          </FixtureWrapper>
         )
       }
     </>
