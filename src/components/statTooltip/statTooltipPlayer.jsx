@@ -1,47 +1,33 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import styled from "styled-components";
 
-import LeagueStat from "./leagueStat";
+import * as Popover from '@radix-ui/react-popover';
 
-const StatTooltipPlayerWrapper = styled.div`
-  padding: 20px;
-  border: 2px solid #222;
-  border-radius: 4px;
-`;
+import StatTooltipPlayerButton from "./statTooltipPlayerButton"
+import StatTooltipPlayerDetail from "./statTooltipPlayerDetail";
 
-const PlayerPhoto = styled.img`
-  width: 75px;
-`;
-
-const StatPlayerTooltip = ({ playerId }) => {
-  const stat = useSelector((state) => state.statTooltip.players[playerId]);
+const StatTooltipPlayer = ({ playerId }) => {
+  const activeTooltip = useSelector((state) => state.statTooltip.activeTooltip);
   
   return (
-    <StatTooltipPlayerWrapper>
-      <div>
-        <PlayerPhoto src={stat.player.photo} />
-        <span>{stat.player.name}</span>
-        <span>{stat.player.age}세</span>
-      </div>
-      <LeagueStat
-        key="playerTooltip_seasonTotal"
-        leagueStat={stat.seasonTotal}
-        position={stat.position} 
-        isSeasonTotal={true}
-      ></LeagueStat>
-      {
-        stat.statistics.length > 0 && 
-        stat.statistics.map(leagueStat => 
-          <LeagueStat 
-            key={'playerTooltip_' + leagueStat.summary.leagueId} 
-            leagueStat={leagueStat.summary} 
-            position={stat.position}
-          ></LeagueStat>
-        )
-      }
-    </StatTooltipPlayerWrapper>
+    <>
+      <Popover.Root>
+        <Popover.Trigger asChild>
+          <span>
+            <StatTooltipPlayerButton playerId={playerId} />
+          </span>
+        </Popover.Trigger>
+        <Popover.Portal>
+          <Popover.Content side="bottom" align="start">
+            {/* <Popover.Close /> */}
+            { activeTooltip === playerId &&
+              <StatTooltipPlayerDetail playerId={playerId} />
+            }
+          </Popover.Content>
+        </Popover.Portal>
+      </Popover.Root>
+    </>
   )
 };
 
-export default StatPlayerTooltip;
+export default StatTooltipPlayer;

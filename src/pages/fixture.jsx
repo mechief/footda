@@ -13,9 +13,10 @@ import FixtureStatus from "../components/fixture/fixtureStatus";
 import FixtureEventSummary from "../components/fixture/fixtureEventSummary";
 import FixtureTeam from "../components/fixture/fixtureTeam";
 import FixtureScore from "../components/fixture/fixtureScore";
+import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
 
-import { FixtureWrapper, FixtureInfo, FixtureSummary, FixtureLineups } from "../components/fixture/fixtureStyled";
+import { FixtureWrapper, FixtureInfo, FixtureSummary, FixtureDetailSection } from "../components/fixture/fixtureStyled";
 
 const Fixture = () => {
   const id = useSelector((state) => state.currentFixture.id);
@@ -67,9 +68,6 @@ const Fixture = () => {
               console.log(res);
               dispatch(setFixture(res));
             })
-            .catch((error) => {
-              console.log(error.message);
-            });
         } catch(error) {
           console.log(error.message);
         }
@@ -106,10 +104,11 @@ const Fixture = () => {
               <FixtureEventSummary events={teamEvents.away} />
             </FixtureSummary>
             { lineups[0]?.team?.id && (
-                <FixtureLineups className="lineups">
+                <FixtureDetailSection>
                   <Lineup lineup={lineups[0]} events={teamEvents.home} />
+                  <FixtureDetail />
                   <Lineup lineup={lineups[1]} events={teamEvents.away} />
-                </FixtureLineups>
+                </FixtureDetailSection>
               )
             }
           </FixtureWrapper>

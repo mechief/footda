@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { initTooltip } from "../actions/statTooltip";
+import { initTooltip } from "../../actions/statTooltip";
 import { openTooltip } from "../../slices/statTooltipSlice";
 import { IconPlayer } from "../icons/fixtureIcons";
 

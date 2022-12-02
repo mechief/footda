@@ -9,6 +9,10 @@ const LineupWrapper = styled.div`
   max-width: 50%;
 `;
 
+const LineupSubst = styled.div`
+  margin-top: 40px;
+`;
+
 const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false, subst: {}};
 
 const Lineup = memo(({ lineup, events }) => {
@@ -115,31 +119,32 @@ const Lineup = memo(({ lineup, events }) => {
 
   return (
     <LineupWrapper>
-      <div className="lineup">
+      <div>
         {playingLineup.map(v => 
           <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />
         )}
       </div>
-      {
-        substOutLineup.length > 0 && (
-          <div className="lineup">
-            <p>교체 아웃</p>
-            {substOutLineup.map(v => 
-              <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />
-            )}
-          </div>
-        )
-      }
-      {
-        substLineup.length > 0 && (
-          <div className="lineup">
-            <p>교체 명단</p>
+      <LineupSubst>
+        <p>교체 명단</p>
+        {substLineup.length > 0 && (
+          <>
             {substLineup.map(v => 
               <LineupPlayer key={v.player.id} player={v.player} />
             )}
+            {substOutLineup.map(v => 
+              <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} isSubstOut={true} />
+            )}
+          </>
+        )}
+      </LineupSubst>
+      {/* {
+        substOutLineup.length > 0 && (
+          <div>
+            <p>교체 아웃</p>
+            {}
           </div>
         )
-      }
+      } */}
     </LineupWrapper>
   );
 });

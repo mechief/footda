@@ -1,8 +1,6 @@
 import React, { memo } from "react";
-import { useSelector } from "react-redux";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-import StatTooltipPlayerButton from "../statTooltip/statTooltipPlayerButton";
 import StatTooltipPlayer from "../statTooltip/statTooltipPlayer";
 import { IconGoal, IconYellowCard, IconRedCard } from "../icons/fixtureIcons";
 import { positionTo2Char } from "../../service/footballFunctions";
@@ -18,6 +16,9 @@ const LineupPlayerWrapper = styled.div`
   & > span {
     flex: 0 0 auto;
   }
+  ${props => props.isSubstOut && css`
+    color: #888;
+  `}
 `;
 
 const PlayerPosition = styled.span`
@@ -43,15 +44,11 @@ const PlayerEventNumber = styled.span`
   font-weight: 500;
 `;
 
-const LineupPlayer = memo(({ player, playerEvent }) => {
-  const activeTooltip = useSelector((state) => state.statTooltip.activeTooltip);
+const LineupPlayer = memo(({ player, isSubstOut = false, playerEvent }) => {
 
   return (
-    <LineupPlayerWrapper>
-      <StatTooltipPlayerButton playerId={player.id} />
-      { activeTooltip === player.id &&
-        <StatTooltipPlayer playerId={player.id} />
-      }
+    <LineupPlayerWrapper isSubstOut={isSubstOut}>
+      <StatTooltipPlayer playerId={player.id} />
       <PlayerPosition>{positionTo2Char(player.pos)}</PlayerPosition>
       <PlayerNumber>{player.number}</PlayerNumber>
       <PlayerName>{player.name}</PlayerName>

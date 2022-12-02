@@ -26,13 +26,13 @@ export const FixtureSummary = styled.div`
   margin: 0 auto 40px;
 `;
 
-export const FixtureLineups = styled.div`
+export const FixtureDetailSection = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  max-width: 600px;
+  max-width: 1000px;
   margin: 0 auto;
 `;

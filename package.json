@@ -9,6 +9,7 @@
   "author": "Seonmin Choe",
   "license": "ISC",
   "dependencies": {
+    "@radix-ui/react-popover": "^1.0.2",
     "@reduxjs/toolkit": "^1.8.6",
     "axios": "^1.1.3",
     "react": "^18.2.0",

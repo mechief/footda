@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { initTooltip } from "../components/actions/statTooltip";
+import { initTooltip } from "../actions/statTooltip";
 
 const statTooltipSlice = createSlice({
   name: 'statTooltip',
