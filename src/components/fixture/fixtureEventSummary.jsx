@@ -30,7 +30,7 @@ const EventSummaryItem = styled.div`
 
 const EventSummaryTime = styled.span`
   display: inline-block;
-  min-width: 2em;
+  min-width: 3em;
   margin-right: 2px;
 `;
 
@@ -60,7 +60,7 @@ const FixtureEventSummary = memo(({ events, isHome = false }) => {
                 <IconRedCard alt="퇴장" />
               }
               <span>
-                <EventSummaryTime>{v.time.elapsed}`</EventSummaryTime>
+                <EventSummaryTime>{v.time.elapsed}{v.time.extra ? '+' + v.time.extra : ''}`</EventSummaryTime>
                 <span>{v.player.name}</span>
               </span>
             </EventSummaryItem>

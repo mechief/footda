@@ -8,7 +8,7 @@ const StatTooltipPlayerWrapper = styled.div`
   padding: 25px;
   border: 2px solid #222;
   border-radius: 4px;
-  background: #fff;
+  background: #e4ecee;
 `;
 
 const PlayerPhoto = styled.img`
@@ -21,7 +21,7 @@ const StatTooltipPlayerDetail = ({ playerId }) => {
   return (
     <StatTooltipPlayerWrapper>
       <div>
-        <PlayerPhoto src={stat.player.photo} />
+        {/* <PlayerPhoto src={stat.player.photo} /> */}
         <span>{stat.player.name}</span>
         <span>{stat.player.age}세</span>
       </div>
