@@ -16,7 +16,14 @@ import FixtureScore from "../components/fixture/fixtureScore";
 import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
 
-import { FixtureWrapper, FixtureInfo, FixtureSummary, FixtureDetailSection } from "../components/fixture/fixtureStyled";
+import { 
+  FixtureWrapper, 
+  FixtureInfo, 
+  FixtureSummary, 
+  FixtureDetailSection,
+  FixtureStatusWrapper,
+  FixtureScoreWrapper,
+} from "../components/fixture/fixtureStyled";
 
 const Fixture = () => {
   const id = useSelector((state) => state.currentFixture.id);
@@ -64,12 +71,11 @@ const Fixture = () => {
         try {
           getFixture(id)
             .then((res) => {
-              // 커밋 테스트
               console.log(res);
               dispatch(setFixture(res));
             })
         } catch(error) {
-          console.log(error.message);
+          console.error(error);
         }
       })();
     }
@@ -85,9 +91,11 @@ const Fixture = () => {
               { league?.id &&
                 <FixtureLeague league={league} />
               }
-              { status?.short &&
-                <FixtureStatus shortStatus={status.short} />
-              }
+              { status?.short && (
+                <FixtureStatusWrapper>
+                  <FixtureStatus shortStatus={status.short} />
+                </FixtureStatusWrapper>
+              )}
             </FixtureInfo>
             <FixtureSummary>
               { teams?.home?.id && teams?.away?.id && <>
@@ -98,7 +106,7 @@ const Fixture = () => {
               { FIXTURE_STATUS[status?.short]?.code >= 0
                   && goals?.home
                   && goals?.away
-                  && <FixtureScore goals={goals} score={score} shortStatus={status.short} />
+                  && <FixtureScoreWrapper><FixtureScore goals={goals} score={score} shortStatus={status.short} /></FixtureScoreWrapper>
               }
               <FixtureEventSummary events={teamEvents.home} isHome={true} />
               <FixtureEventSummary events={teamEvents.away} />

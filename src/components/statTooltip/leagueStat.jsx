@@ -6,18 +6,17 @@ import LeagueStatFieldPlayer from "./leagueStatFieldPlayer";
 import { getLeagueNameKr } from "../../service/apiFootballService";
 
 const LeagueStat = ({ leagueStat, position, isSeasonTotal = false }) => {
-  const showLeagueStatByPosition = () => {
+  const showLeagueStatByPosition = (leagueName) => {
     if (position == 'Goalkeeper') {
-      return <LeagueStatGoalkeeper leagueStat={leagueStat}></LeagueStatGoalkeeper>
+      return <LeagueStatGoalkeeper leagueStat={leagueStat} leagueName={leagueName}></LeagueStatGoalkeeper>
     }
-    return <LeagueStatFieldPlayer leagueStat={leagueStat}></LeagueStatFieldPlayer>
+    return <LeagueStatFieldPlayer leagueStat={leagueStat} leagueName={leagueName}></LeagueStatFieldPlayer>
   }
 
   return (
-    <div>
-      <div>{isSeasonTotal ? '시즌 종합 기록' : getLeagueNameKr(leagueStat.leagueId)}</div>
-      {showLeagueStatByPosition()}
-    </div>
+    <>
+      {showLeagueStatByPosition(isSeasonTotal ? '시즌 종합' : getLeagueNameKr(leagueStat.leagueId))}
+    </>
   );
 }
 

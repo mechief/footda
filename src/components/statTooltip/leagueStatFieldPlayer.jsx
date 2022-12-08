@@ -1,13 +1,14 @@
 import React from "react";
 
-const LeagueStatFieldPlayer = ({ leagueStat }) => {
+const LeagueStatFieldPlayer = ({ leagueStat, leagueName }) => {
   return (
-    <div>
-      <span>경기(선발): {leagueStat.appearences}({leagueStat.lineups})</span>
-      <span>출장시간: {leagueStat.minutes}</span>
-      <span>득점: {leagueStat.goal}</span>
-      <span>도움: {leagueStat.assists}</span>
-    </div>
+    <tr>
+      <td>{leagueName}</td>
+      <td>{leagueStat.appearences}({leagueStat.lineups})</td>
+      <td>{leagueStat.minutes}</td>
+      <td>{leagueStat.goal}</td>
+      <td>{leagueStat.assists}</td>
+    </tr>
   )
 }
 

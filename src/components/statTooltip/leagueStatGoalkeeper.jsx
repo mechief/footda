@@ -2,12 +2,13 @@ import React from "react";
 
 const LeagueStatGoalkeeper = ({ leagueStat }) => {
   return (
-    <div>
-      <span>경기(선발): {leagueStat.appearences}({leagueStat.lineups})</span>
-      <span>출장시간: {leagueStat.minutes}</span>
-      <span>실점: {leagueStat.conceded}</span>
-      <span>선방: {leagueStat.saves}</span>
-    </div>
+    <tr>
+      <td>{leagueName}</td>
+      <td>경기(선발): {leagueStat.appearences}({leagueStat.lineups})</td>
+      <td>출장시간: {leagueStat.minutes}</td>
+      <td>실점: {leagueStat.conceded}</td>
+      <td>선방: {leagueStat.saves}</td>
+    </tr>
   )
 }
 

@@ -510,6 +510,17 @@ th {
   padding: 0;
 }
 
+caption {
+  display: block;
+  overflow: hidden;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  font-size: 0;
+  line-height: 0;
+  text-indent: -9999px;
+}
+
 ol, ul {
   list-style-type: none;
 }
