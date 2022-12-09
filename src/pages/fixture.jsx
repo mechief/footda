@@ -16,6 +16,8 @@ import FixtureScore from "../components/fixture/fixtureScore";
 import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
 
+import LiveSidebarButton from "../components/liveWidget/liveSidebarButton"
+
 import { 
   FixtureWrapper, 
   FixtureInfo, 
@@ -83,11 +85,12 @@ const Fixture = () => {
   
   return (
     <>
+      <LiveSidebarButton />
       {
         id != '' && date && (  
           <FixtureWrapper>
             <FixtureInfo>
-              <FixtureDate date={date} />
+              <div><FixtureDate date={date} /></div>
               { league?.id &&
                 <FixtureLeague league={league} />
               }

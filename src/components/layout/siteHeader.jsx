@@ -1,7 +1,10 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import SiteHeaderNavLi from "./siteHeaderNavLi";
+
+import LiveSidebar from "../liveWidget/LiveSidebar";
 
 const HeaderInner = styled.div`
   display: flex;
@@ -21,6 +24,8 @@ const HeaderUl = styled.nav`
 `;
 
 const SiteHeader = () => {
+  const sidebarOpened = useSelector((state) => state.liveWidget.sidebarOpened);
+
   return (
     <header>
       <HeaderInner>
@@ -32,6 +37,9 @@ const SiteHeader = () => {
           </HeaderUl>
         </HeaderNav>
       </HeaderInner>
+      { sidebarOpened &&
+        <LiveSidebar />
+      }
     </header>
   );
 }

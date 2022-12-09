@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { FIXTURE_STATUS } from "../../service/apiFootballService";
+import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
 
 import FixtureDate from "../fixture/fixtureDate";
 import FixtureLeagueRound from "../fixture/fixtureLeagueRound";
@@ -32,7 +32,7 @@ const ScheduleFixture = memo(({ fixture }) => {
             <FixtureStatus shortStatus={fixture.fixture.status.short} />
           }
           <span>
-            <span>{fixture.league?.name}</span>
+            <span>{getLeagueNameKr(fixture.league?.id)}</span>
             {
               fixture.league?.round && 
               <FixtureLeagueRound round={fixture.league.round} />

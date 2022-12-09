@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import store from './store/store';
 
-import styled from "styled-components";
-
+import SiteWrapper from './components/layout/SiteWrapper';
 import SiteHeader from './components/layout/siteHeader';
 import SiteContents from './components/layout/siteContents';
 import SiteFooter from './components/layout/siteFooter';
@@ -18,15 +17,17 @@ const Main = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <SiteHeader></SiteHeader>
-        <SiteContents>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/mypage" element={<MyPage />}></Route>
-            <Route path="/fixture/:id" element={<Fixture />}></Route>
-          </Routes>
-        </SiteContents>
-        <SiteFooter></SiteFooter>
+        <SiteWrapper>
+          <SiteHeader></SiteHeader>
+          <SiteContents>
+            <Routes>
+              <Route path="/" element={<Home />}></Route>
+              <Route path="/mypage" element={<MyPage />}></Route>
+              <Route path="/fixture/:id" element={<Fixture />}></Route>
+            </Routes>
+          </SiteContents>
+          <SiteFooter></SiteFooter>
+        </SiteWrapper>
       </BrowserRouter>
     </Provider>
   );
