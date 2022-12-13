@@ -30,8 +30,10 @@ const EventSummaryItem = styled.div`
 
 const EventSummaryTime = styled.span`
   display: inline-block;
-  min-width: 3em;
   margin-right: 2px;
+  ${props => !props.isHome && css`
+    min-width: 3em;
+  `}
 `;
 
 const FixtureEventSummary = memo(({ events, isHome = false }) => {
@@ -60,8 +62,11 @@ const FixtureEventSummary = memo(({ events, isHome = false }) => {
                 <IconRedCard alt="퇴장" />
               }
               <span>
-                <EventSummaryTime>{v.time.elapsed}{v.time.extra ? '+' + v.time.extra : ''}`</EventSummaryTime>
+                <EventSummaryTime isHome={isHome}>{v.time.elapsed}{v.time.extra ? '+' + v.time.extra : ''}`</EventSummaryTime>
                 <span>{v.player.name}</span>
+                { v.type === 'Goal' && v.detail === 'Own Goal' &&
+                  <span> (자책)</span>
+                }
               </span>
             </EventSummaryItem>
           )

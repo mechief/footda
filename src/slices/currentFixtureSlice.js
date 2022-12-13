@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const currentFixtureSlice = createSlice({
   name: 'currentFixture',
   initialState: {
-    id: '',
+    id: undefined,
     date: '',
     referee: '',
     status: {},
@@ -20,7 +20,7 @@ const currentFixtureSlice = createSlice({
 
   reducers: {
     setFixtureId: (state, action) => {
-      state.id = action.payload;
+      state.id = +action.payload;
     },
     setFixture: (state, action) => {
       state = {...state,

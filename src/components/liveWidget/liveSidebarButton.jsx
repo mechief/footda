@@ -18,19 +18,19 @@ const SidebarButton = styled.button`
 `;
 
 const LiveSidebarButton = () => {
-  const sidebarOpened = useSelector((state) => state.liveWidget.sidebarOpened);
+  const isSidebarOpened = useSelector((state) => state.liveWidget.isSidebarOpened);
 
   const dispatch = useDispatch();
 
   const onClickButton = () => {
-    if (!sidebarOpened) {
+    if (!isSidebarOpened) {
       dispatch(openSidebar());
     }
   }
 
   return (
     <>
-      { !sidebarOpened && (
+      { !isSidebarOpened && (
         <SidebarButtonWrapper>
           <SidebarButton type="button" onClick={onClickButton}>다른 경기</SidebarButton>
         </SidebarButtonWrapper>

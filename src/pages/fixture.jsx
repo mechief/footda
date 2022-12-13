@@ -17,6 +17,7 @@ import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
 
 import LiveSidebarButton from "../components/liveWidget/liveSidebarButton"
+import LiveWidget from "../components/liveWidget/liveWidget";
 
 import { 
   FixtureWrapper, 
@@ -45,11 +46,22 @@ const Fixture = () => {
   const params = useParams();
   const dispatch = useDispatch();
 
-  if (params.id === 'undefined') {
-    return (
-      <div>잘못된 경로입니다.</div>
-    )
-  }
+  useEffect(() => {
+    dispatch(setFixtureId(params.id));
+  }, [params.id]);
+
+  useEffect(() => {
+    if (id) {
+      getFixture(id)
+        .then((res) => {
+          console.log(res);
+          dispatch(setFixture(res));
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
+  }, [id]);
 
   // 팀별 events filter
   const teamEvents = useMemo(() => {
@@ -62,26 +74,6 @@ const Fixture = () => {
       })
     }
   }, [events]);
-
-  useEffect(() => {
-    dispatch(setFixtureId(params.id));
-  }, [params.id]);
-
-  useEffect(() => {
-    if (id) {
-      (async () => {
-        try {
-          getFixture(id)
-            .then((res) => {
-              console.log(res);
-              dispatch(setFixture(res));
-            })
-        } catch(error) {
-          console.error(error);
-        }
-      })();
-    }
-  }, [id]);
   
   return (
     <>
@@ -106,25 +98,23 @@ const Fixture = () => {
                   <FixtureTeam team={teams.away} />
                 </>
               }
-              { FIXTURE_STATUS[status?.short]?.code >= 0
-                  && goals?.home
-                  && goals?.away
-                  && <FixtureScoreWrapper><FixtureScore goals={goals} score={score} shortStatus={status.short} /></FixtureScoreWrapper>
+              { FIXTURE_STATUS[status?.short]?.code >= 0 &&
+                <FixtureScoreWrapper><FixtureScore goals={goals} score={score} shortStatus={status.short} /></FixtureScoreWrapper>
               }
               <FixtureEventSummary events={teamEvents.home} isHome={true} />
               <FixtureEventSummary events={teamEvents.away} />
             </FixtureSummary>
             { lineups[0]?.team?.id && (
-                <FixtureDetailSection>
-                  <Lineup lineup={lineups[0]} events={teamEvents.home} />
-                  <FixtureDetail />
-                  <Lineup lineup={lineups[1]} events={teamEvents.away} />
-                </FixtureDetailSection>
-              )
-            }
+              <FixtureDetailSection>
+                <Lineup lineup={lineups[0]} events={teamEvents.home} />
+                <FixtureDetail />
+                <Lineup lineup={lineups[1]} events={teamEvents.away} />
+              </FixtureDetailSection>
+            )}
           </FixtureWrapper>
         )
       }
+      <LiveWidget />
     </>
   );
 }

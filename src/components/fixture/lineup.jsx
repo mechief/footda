@@ -16,8 +16,8 @@ const LineupSubst = styled.div`
 const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false, subst: {}};
 
 const Lineup = memo(({ lineup, events }) => {
-  const [playingLineup, setPlayingLineup] = useState(lineup.startXI);
-  const [substLineup, setSubstLineup] = useState(lineup.substitutes);
+  const [playingLineup, setPlayingLineup] = useState([]);
+  const [substLineup, setSubstLineup] = useState([]);
   const [substOutLineup, setSubstOutLineup] = useState([]);
   const [eventSubsts, setEventSubsts] = useState([]);
   const [eventGoals, setEventGoals] = useState([]);
@@ -53,9 +53,9 @@ const Lineup = memo(({ lineup, events }) => {
 
   // 선수 교체 반영
   useEffect(() => {
-    let newPlayingLineup = [...playingLineup];
-    let newSubstLineup = [...substLineup];
-    let newSubstOutLineup = [...substOutLineup];
+    let newPlayingLineup = [...lineup.startXI];
+    let newSubstLineup = [...lineup.substitutes];
+    let newSubstOutLineup = [];
     let subInIndex, subOut;
 
     eventSubsts.forEach(substEvent => {

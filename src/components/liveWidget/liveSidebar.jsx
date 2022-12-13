@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { getRoundFixtures } from "../../apiFootball/fixtures";
 import fixtureSlice from "../../slices/fixtureSlice";
+import { addLiveFixtureIds } from "../../slices/liveWidgetSlice";
 
 import LiveSidebarCloseButton from "./liveSidebarCloseButton";
 import LiveSidebarFixtureItem from "./liveSidebarFixtureItem";
@@ -50,26 +51,23 @@ const LiveSidebarContent = styled.div`
 const LiveSidebarFixtureList = styled.ul`
 `;
 
-
 const LiveSidebar = () => {
   const fixtures = useSelector((state) => state.fixture.fixtures);
+  const liveFixtureIds = useSelector((state) => state.liveWidget.liveFixtureIds);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      try {
-        getRoundFixtures()
-          .then((res) => {
-            dispatch(fixtureSlice.actions.addFixtures(res));
-            console.log(res);
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
-      } catch(error) {
-        console.log(error.message);
-      }
-    })();
+    if (liveFixtureIds.length === 0) {
+      getRoundFixtures()
+        .then((res) => {
+          dispatch(fixtureSlice.actions.addFixtures(res));
+          dispatch(addLiveFixtureIds(res.map(item => item.fixture.id)));
+          console.log(res);
+        })
+        .catch((error) => {
+          console.log(error.message);
+        });
+    }
   }, []);
 
   return (
@@ -80,7 +78,9 @@ const LiveSidebar = () => {
       </LiveSidebarTitleArea>
       <LiveSidebarContent>
         <LiveSidebarFixtureList>
-          {fixtures.map(v => <LiveSidebarFixtureItem key={v.fixture.id} fixture={v} />)}
+          { liveFixtureIds.map(fixtureId => 
+            <LiveSidebarFixtureItem key={`liveFixture_${fixtureId}`} fixture={fixtures.find(item => item.fixture.id === fixtureId)} />
+          )}
         </LiveSidebarFixtureList>
       </LiveSidebarContent>
     </LiveSidebarWrapper>

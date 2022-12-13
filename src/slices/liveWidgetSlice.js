@@ -3,20 +3,34 @@ import { createSlice } from "@reduxjs/toolkit";
 const liveWidgetSlice = createSlice({
   name: 'liveWidget',
   initialState: {
-    sidebarOpened: false,
-    liveFixtures: [],
-    widgetFixtures: [],
+    isSidebarOpened: false,
+    liveFixtureIds: [],
+    widgetFixtureIds: [],
   },
 
   reducers: {
     openSidebar: (state) => {
-      state.sidebarOpened = true;
+      state.isSidebarOpened = true;
     },
     closeSidebar: (state) => {
-      state.sidebarOpened = false;
+      state.isSidebarOpened = false;
     },
-    addWidgetFixture: (state, action) => {
-      state.widgetFixtures = [...state.widgetFixtures, action.payload];
+    addLiveFixtureIds: (state, action) => {
+      state.liveFixtureIds = [...state.liveFixtureIds, ...action.payload];
+    },
+    addWidgetFixtureId: (state, action) => {
+      if (!state.widgetFixtureIds.find((fixtureId) => fixtureId === action.payload)) {
+        state.widgetFixtureIds = [...state.widgetFixtureIds, action.payload];
+      }
+    },
+    removeWidgetFixtureId: (state, action) => {
+      const newFixtureIds = [...state.widgetFixtureIds];
+      const targetIdx = newFixtureIds.findIndex(id => id === action.payload);
+      
+      if (targetIdx >= 0) {
+        newFixtureIds.splice(targetIdx, 1);
+      }
+      state.widgetFixtureIds = newFixtureIds;
     },
   }
 });
@@ -24,7 +38,9 @@ const liveWidgetSlice = createSlice({
 export const {
   openSidebar,
   closeSidebar,
-  addWidgetFixture,
+  addLiveFixtureIds,
+  addWidgetFixtureId,
+  removeWidgetFixtureId,
 } = liveWidgetSlice.actions;
 
 export default liveWidgetSlice;

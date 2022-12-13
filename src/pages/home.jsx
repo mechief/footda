@@ -11,20 +11,14 @@ const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async () => {
-      try {
-        getRoundFixtures()
-          .then((res) => {
-            dispatch(fixtureSlice.actions.addFixtures(res));
-            console.log(res);
-          })
-          .catch((error) => {
-            console.log(error.message);
-          });
-      } catch(error) {
+    getRoundFixtures()
+      .then((res) => {
+        dispatch(fixtureSlice.actions.addFixtures(res));
+        console.log(res);
+      })
+      .catch((error) => {
         console.log(error.message);
-      }
-    })();
+      });
   }, []);
 
   return (

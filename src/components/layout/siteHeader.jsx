@@ -24,7 +24,7 @@ const HeaderUl = styled.nav`
 `;
 
 const SiteHeader = () => {
-  const sidebarOpened = useSelector((state) => state.liveWidget.sidebarOpened);
+  const isSidebarOpened = useSelector((state) => state.liveWidget.isSidebarOpened);
 
   return (
     <header>
@@ -37,7 +37,7 @@ const SiteHeader = () => {
           </HeaderUl>
         </HeaderNav>
       </HeaderInner>
-      { sidebarOpened &&
+      { isSidebarOpened &&
         <LiveSidebar />
       }
     </header>
