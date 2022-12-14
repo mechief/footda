@@ -1,8 +1,9 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 
-import store from './store/store';
+import { store, persistor } from './store/store';
 
 import SiteWrapper from './components/layout/SiteWrapper';
 import SiteHeader from './components/layout/siteHeader';
@@ -12,13 +13,15 @@ import SiteFooter from './components/layout/siteFooter';
 const Root = () => {
   return (
     <Provider store={store}>
-      <SiteWrapper>
-        <SiteHeader />
-        <SiteContents>
-          <Outlet />
-        </SiteContents>
-        <SiteFooter />
-      </SiteWrapper>
+      <PersistGate loading={null} persistor={persistor}>
+        <SiteWrapper>
+          <SiteHeader />
+          <SiteContents>
+            <Outlet />
+          </SiteContents>
+          <SiteFooter />
+        </SiteWrapper>
+      </PersistGate>
     </Provider>
   );
 }

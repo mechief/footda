@@ -1,6 +1,6 @@
 import React from "react";
 
-const LeagueStatGoalkeeper = ({ leagueStat }) => {
+const LeagueStatGoalkeeper = ({ leagueStat, leagueName }) => {
   return (
     <tr>
       <td>{leagueName}</td>
