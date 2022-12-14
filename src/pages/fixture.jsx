@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useLoaderData } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 import { getFixture } from "../apiFootball/fixtures";
 import { setFixtureId, setFixture } from "../slices/currentFixtureSlice";
@@ -29,38 +29,18 @@ import {
 } from "../components/fixture/fixtureStyled";
 
 const Fixture = () => {
-  const id = useSelector((state) => state.currentFixture.id);
-  const date = useSelector((state) => state.currentFixture.date);
-  const referee = useSelector((state) => state.currentFixture.referee);
-  const status = useSelector((state) => state.currentFixture.status);
-  const venue = useSelector((state) => state.currentFixture.venue);
-  const goals = useSelector((state) => state.currentFixture.goals);
-  const league = useSelector((state) => state.currentFixture.league);
-  const lineups = useSelector((state) => state.currentFixture.lineups);
-  const players = useSelector((state) => state.currentFixture.players);
-  const score = useSelector((state) => state.currentFixture.score);
-  const statistics = useSelector((state) => state.currentFixture.statistics);
-  const events = useSelector((state) => state.currentFixture.events);
-  const teams = useSelector((state) => state.currentFixture.teams);
+  const fixtureData = useLoaderData();
+  const {id, date, status} = fixtureData.fixture;
+  const {
+    goals, league, lineups, players,
+    score, statistics, events, teams,
+  } = fixtureData;
   
-  const params = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setFixtureId(params.id));
-  }, [params.id]);
-
-  useEffect(() => {
-    if (id) {
-      getFixture(id)
-        .then((res) => {
-          console.log(res);
-          dispatch(setFixture(res));
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    }
+    dispatch(setFixtureId(id));
+    dispatch(setFixture(fixtureData));
   }, [id]);
 
   // 팀별 events filter
@@ -117,6 +97,10 @@ const Fixture = () => {
       <LiveWidget />
     </>
   );
+}
+
+export const fixtureLoader = async ({ params }) => {
+  return await getFixture(params.id);
 }
 
 export default Fixture;

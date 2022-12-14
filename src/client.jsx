@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Root from './root';
 import Home from './pages/home';
-import Fixture from './pages/fixture';
+import Fixture, { fixtureLoader } from './pages/fixture';
 import MyPage from './pages/myPage';
 
 const router = createBrowserRouter([
@@ -20,6 +20,7 @@ const router = createBrowserRouter([
       {
         path: "fixture/:id",
         element: <Fixture />,
+        loader: fixtureLoader,
       },
       {
         path: "mypage",
