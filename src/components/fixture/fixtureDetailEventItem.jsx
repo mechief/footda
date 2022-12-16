@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const EventItemWrapper = styled.li`
+  display: flex;
   padding: 4px 0;
   font-size: 13px;
 `
@@ -25,6 +26,9 @@ const FixtureDetailEventItem = ({ event }) => {
 
       case 'Card':
         return `${event.player.name} 선수 ${event.detail === 'Yellow Card' ? '경고를 받습니다.' : '퇴장입니다.'}`;
+
+      case 'Var':
+        return `${event.player.name} 선수의 플레이에 대하여 VAR 확인을 합니다.`;
     
       default:
         break;

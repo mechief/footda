@@ -35,6 +35,8 @@ const Fixture = () => {
     goals, league, lineups, players,
     score, statistics, events, teams,
   } = fixtureData;
+
+  console.log(fixtureData);
   
   const dispatch = useDispatch();
 

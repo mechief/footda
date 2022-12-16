@@ -137,14 +137,6 @@ const Lineup = memo(({ lineup, events }) => {
           </>
         )}
       </LineupSubst>
-      {/* {
-        substOutLineup.length > 0 && (
-          <div>
-            <p>교체 아웃</p>
-            {}
-          </div>
-        )
-      } */}
     </LineupWrapper>
   );
 });

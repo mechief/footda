@@ -1,10 +1,10 @@
 import React, { memo } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
 import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
+import { removeWidgetFixtureId } from "../../slices/liveWidgetSlice";
 
-import LiveWidgetRemoveButton from "./liveWidgetRemoveButton";
 import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
 import FixtureDate from "../fixture/fixtureDate";
 import FixtureStatus from "../fixture/fixtureStatus";
@@ -24,6 +24,16 @@ const ItemWrapper = styled.li`
   background: #f3dfc9;
   font-size: 13px;
   text-align: center;
+`;
+
+const RemoveWidgetButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px 4px;
+  border: none;
+  border-radius: 2px;
+  background: #e5caab;
 `;
 
 const ItemDetail = styled.div`
@@ -54,10 +64,15 @@ const ItemScore = styled.span`
 
 const LiveWidgetItem = memo(({ fixtureId }) => {
   const fixture = useSelector((state) => state.fixture.fixtures.find(item => item.fixture.id === fixtureId));
+  const dispatch = useDispatch();
+
+  const onClickRemove = () => {
+    dispatch(removeWidgetFixtureId(fixtureId));
+  }
 
   return (
     <ItemWrapper>
-      <LiveWidgetRemoveButton fixtureId={fixtureId} />
+      <RemoveWidgetButton type="button" onClick={onClickRemove}>닫기</RemoveWidgetButton>
       <span>{getLeagueNameKr(fixture.league?.id)}</span>
       { fixture.fixture?.date && 
         <FixtureDate date={fixture.fixture.date} onlyTime={true} />

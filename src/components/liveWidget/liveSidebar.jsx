@@ -4,9 +4,8 @@ import styled from "styled-components";
 
 import { getRoundFixtures } from "../../apiFootball/fixtures";
 import fixtureSlice from "../../slices/fixtureSlice";
-import { addLiveFixtureIds } from "../../slices/liveWidgetSlice";
+import { addLiveFixtureIds, closeSidebar } from "../../slices/liveWidgetSlice";
 
-import LiveSidebarCloseButton from "./liveSidebarCloseButton";
 import LiveSidebarFixtureItem from "./liveSidebarFixtureItem";
 
 const LiveSidebarWrapper = styled.div`
@@ -42,6 +41,21 @@ const LiveSidebarTitle = styled.h3`
   font-weight: 700;
 `;
 
+const CloseButton = styled.button`
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -11px;
+  padding: 4px 6px;
+  border: none;
+  line-height: 1;
+  background: #666;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  border-radius: 2px;
+`;
+
 const LiveSidebarContent = styled.div`
   overflow-y: auto;
   width: 100%;
@@ -70,11 +84,15 @@ const LiveSidebar = () => {
     }
   }, []);
 
+  const onClickClose = () => {
+    dispatch(closeSidebar());
+  }
+
   return (
     <LiveSidebarWrapper>
       <LiveSidebarTitleArea>
         <LiveSidebarTitle>오늘의 경기</LiveSidebarTitle>
-        <LiveSidebarCloseButton />
+        <CloseButton type="button" onClick={onClickClose}>닫기</CloseButton>
       </LiveSidebarTitleArea>
       <LiveSidebarContent>
         <LiveSidebarFixtureList>
