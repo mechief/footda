@@ -207,3 +207,22 @@ export const getLeagueNameKr = (leagueId) => {
 
   return SERVICE_LEAGUES[id].nameKr;
 }
+
+export const getServiceLeagueIds = ({type, country}) => {
+  if (type && country) {
+    return Object.keys(SERVICE_LEAGUES).filter(leagueId => {
+      return SERVICE_LEAGUES[leagueId].type === type
+        && SERVICE_LEAGUES[leagueId].country === country;
+    });
+  } else if (type) {
+    return Object.keys(SERVICE_LEAGUES).filter(leagueId => {
+      return SERVICE_LEAGUES[leagueId].type === type;
+    });
+  } else if (country) {
+    return Object.keys(SERVICE_LEAGUES).filter(leagueId => {
+      return SERVICE_LEAGUES[leagueId].country === country;
+    });
+  }
+
+  return Object.keys(SERVICE_LEAGUES);
+}

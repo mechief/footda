@@ -8,6 +8,7 @@ import LiveSidebar from "../liveWidget/LiveSidebar";
 
 const HeaderInner = styled.div`
   display: flex;
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px 10px;
@@ -17,10 +18,17 @@ const HeaderInner = styled.div`
 const HeaderLogo = styled.h1`
   margin: 0 auto;
 `;
-const HeaderNav = styled.nav``;
-const HeaderUl = styled.nav`
+const HeaderNav = styled.nav`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+`;
+
+const HeaderNavUl = styled.ul`
   display: flex;
   flex-wrap: nowrap;
+  gap: 0 12px;
 `;
 
 const SiteHeader = () => {
@@ -31,10 +39,11 @@ const SiteHeader = () => {
       <HeaderInner>
         <HeaderLogo>Footda</HeaderLogo>
         <HeaderNav>
-          <HeaderUl>
-            {/* <SiteHeaderNavLi link="/" name="메인" /> */}
-            {/* <SiteHeaderNavLi link="/mypage" name="마이페이지" /> */}
-          </HeaderUl>
+          <HeaderNavUl>
+            <SiteHeaderNavLi link="/" name="홈" />
+            <SiteHeaderNavLi link="/standing" name="순위" />
+            <SiteHeaderNavLi link="/mypage" name="마이페이지" />
+          </HeaderNavUl>
         </HeaderNav>
       </HeaderInner>
       { isSidebarOpened &&

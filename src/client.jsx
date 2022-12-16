@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './root';
 import Home from './pages/home';
 import Fixture, { fixtureLoader } from './pages/fixture';
+import Standing, { standingLoader } from './pages/standing';
 import MyPage from './pages/myPage';
 
 const router = createBrowserRouter([
@@ -21,6 +22,21 @@ const router = createBrowserRouter([
         path: "fixture/:id",
         element: <Fixture />,
         loader: fixtureLoader,
+      },
+      {
+        path: "standing",
+        children: [
+          {
+            index: true,
+            element: <Standing />,
+            loader: standingLoader,
+          },
+          {
+            path: ":id",
+            element: <Standing />,
+            loader: standingLoader,
+          }
+        ],
       },
       {
         path: "mypage",
