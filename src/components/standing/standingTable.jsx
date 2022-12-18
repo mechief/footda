@@ -26,24 +26,25 @@ const Table = styled.table`
 const columns = [
   {dataName: 'rank', text: '순위'},
   {dataName: 'teamName', text: '팀명'},
-  {dataName: 'points', text: '승점'},
+  {dataName: 'played', text: '경기'},
   {dataName: 'win', text: '승'},
   {dataName: 'draw', text: '무'},
   {dataName: 'lose', text: '패'},
   {dataName: 'goalsFor', text: '득점'},
   {dataName: 'goalsAgainst', text: '실점'},
   {dataName: 'goalsDiff', text: '득실차'},
+  {dataName: 'points', text: '승점'},
   {dataName: 'form', text: '최근 5경기'},
 ];
 
-const StandingTable = ({ standings, leagueId, orderType }) => {
+const StandingTable = ({ standings, leagueId, orderType, setOrderType }) => {
   return (
     <Table>
       <caption>{getLeagueNameKr(leagueId)} 순위표</caption>
       <thead>
         <tr>
           { columns.map((column) => 
-            <StandingTableTh dataName={column.dataName} text={column.text} orderType={orderType} />
+            <StandingTableTh key={`th_${column.dataName}`} dataName={column.dataName} text={column.text} orderType={orderType} setOrderType={setOrderType} />
           )}
         </tr>
       </thead>

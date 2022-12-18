@@ -7,9 +7,13 @@ const ReOrderButton = styled.button`
   padding: 8px 12px;
   border: none;
   background: #f5f5f5;
-  &:hover {
-    background: #eee;
-  }
+  cursor: default;
+  ${(props) => props.clickable && css`
+    cursor: pointer;
+    &:hover {
+      background: #eee;
+    }
+  `}
 `;
 
 const OrderTextWrapper = styled.span`
@@ -21,7 +25,7 @@ const OrderTextWrapper = styled.span`
 const OrderArrow = styled.span`
   position: absolute;
   top: calc(50% - 6px);
-  right: -12px;
+  right: -16px;
   border-top: 6px solid #222;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
@@ -36,12 +40,25 @@ const OrderArrow = styled.span`
   `}
 `;
 
-const StandingTableTh = ({ dataName, text, orderType }) => {
+const StandingTableTh = ({ dataName, text, orderType, setOrderType }) => {
   const [orderData, orderDirection] = orderType.split(' ');
+
+  const onClickReOrder = () => {
+    if (dataName == 'teamName') {
+      return;
+    }
+
+    if (orderData != dataName) {
+      // rank - asc First, others - desc First
+      setOrderType(dataName + ' ' + (dataName === 'rank' ? 'asc' : 'desc'));
+    } else {
+      setOrderType(dataName + ' ' + (orderDirection === 'asc' ? 'desc' : 'asc'));
+    }
+  }
 
   return (
     <th>
-      <ReOrderButton>
+      <ReOrderButton onClick={onClickReOrder} clickable={dataName == 'teamName' ? false : true}>
         <OrderTextWrapper>
           <span>{text}</span>
           {orderData === dataName &&

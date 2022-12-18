@@ -22,6 +22,7 @@
 .subversion
 .rediscli_history
 .vscode
+.history
 
 # backup file
 *.back
