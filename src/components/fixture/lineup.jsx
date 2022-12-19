@@ -13,7 +13,7 @@ const LineupSubst = styled.div`
   margin-top: 40px;
 `;
 
-const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false, subst: {}};
+const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false};
 
 const Lineup = memo(({ lineup, events }) => {
   const [playingLineup, setPlayingLineup] = useState([]);
@@ -75,33 +75,23 @@ const Lineup = memo(({ lineup, events }) => {
     setSubstOutLineup(() => newSubstOutLineup);
   }, [eventSubsts]);
 
-  // 득점, 도움 반영
+  // 득점, 도움, 경고, 퇴장 반영
   useEffect(() => {
-    setPlayerEvents(prevState => {
+    setPlayerEvents(() => {
       let playerEvent = {};
 
       eventGoals.forEach(v => {
-        playerEvent[v.player.id] = prevState.hasOwnProperty(v.player.id) ? prevState[v.player.id] : {...playerEventDefault};
+        playerEvent[v.player.id] = playerEvent[v.player.id] ?? {...playerEventDefault};
         playerEvent[v.player.id].goal++;
 
-        playerEvent[v.assist.id] = prevState.hasOwnProperty(v.assist.id) ? prevState[v.assist.id] : {...playerEventDefault};
-        playerEvent[v.assist.id].assist++;
+        if (v.assist.id) {
+          playerEvent[v.assist.id] = playerEvent[v.assist.id] ?? {...playerEventDefault};
+          playerEvent[v.assist.id].assist++;
+        }
       });
 
-      return {
-        ...prevState,
-        ...playerEvent,
-      }
-    });
-  }, [eventGoals]);
-
-  // 경고, 퇴장 반영
-  useEffect(() => {
-    setPlayerEvents(prevState => {
-      let playerEvent = {};
-
       eventCards.forEach(v => {
-        playerEvent[v.player.id] = prevState.hasOwnProperty(v.player.id) ? prevState[v.player.id] : {...playerEventDefault};
+        playerEvent[v.player.id] = playerEvent[v.player.id] ?? {...playerEventDefault};
 
         if (v.detail === 'Yellow Card') {
           playerEvent[v.player.id].yellow = true;
@@ -110,12 +100,9 @@ const Lineup = memo(({ lineup, events }) => {
         }
       });
 
-      return {
-        ...prevState,
-        ...playerEvent,
-      }
+      return playerEvent;
     });
-  }, [eventCards]);
+  }, [eventGoals, eventCards]);
 
   return (
     <LineupWrapper>

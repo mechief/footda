@@ -52,7 +52,6 @@ const PlayerEventCount = styled.span`
 `;
 
 const LineupPlayer = memo(({ player, isSubstOut = false, playerEvent }) => {
-
   return (
     <LineupPlayerWrapper isSubstOut={isSubstOut}>
       <StatTooltipPlayer playerId={player.id} />

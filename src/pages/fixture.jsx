@@ -36,9 +36,9 @@ const Fixture = () => {
     score, statistics, events, teams,
   } = fixtureData;
 
-  console.log(fixtureData);
-  
   const dispatch = useDispatch();
+
+  console.log(fixtureData);
 
   useEffect(() => {
     dispatch(setFixtureId(id));
@@ -80,9 +80,11 @@ const Fixture = () => {
                   <FixtureTeam team={teams.away} />
                 </>
               }
-              { FIXTURE_STATUS[status?.short]?.code >= 0 &&
-                <FixtureScoreWrapper><FixtureScore goals={goals} score={score} shortStatus={status.short} /></FixtureScoreWrapper>
-              }
+              { FIXTURE_STATUS[status?.short]?.code >= 0 && (
+                <FixtureScoreWrapper>
+                  <FixtureScore goals={goals} score={score} shortStatus={status.short} />
+                </FixtureScoreWrapper>
+              )}
               <FixtureEventSummary events={teamEvents.home} isHome={true} />
               <FixtureEventSummary events={teamEvents.away} />
             </FixtureSummary>
