@@ -1,10 +1,37 @@
 import React, { memo } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-const StandingTableTr = memo(({ teamData }) => {
-  console.log('render Tr');
+const StandingTr = styled.tr`
+  ${(props) => props.ruleHighlight === 'demotion' && css`
+    & td {
+      background: #eec5d2;
+    }
+  `}
+  ${(props) => props.ruleHighlight === 'ChampionsLeague' && css`
+    & td {
+      background: #c5d1ee;
+    }
+  `}
+  ${(props) => props.ruleHighlight === 'EuropaLeague' && css`
+    & td {
+      background: #c6eec5;
+    }
+  `}
+`;
+
+const StandingTableTr = memo(({ teamData, leagueRule }) => {
+  const matchLeagueRule = leagueRule.find((ruleItem) => {
+    return ruleItem.ranks.includes(teamData.rank);
+  });
+
+  const ruleHighlight = matchLeagueRule 
+    ? (matchLeagueRule.type === 'continental'
+      ? matchLeagueRule.detail
+      : matchLeagueRule.type)
+    : false;
+
   return (
-    <tr>
+    <StandingTr ruleHighlight={ruleHighlight}>
       <td>{teamData.rank}</td>
       <td>{teamData.team.name}</td>
       <td>{teamData.all.played}</td>
@@ -16,7 +43,7 @@ const StandingTableTr = memo(({ teamData }) => {
       <td>{teamData.goalsDiff}</td>
       <td>{teamData.points}</td>
       <td>{teamData.form}</td>
-    </tr>
+    </StandingTr>
   );
 });
 

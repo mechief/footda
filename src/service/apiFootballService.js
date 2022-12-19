@@ -192,6 +192,109 @@ export const SERVICE_LEAGUES = {
   },
 }
 
+// 승격, 강등, 유럽대항전 규칙
+export const LEAGUE_RULES = {
+  // 프리미어리그
+  '39': [
+    {
+      type: 'demotion',
+      detail: null,
+      ranks: [18, 19, 20],
+    },
+    {
+      type: 'continental',
+      detail: 'ChampionsLeague',
+      ranks: [1, 2, 3, 4],
+      league: 2,
+    },
+    {
+      type: 'continental',
+      detail: 'EuropaLeague',
+      ranks: [5, 6],
+      league: 3,
+    },
+  ],
+  // 리그 1
+  '61': [
+    {
+      type: 'demotion',
+      detail: null,
+      ranks: [18, 19, 20],
+    },
+    {
+      type: 'continental',
+      detail: 'ChampionsLeague',
+      ranks: [1, 2, 3],
+      league: 2,
+    },
+    {
+      type: 'continental',
+      detail: 'EuropaLeague',
+      ranks: [4],
+      league: 3,
+    },
+  ],
+  // 분데스리가
+  '78': [ 
+    {
+      type: 'demotion',
+      detail: null,
+      ranks: [16, 17, 18],
+    },
+    {
+      type: 'continental',
+      detail: 'ChampionsLeague',
+      ranks: [1, 2, 3, 4],
+      league: 2,
+    },
+    {
+      type: 'continental',
+      detail: 'EuropaLeague',
+      ranks: [5, 6],
+      league: 3,
+    },
+  ],
+  // 세리에 A
+  '135': [
+    {
+      type: 'demotion',
+      detail: null,
+      ranks: [18, 19, 20],
+    },
+    {
+      type: 'continental',
+      detail: 'ChampionsLeague',
+      ranks: [1, 2, 3, 4],
+      league: 2,
+    },
+    {
+      type: 'continental',
+      detail: 'EuropaLeague',
+      ranks: [5],
+      league: 3,
+    },
+  ],
+  '140': [
+    {
+      type: 'demotion',
+      detail: null,
+      ranks: [18, 19, 20],
+    },
+    {
+      type: 'continental',
+      detail: 'ChampionsLeague',
+      ranks: [1, 2, 3, 4],
+      league: 2,
+    },
+    {
+      type: 'continental',
+      detail: 'EuropaLeague',
+      ranks: [5, 6],
+      league: 3,
+    },
+  ],
+}
+
 export const isServiceLeague = (leagueId) => {
   const id = typeof leagueId === 'number' ? leagueId.toString() : leagueId;
 
@@ -225,4 +328,14 @@ export const getServiceLeagueIds = ({type, country}) => {
   }
 
   return Object.keys(SERVICE_LEAGUES);
+}
+
+export const getLeagueRule = (leagueId) => {
+  const id = typeof leagueId === 'number' ? leagueId.toString() : leagueId;
+
+  if (!isServiceLeague(id)) {
+    return null;
+  }
+
+  return LEAGUE_RULES[id];
 }

@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from "react";
 import { useParams, useLoaderData } from "react-router-dom";
 
 import { getStandings } from "../apiFootball/standings";
-import StandingLeagues from "../components/standing/standingLeagues";
+import { getLeagueRule } from "../service/apiFootballService";
 
+import StandingLeagues from "../components/standing/standingLeagues";
 import StandingTable from "../components/standing/standingTable";
 
 import {
@@ -16,6 +17,7 @@ const Standing = () => {
   const standingData = useLoaderData();
   const [standings, setStandings] = useState(standingData.league.standings[0]);
   const [orderType, setOrderType] = useState('rank asc');
+  const leagueRule = getLeagueRule(leagueId);
 
   console.log(standings);
 
@@ -73,7 +75,13 @@ const Standing = () => {
     <StandingWrapper>
       <StandingTitle>순위</StandingTitle>
       <StandingLeagues />
-      <StandingTable standings={standings} leagueId={leagueId} orderType={orderType} setOrderType={setOrderType} />
+      <StandingTable 
+        standings={standings}
+        leagueId={leagueId}
+        orderType={orderType}
+        setOrderType={setOrderType}
+        leagueRule={leagueRule}
+      />
     </StandingWrapper>
   );
 }
