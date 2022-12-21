@@ -38,11 +38,7 @@ export const getRoundFixtures = async () => {
   let fixtures = res.data.response;
 
   // 경기일자 기준으로 재정렬
-  fixtures.sort((a, b) => {
-    if (a.fixture.date > b.fixture.date) return 1;
-    if (a.fixture.date == b.fixture.date) return 0;
-    if (a.fixture.date < b.fixture.date) return -1;
-  });
+  fixtures.sort((a, b) => a.fixture.date - b.fixture.date);
 
   return fixtures;
 }

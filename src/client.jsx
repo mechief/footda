@@ -6,6 +6,7 @@ import Root from './root';
 import Home from './pages/home';
 import Fixture, { fixtureLoader } from './pages/fixture';
 import Standing, { standingLoader } from './pages/standing';
+import TopPlayer, { topPlayerLoader } from './pages/topPlayer';
 import MyPage from './pages/myPage';
 
 const router = createBrowserRouter([
@@ -35,6 +36,21 @@ const router = createBrowserRouter([
             path: ":id",
             element: <Standing />,
             loader: standingLoader,
+          }
+        ],
+      },
+      {
+        path: "top_player",
+        children: [
+          {
+            index: true,
+            element: <TopPlayer />,
+            loader: topPlayerLoader,
+          },
+          {
+            path: ":id",
+            element: <TopPlayer />,
+            loader: topPlayerLoader,
           }
         ],
       },

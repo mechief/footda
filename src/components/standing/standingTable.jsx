@@ -8,6 +8,8 @@ import StandingTableTr from "./standingTableTr";
 
 const Table = styled.table`
   width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
   border-collapse: collapse;
   & th,
   & td {
