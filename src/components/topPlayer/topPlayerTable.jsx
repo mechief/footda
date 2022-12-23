@@ -39,7 +39,7 @@ const calcRanks = (playersData, orderData) => {
   const ranksTargetProperty = orderData === 'goals' ? 'total' : 'assists';
   let lastRank = 1;
 
-  return new Array(playersData.length).fill(0).map((v, i, arr) => {
+  return new Array(playersData.length).fill(0).map((v, i) => {
     if (i === 0) return lastRank;
     if (playersData[i].statistics[0].goals[ranksTargetProperty] === playersData[i - 1].statistics[0].goals[ranksTargetProperty]) {
       return lastRank;

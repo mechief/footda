@@ -1,65 +1,33 @@
-import React, { memo } from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
+import { getFixturesFromDate } from "../../apiFootball/fixtures";
+import fixtureSlice from "../../slices/fixtureSlice";
 
-import FixtureDate from "../fixture/fixtureDate";
-import FixtureLeagueRound from "../fixture/fixtureLeagueRound";
-import FixtureStatus from "../fixture/fixtureStatus";
-import FixtureScore from "../fixture/fixtureScore";
-import ScheduleFixtureTeam from "./scheduleFixtureTeam";
+import ScheduleFixtureItem from "./scheduleFixtureItem";
 
-const ScheduleFixtureItem = styled.div``;
+const ScheduleFixture = () => {
+  const fixtures = useSelector((state) => state.fixture.fixtures);
+  const dispatch = useDispatch();
 
-const ItemInner = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  padding: 3px 0;
-  gap: 0 10px;
-  font-size: 15px;
-`;
-
-const ScheduleFixture = memo(({ fixture }) => {
+  useEffect(() => {
+    getFixturesFromDate()
+      .then((res) => {
+        dispatch(fixtureSlice.actions.addFixtures(res));
+        console.log(res);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
+  
   return (
-    <ScheduleFixtureItem>
-      <Link to={'/fixture/' + fixture.fixture.id}>
-        <ItemInner>
-          {
-            fixture.fixture?.status?.short &&
-            <FixtureStatus shortStatus={fixture.fixture.status.short} />
-          }
-          <span>
-            <span>{getLeagueNameKr(fixture.league?.id)}</span>
-            {
-              fixture.league?.round && 
-              <FixtureLeagueRound round={fixture.league.round} />
-            }
-          </span>
-          {
-            fixture.fixture?.date && 
-            <FixtureDate date={fixture.fixture.date} />
-          }
-          {
-            fixture.teams?.home?.id &&
-            <ScheduleFixtureTeam team={fixture.teams.home} />
-          }
-          <span>
-            {
-              FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0
-                && <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
-            }
-          </span>
-          {
-            fixture.teams?.away?.id &&
-            <ScheduleFixtureTeam team={fixture.teams.away} />
-          }
-        </ItemInner>
-      </Link>
-    </ScheduleFixtureItem>
+    <div>
+      { fixtures.map(v => 
+        <ScheduleFixtureItem key={v.fixture.id} fixture={v} />
+      )}
+    </div>   
   );
-});
+}
 
 export default ScheduleFixture;
