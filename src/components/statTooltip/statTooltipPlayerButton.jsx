@@ -18,12 +18,17 @@ const StatTooltipPlayerButton = memo(({ playerId }) => {
   const statTooltipPlayers = useSelector((state) => state.statTooltip.players);
   const dispatch = useDispatch();
   
-  const onClickTooltip = async (e) => {
-    if (!statTooltipPlayers.hasOwnProperty(playerId)) {
-      await dispatch(initTooltip(playerId));
+  const onClickTooltip = async () => {
+    try {
+      if (!statTooltipPlayers.hasOwnProperty(playerId)) {
+        await dispatch(initTooltip(playerId));
+      }
+      
+      dispatch(openTooltip(playerId));
+    } catch (err) {
+      console.log('catch Tooltip Error!');
+      console.error(err);
     }
-    
-    dispatch(openTooltip(playerId));
   }
 
   return (

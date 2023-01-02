@@ -15,6 +15,7 @@ import FixtureTeam from "../components/fixture/fixtureTeam";
 import FixtureScore from "../components/fixture/fixtureScore";
 import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
+import LineupNoData from "../components/fixture/lineupNoData";
 
 import LiveSidebarButton from "../components/liveWidget/liveSidebarButton"
 import LiveWidget from "../components/liveWidget/liveWidget";
@@ -88,13 +89,17 @@ const Fixture = () => {
               <FixtureEventSummary events={teamEvents.home} isHome={true} />
               <FixtureEventSummary events={teamEvents.away} />
             </FixtureSummary>
-            { lineups[0]?.team?.id && (
-              <FixtureDetailSection>
-                <Lineup lineup={lineups[0]} events={teamEvents.home} />
-                <FixtureDetail />
-                <Lineup lineup={lineups[1]} events={teamEvents.away} />
-              </FixtureDetailSection>
-            )}
+            <FixtureDetailSection>
+              { lineups[0]?.team?.id 
+                ? <Lineup lineup={lineups[0]} events={teamEvents.home} />
+                : <LineupNoData />
+              }
+              <FixtureDetail />
+              { lineups[1]?.team?.id
+                ? <Lineup lineup={lineups[1]} events={teamEvents.away} />
+                : <LineupNoData />
+              }
+            </FixtureDetailSection>
           </FixtureWrapper>
         )
       }

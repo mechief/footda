@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import RootErrorBoundary from './errors/route/rootErrorBoundary';
+
 import Root from './root';
 import Home from './pages/home';
 import Fixture, { fixtureLoader } from './pages/fixture';
@@ -13,7 +15,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <div>에러 엘리먼트</div>,
+    errorElement: <RootErrorBoundary />,
     children: [
       {
         index: true,

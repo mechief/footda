@@ -5,9 +5,10 @@ const fixtureSlice = createSlice({
   initialState: {
     fixtures: [],
   },
-
   reducers: {
     addFixtures: (state, action) => {
+      if (!action.payload) return;
+
       const newFixtures = action.payload.filter(item => {
         return state.fixtures.findIndex(v => v.fixture.id === item.fixture.id) === -1 ? true : false;
       });

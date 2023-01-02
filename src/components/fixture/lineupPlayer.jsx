@@ -51,7 +51,7 @@ const PlayerEventCount = styled.span`
   font-weight: 500;
 `;
 
-const LineupPlayer = memo(({ player, isSubstOut = false, playerEvent }) => {
+const LineupPlayer = memo(({ player, playerEvent, isSubstOut = false }) => {
   return (
     <LineupPlayerWrapper isSubstOut={isSubstOut}>
       <StatTooltipPlayer playerId={player.id} />

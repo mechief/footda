@@ -15,22 +15,23 @@ const statTooltipSlice = createSlice({
       state.activeTooltip = action.payload;
     }
   },
-  extraReducers: {
-    [initTooltip.pending]: (state, action) => {
-      console.log('pending...');
-    },
-    [initTooltip.fulfilled]: (state, action) => {
-      console.log('fulfilled...');
-      if (!state.players.hasOwnProperty(action.payload.player.id)) {
-        state.players[action.payload.player.id] = {};
-      }
+  extraReducers: (builder) => {
+    builder
+      .addCase(initTooltip.pending, (state, action) => {
+        console.log('pending...');
+      })
+      .addCase(initTooltip.fulfilled, (state, action) => {
+        console.log('fulfilled...');
+        if (!state.players.hasOwnProperty(action.payload.player.id)) {
+          state.players[action.payload.player.id] = {};
+        }
 
-      state.players[action.payload.player.id] = action.payload;
-    },
-    [initTooltip.rejected]: (state, action) => {
-      console.log('rejected...');
-    },
-  }
+        state.players[action.payload.player.id] = action.payload;
+      })
+      .addCase(initTooltip.rejected, (state, action) => {
+        console.log('rejected...');
+      })
+  },
 });
 
 export const {

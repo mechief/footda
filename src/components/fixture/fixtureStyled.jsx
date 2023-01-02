@@ -29,11 +29,10 @@ export const FixtureSummary = styled.div`
 export const FixtureDetailSection = styled.section`
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  flex-wrap: nowrap;
+  justify-content: space-around;
   align-items: flex-start;
   width: 100%;
-  max-width: 1000px;
   margin: 0 auto;
 `;
 
@@ -55,4 +54,10 @@ export const FixtureScoreWrapper = styled.div`
   font-weight: 700;
   color: #222;
   letter-spacing: 5px;
+`;
+
+export const LineupWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
 `;

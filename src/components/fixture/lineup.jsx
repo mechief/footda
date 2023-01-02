@@ -3,11 +3,7 @@ import styled from "styled-components";
 
 import LineupPlayer from "./lineupPlayer";
 
-const LineupWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  max-width: 50%;
-`;
+import { LineupWrapper } from "./fixtureStyled";
 
 const LineupSubst = styled.div`
   margin-top: 40px;
@@ -121,6 +117,7 @@ const Lineup = memo(({ lineup, events }) => {
             {substOutLineup.map(v => 
               <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} isSubstOut={true} />
             )}
+            <LineupPlayer key='test' player={{id: 2398761085183, pos: 'M', number: 98, name: '위젯에러 테스트용 선수'}} />
           </>
         )}
       </LineupSubst>

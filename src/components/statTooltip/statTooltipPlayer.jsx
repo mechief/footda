@@ -1,6 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
+import ErrorBoundary from "../error/errorBoundary";
+
 import * as Popover from '@radix-ui/react-popover';
 
 import StatTooltipPlayerButton from "./statTooltipPlayerButton"
@@ -20,9 +22,11 @@ const StatTooltipPlayer = ({ playerId }) => {
         <Popover.Portal>
           <Popover.Content side="bottom" align="start">
             {/* <Popover.Close /> */}
-            { activeTooltip === playerId &&
-              <StatTooltipPlayerDetail playerId={playerId} />
-            }
+            <ErrorBoundary children={<div>에러 발생!</div>}>
+              { activeTooltip === playerId &&
+                <StatTooltipPlayerDetail playerId={playerId} />
+              }
+            </ErrorBoundary>
           </Popover.Content>
         </Popover.Portal>
       </Popover.Root>
