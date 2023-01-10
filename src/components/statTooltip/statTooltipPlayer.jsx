@@ -22,7 +22,7 @@ const StatTooltipPlayer = ({ playerId }) => {
         <Popover.Portal>
           <Popover.Content side="bottom" align="start">
             {/* <Popover.Close /> */}
-            <ErrorBoundary children={<div>에러 발생!</div>}>
+            <ErrorBoundary>
               { activeTooltip === playerId &&
                 <StatTooltipPlayerDetail playerId={playerId} />
               }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
+import FixtureDetailPreview from "./fixtureDetailPreview";
 import FixtureDetailEvent from "./fixtureDetailEvent";
 
 const FixtureDetailWrapper = styled.div`
@@ -30,8 +31,8 @@ const FixtureDetailTabContent = styled.div`
   background: #e5e5e5;
 `;
 
-const FixtureDetail = () => {
-  const [tab, setTab] = useState(0);
+const FixtureDetail = ({ fixtureStatus }) => {
+  const [tab, setTab] = useState(fixtureStatus >= 0 ? 1 : 0);
 
   const onClickTab = (tabNum) => {
     setTab(tabNum);
@@ -40,11 +41,15 @@ const FixtureDetail = () => {
   return (
     <FixtureDetailWrapper>
       <FixtureDetailTabController>
-        <FixtureDetailTabButton onClick={() => onClickTab(0)} active={tab === 0}>경기 요약</FixtureDetailTabButton>
-        <FixtureDetailTabButton onClick={() => onClickTab(1)} active={tab === 1}>경기 통계</FixtureDetailTabButton>
+        <FixtureDetailTabButton onClick={() => onClickTab(0)} active={tab === 0}>경기 프리뷰</FixtureDetailTabButton>
+        <FixtureDetailTabButton onClick={() => onClickTab(1)} active={tab === 1}>경기 요약</FixtureDetailTabButton>
+        <FixtureDetailTabButton onClick={() => onClickTab(2)} active={tab === 2}>경기 통계</FixtureDetailTabButton>
       </FixtureDetailTabController>
       <FixtureDetailTabContent>
         { tab === 0 &&
+          <FixtureDetailPreview />
+        }
+        { tab === 1 &&
           <FixtureDetailEvent />
         }
       </FixtureDetailTabContent>

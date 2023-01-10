@@ -17,6 +17,7 @@ const rootPersistConfig = {
 /**
  * currentFixture: 현재 보고 있는 경기 (상세 정보 포함)
  * fixture: 전체 경기의 리스트 데이터 (fixtures)
+ * statTooltip: fixture 내 선수 기록 툴팁
  * listWidget: 라이브 경기, 위젯에 노출할 경기의 id 리스트
  */
 const rootReducer = combineReducers({

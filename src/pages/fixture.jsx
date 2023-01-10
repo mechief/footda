@@ -94,7 +94,7 @@ const Fixture = () => {
                 ? <Lineup lineup={lineups[0]} events={teamEvents.home} />
                 : <LineupNoData />
               }
-              <FixtureDetail />
+              <FixtureDetail fixtureStatus={FIXTURE_STATUS[status?.short]?.code} />
               { lineups[1]?.team?.id
                 ? <Lineup lineup={lineups[1]} events={teamEvents.away} />
                 : <LineupNoData />

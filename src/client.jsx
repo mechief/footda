@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { QueryClient } from 'react-query'
 
 import RootErrorBoundary from './errors/route/rootErrorBoundary';
 
@@ -11,10 +12,12 @@ import Standing, { standingLoader } from './pages/standing';
 import TopPlayer, { topPlayerLoader } from './pages/topPlayer';
 import MyPage from './pages/myPage';
 
+const queryClient = new QueryClient();
+
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Root queryClient={queryClient} />,
     errorElement: <RootErrorBoundary />,
     children: [
       {
