@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { getFixturesFromDate } from "../../apiFootball/fixtures";
+import { getScheduleFixtures } from "../../api/scheduleFixture";
 import fixtureSlice from "../../slices/fixtureSlice";
 
 import ScheduleFixtureItem from "./scheduleFixtureItem";
@@ -11,7 +11,7 @@ const ScheduleFixture = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getFixturesFromDate()
+    getScheduleFixtures()
       .then((res) => {
         dispatch(fixtureSlice.actions.addFixtures(res));
         console.log(res);

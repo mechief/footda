@@ -5,3 +5,7 @@ export const positionTo2Char = (position) => {
     return v[0] === position[0];
   });
 }
+
+export const getTeamLogoURL = (teamId) => {
+  return `https://media.api-sports.io/football/teams/${teamId}.png`;
+}

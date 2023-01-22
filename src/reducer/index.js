@@ -10,7 +10,7 @@ import liveWidgetSlice from '../slices/liveWidgetSlice';
 const rootPersistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['fixture', 'liveWidget'],
+  whitelist: ['liveWidget'],
   // blacklist: [],
 };
 

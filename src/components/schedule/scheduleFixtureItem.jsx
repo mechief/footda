@@ -27,33 +27,27 @@ const ScheduleFixtureItem = memo(({ fixture }) => {
     <ItemWrapper>
       <Link to={'/fixture/' + fixture.fixture.id}>
         <ItemInner>
-          {
-            fixture.fixture?.status?.short &&
+          { fixture.fixture?.status?.short &&
             <FixtureStatus shortStatus={fixture.fixture.status.short} />
           }
           <span>
             <span>{getLeagueNameKr(fixture.league?.id)}</span>
-            {
-              fixture.league?.round && 
+            { fixture.league?.round && 
               <FixtureLeagueRound round={fixture.league.round} />
             }
           </span>
-          {
-            fixture.fixture?.date && 
+          { fixture.fixture?.date && 
             <FixtureDate date={fixture.fixture.date} />
           }
-          {
-            fixture.teams?.home?.id &&
+          { fixture.teams?.home?.id &&
             <ScheduleFixtureTeam team={fixture.teams.home} />
           }
           <span>
-            {
-              FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0
-                && <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
+            { FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0 &&
+              <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
             }
           </span>
-          {
-            fixture.teams?.away?.id &&
+          { fixture.teams?.away?.id &&
             <ScheduleFixtureTeam team={fixture.teams.away} />
           }
         </ItemInner>

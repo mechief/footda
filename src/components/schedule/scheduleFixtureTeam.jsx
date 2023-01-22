@@ -1,6 +1,8 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
+import { getTeamLogoURL } from "../../service/footballFunctions";
+
 const FixtureTeamWrapper = styled.span`
   display: flex;
   flex-direction: row;
@@ -30,7 +32,7 @@ const ScheduleFixtureTeam = memo(({ team, isHome = false }) => {
   return (
     <FixtureTeamWrapper isHome={isHome}>
       <TeamName>{team.name}</TeamName>
-      <TeamLogo src={team.logo} />
+      <TeamLogo src={getTeamLogoURL(team.id)} />
     </FixtureTeamWrapper>
   );
 });
