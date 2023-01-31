@@ -1,32 +1,17 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import dayjs from "dayjs";
 
-import { getScheduleFixtures } from "../../api/scheduleFixture";
-import fixtureSlice from "../../slices/fixtureSlice";
-
-import ScheduleFixtureItem from "./scheduleFixtureItem";
+import ScheduleFixtureSection from "./scheduleFixtureSection";
 
 const ScheduleFixture = () => {
-  const fixtures = useSelector((state) => state.fixture.fixtures);
-  const dispatch = useDispatch();
+  const [dates, setDates] = useState([dayjs().format('YYYY-MM-DD')]);
 
-  useEffect(() => {
-    getScheduleFixtures()
-      .then((res) => {
-        dispatch(fixtureSlice.actions.addFixtures(res));
-        console.log(res);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
-  
   return (
-    <div>
-      { fixtures.map(v => 
-        <ScheduleFixtureItem key={v.fixture.id} fixture={v} />
+    <>
+      { dates.map(date => 
+        <ScheduleFixtureSection key={`fixtures_${date}`} date={date} />
       )}
-    </div>   
+    </>
   );
 }
 

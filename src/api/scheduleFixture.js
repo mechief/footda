@@ -1,12 +1,12 @@
 import footdaApi from "./api";
+import dayjs from "dayjs";
 
 import { PropertyRequiredError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
 export const getScheduleFixtures = async ({ date, endDate } = {}) => {
   if (!date) {
-    const now = new Date();
-    date = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')}`;
+    date = dayjs().format('YYYY-MM-DD');
   }
 
   const res = await footdaApi('/scheduleFixtures', {
