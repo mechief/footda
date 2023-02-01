@@ -55,7 +55,9 @@ const LineupPlayer = memo(({ player, playerEvent, isSubstOut = false }) => {
   return (
     <LineupPlayerWrapper isSubstOut={isSubstOut}>
       <StatTooltipPlayer playerId={player.id} />
-      <PlayerPosition>{positionTo2Char(player.pos)}</PlayerPosition>
+      { player.pos &&
+        <PlayerPosition>{positionTo2Char(player.pos)}</PlayerPosition>
+      }
       <PlayerNumber>{player.number}</PlayerNumber>
       <PlayerName>{player.name}</PlayerName>
       { playerEvent && playerEvent.goal > 0 &&
