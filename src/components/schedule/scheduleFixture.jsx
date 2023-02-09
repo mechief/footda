@@ -3,6 +3,10 @@ import dayjs from "dayjs";
 
 import ScheduleFixtureSection from "./scheduleFixtureSection";
 
+const getFirstExistsDate = (date) => {
+  
+}
+
 const ScheduleFixture = () => {
   const [dates, setDates] = useState([dayjs().format('YYYY-MM-DD')]);
 

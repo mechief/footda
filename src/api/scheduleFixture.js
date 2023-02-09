@@ -1,7 +1,6 @@
 import footdaApi from "./api";
 import dayjs from "dayjs";
 
-import { PropertyRequiredError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
 export const getScheduleFixtures = async ({ date, endDate } = {}) => {
@@ -9,7 +8,7 @@ export const getScheduleFixtures = async ({ date, endDate } = {}) => {
     date = dayjs().format('YYYY-MM-DD');
   }
 
-  const res = await footdaApi('/scheduleFixtures', {
+  const res = await footdaApi('/schedule-fixtures', {
     date: date,
     endDate: endDate,
   });
@@ -24,4 +23,7 @@ export const getScheduleFixtures = async ({ date, endDate } = {}) => {
   fixtures.sort((a, b) => a.fixture.timestamp - b.fixture.timestamp);
 
   return fixtures;
+}
+
+export const getFirstExistsDate = async (date) => {
 }
