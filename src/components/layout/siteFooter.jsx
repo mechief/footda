@@ -17,7 +17,7 @@ const SiteFooter = () => {
     <footer>
       <FooterInner>
         <h2>Footda</h2>
-        <p className="copyright">ⓒ 2022. Seonmin Choe All rights reserved</p>
+        <p className="copyright">ⓒ 2023. Seonmin Choe All rights reserved</p>
       </FooterInner>
     </footer>
   );

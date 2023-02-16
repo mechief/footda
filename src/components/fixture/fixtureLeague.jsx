@@ -14,7 +14,7 @@ const FixtureLeague = memo(({ league }) => {
     <div>
       <span>{getLeagueNameKr(league.id) || league.name} </span>
       { league.round && 
-        <FixtureLeagueRound round={league.round} />
+        <span><FixtureLeagueRound round={league.round} /></span>
       }
     </div>
   );

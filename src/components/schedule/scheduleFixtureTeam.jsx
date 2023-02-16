@@ -4,8 +4,10 @@ import styled, { css } from "styled-components";
 import { getTeamLogoURL } from "../../service/footballFunctions";
 
 const FixtureTeamWrapper = styled.span`
+  flex: 1 1 40%;
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
   flex-wrap: nowrap;
   align-items: center;
   ${props => props.isHome && css`
@@ -16,7 +18,7 @@ const FixtureTeamWrapper = styled.span`
 const TeamName = styled.span`
   display: inline-block;
   line-height: 1.2;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
   color: #222;
 `;
@@ -31,8 +33,8 @@ const TeamLogo = styled.img`
 const ScheduleFixtureTeam = memo(({ team, isHome = false }) => {
   return (
     <FixtureTeamWrapper isHome={isHome}>
-      <TeamName>{team.name}</TeamName>
       <TeamLogo src={getTeamLogoURL(team.id)} />
+      <TeamName>{team.name}</TeamName>
     </FixtureTeamWrapper>
   );
 });

@@ -2,6 +2,7 @@ import footdaApi from "./api";
 import dayjs from "dayjs";
 
 import { NoResultError } from "../errors/footballAPIError";
+import { InvalidParamError } from "../errors/validationError";
 
 export const getScheduleFixtures = async ({ date, endDate } = {}) => {
   if (!date) {
@@ -26,4 +27,17 @@ export const getScheduleFixtures = async ({ date, endDate } = {}) => {
 }
 
 export const getFirstExistsDate = async (date) => {
+  if (date && !dayjs(date).isValid()) {
+    throw new InvalidParamError('date');
+  }
+
+  const res = await footdaApi('/schedule-fixtures/first-exists-date', {
+    date: date,
+  });
+  
+  if (!res.data) {
+    throw new NoResultError;
+  }
+
+  return res.data;
 }

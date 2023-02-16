@@ -108,11 +108,13 @@ export const SERVICE_LEAGUES = {
   '2': {
     name: 'UEFA Champions League',
     nameKr: 'UEFA 챔피언스 리그',
+    nameShort: 'UCL',
     type: 'cup',
   },
   '3': {
     name: 'UEFA Europa League',
     nameKr: '유로파 리그',
+    nameShort: 'UEL',
     type: 'cup',
   },
   '531': {
@@ -123,6 +125,7 @@ export const SERVICE_LEAGUES = {
   '848': {
     name: 'UEFA Europa Conference League',
     nameKr: '유로파 컨퍼런스 리그',
+    nameShort: 'UECL',
     type: 'cup',
   },
   // 잉글랜드 컵
@@ -309,6 +312,16 @@ export const getLeagueNameKr = (leagueId) => {
   }
 
   return SERVICE_LEAGUES[id].nameKr;
+}
+
+export const getLeagueNameForList = (leagueId) => {
+  const id = typeof leagueId === 'number' ? leagueId.toString() : leagueId;
+
+  if (!isServiceLeague(id)) {
+    return null;
+  }
+
+  return SERVICE_LEAGUES[id].nameShort || SERVICE_LEAGUES[id].nameKr;
 }
 
 export const getServiceLeagueIds = ({type, country}) => {

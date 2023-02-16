@@ -12,7 +12,14 @@ import Standing, { standingLoader } from './pages/standing';
 import TopPlayer, { topPlayerLoader } from './pages/topPlayer';
 import MyPage from './pages/myPage';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 0,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {

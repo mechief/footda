@@ -8,3 +8,10 @@ export class PropertyRequiredError extends ValidationError {
     this.property = property;
   }
 }
+
+export class InvalidParamError extends ValidationError {
+  constructor(param) {
+    super("Parameter " + param + " is invalid.");
+    this.param = param;
+  }
+}
