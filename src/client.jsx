@@ -9,7 +9,7 @@ import Root from './root';
 import Home from './pages/home';
 import Fixture, { fixtureLoader } from './pages/fixture';
 import Standing, { standingLoader } from './pages/standing';
-import TopPlayer, { topPlayerLoader } from './pages/topPlayer';
+import TopPlayers from './pages/topPlayers';
 import MyPage from './pages/myPage';
 
 const queryClient = new QueryClient({
@@ -52,17 +52,15 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "top_player",
+        path: "top_players",
         children: [
           {
             index: true,
-            element: <TopPlayer />,
-            loader: topPlayerLoader,
+            element: <TopPlayers />,
           },
           {
             path: ":id",
-            element: <TopPlayer />,
-            loader: topPlayerLoader,
+            element: <TopPlayers />,
           }
         ],
       },

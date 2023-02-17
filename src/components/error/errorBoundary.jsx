@@ -21,7 +21,7 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       // 폴백 UI를 커스텀하여 렌더링할 수 있습니다.
-      return <p>실행중 에러가 발생했습니다.</p>
+      return this.props.fallback || <p>실행중 에러가 발생했습니다.</p>;
     }
 
     return this.props.children;

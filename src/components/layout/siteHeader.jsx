@@ -42,7 +42,7 @@ const SiteHeader = () => {
           <HeaderNavUl>
             <SiteHeaderNavLi link="/" name="홈" />
             <SiteHeaderNavLi link="/standing" name="순위" />
-            <SiteHeaderNavLi link="/top_player" name="기록" />
+            <SiteHeaderNavLi link="/top_players" name="기록" />
             <SiteHeaderNavLi link="/mypage" name="마이페이지" />
           </HeaderNavUl>
         </HeaderNav>

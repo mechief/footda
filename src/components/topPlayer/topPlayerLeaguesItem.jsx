@@ -30,13 +30,13 @@ const ItemImg = styled.img`
 
 const TopPlayerLeaguesItem = memo(({ leagueId }) => {
   const isActive = () => {
-    const match = useMatch("/top_player/" + leagueId);
-    const matchDefault = useMatch("/top_player");
+    const match = useMatch("/top_players/" + leagueId);
+    const matchDefault = useMatch("/top_players");
     return Boolean(match) ? "active" : (leagueId == 39 && Boolean(matchDefault) ? "active" : "");
   }
 
   return (
-    <ItemLink to={`/top_player/${leagueId}`} className={isActive()}>
+    <ItemLink to={`/top_players/${leagueId}`} className={isActive()}>
       <ItemImg src={`https://media-1.api-sports.io/football/leagues/${leagueId}.png`} alt="" />
       <span>{getLeagueNameKr(leagueId)}</span>
     </ItemLink>
