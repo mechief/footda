@@ -9,11 +9,6 @@ import { getFirstExistsDate } from "../../api/scheduleFixture";
 
 import ScheduleFixtureSection from "./scheduleFixtureSection";
 
-const ScheduleFixtureContainer = styled.div`
-  // max-width: 800px;
-  padding: 40px 20px;
-`;
-
 const LoadButton = styled.button`
   width: 100%;
   padding: 0.4em;
@@ -49,14 +44,14 @@ const ScheduleFixture = () => {
 
   if (isError) {
     if (error instanceof NoResultError) {
-      return <ScheduleFixtureContainer><span>예정된 경기가 없습니다.</span></ScheduleFixtureContainer>
+      return <span>예정된 경기가 없습니다.</span>
     } else {
-      return <ScheduleFixtureContainer><span>Error: {error.message}</span></ScheduleFixtureContainer>
+      return <span>Error: {error.message}</span>
     }
   }
 
   return (
-    <ScheduleFixtureContainer>
+    <>
       { data.pages.map(date => 
         <ScheduleFixtureSection key={`fixtures_${date}`} date={date} />
       )}
@@ -71,7 +66,7 @@ const ScheduleFixture = () => {
           }
         </LoadButton>
       </div>
-    </ScheduleFixtureContainer>
+    </>
   );
 }
 

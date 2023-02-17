@@ -12,7 +12,7 @@ const HeaderInner = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   padding: 30px 10px;
-  background: #e5caab;
+  background: #d6eaea;
   justify-content: space-between;
 `;
 const HeaderLogo = styled.h1`

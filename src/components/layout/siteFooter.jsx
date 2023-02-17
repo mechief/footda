@@ -7,8 +7,8 @@ const FooterInner = styled.div`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 10px;
-  background: #ccc;
+  padding: 50px 10px;
+  background: #ebf1f5;
   text-align: center;
 `;
 
