@@ -12,7 +12,8 @@ import {
 } from "../components/topPlayer/topPlayerStyled";
 
 const TopPlayers = () => {
-  const leagueId = useParams().id ?? 39;
+  let leagueId = useParams().id;
+  leagueId = leagueId ? +leagueId : 39;
   
   return (
     <TopPlayerWrapper>
