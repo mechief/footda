@@ -26,15 +26,19 @@ const TopPlayerData = ({ leagueId }) => {
 
   return (
     <>
-      <TopPlayerSummaryWrapper>
-        <TopPlayerSummaryList key='summary_goal' listData={data[0]} type='goals' />
-        <TopPlayerSummaryList key='summary_assist' listData={data[1]} type='assists' />
-      </TopPlayerSummaryWrapper>
-      <TopPlayerTable 
-        playersData={orderData === 'goals' ? data[0] : data[1]}
-        orderData={orderData}
-        setOrderData={setOrderData}
-      />
+      { data && 
+        <>
+          <TopPlayerSummaryWrapper>
+            <TopPlayerSummaryList key='summary_goal' listData={data[0]} type='goals' />
+            <TopPlayerSummaryList key='summary_assist' listData={data[1]} type='assists' />
+          </TopPlayerSummaryWrapper>
+          <TopPlayerTable 
+            playersData={orderData === 'goals' ? data[0] : data[1]}
+            orderData={orderData}
+            setOrderData={setOrderData}
+          />
+        </>
+      }
     </>
   );
 }

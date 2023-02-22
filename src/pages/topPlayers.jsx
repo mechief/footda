@@ -19,11 +19,11 @@ const TopPlayers = () => {
     <TopPlayerWrapper>
       <TopPlayerTitle>개인 기록</TopPlayerTitle>
       <TopPlayerLeagues />
-      <Suspense fallback={<div>Loading...</div>}>
-        <ErrorBoundary fallback={<div>기록을 불러오는 중 에러가 발생했습니다.</div>}>
+      <ErrorBoundary key={leagueId} fallback={<div>기록을 불러오는 중 에러가 발생했습니다.</div>}>
+        <Suspense fallback={<div>Loading...</div>}>
           <TopPlayerData leagueId={leagueId} />
-        </ErrorBoundary>
-      </Suspense>
+        </Suspense>
+      </ErrorBoundary>
     </TopPlayerWrapper>
   );
 }

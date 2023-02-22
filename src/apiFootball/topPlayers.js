@@ -1,6 +1,6 @@
 import footballApi from "./api";
-import { getDataByPromise } from "./actions";
 import { CURRENT_SEASON } from "./seasons";
+import { isServiceLeague } from "../service/apiFootballService";
 
 const getTopScorers = async (leagueId, season = CURRENT_SEASON) => {
   if (leagueId === undefined) {
@@ -13,9 +13,14 @@ const getTopScorers = async (leagueId, season = CURRENT_SEASON) => {
       season: season,
     });
 
-    return res.data.results > 0 ? res.data.response : new Error('데이터를 불러오지 못했습니다');
+    if (res.data.results === 0) {
+      throw new Error('데이터를 불러오지 못했습니다');
+    }
+
+    return res.data.response;
   } catch (err) {
     console.error(err);
+    throw err;
   }
 }
 
@@ -30,20 +35,44 @@ const getTopAssists = async (leagueId, season = CURRENT_SEASON) => {
       season: season,
     });
 
-    return res.data.results > 0 ? res.data.response : new Error('데이터를 불러오지 못했습니다');
+    if (res.data.results === 0) {
+      throw new Error('데이터를 불러오지 못했습니다');
+    }
+
+    return res.data.response;
   } catch (err) {
     console.error(err);
+    throw err;
   }
 }
 
 export const getTopPlayers = async (leagueId, season = CURRENT_SEASON) => {
+  if (leagueId === undefined) {
+    throw new Error('league 파라미터 없음');
+  }
+
+  if (!isServiceLeague(leagueId)) {
+    throw new Error('서비스 하지 않는 리그입니다.'); 
+  }
+
   let promises = await Promise.all([
-      getDataByPromise(getTopScorers, leagueId, season),
-      getDataByPromise(getTopAssists, leagueId, season),
+      footballApi('/players/topscorers', {
+        league: leagueId,
+        season: season,
+      }),
+      footballApi('/players/topassists', {
+        league: leagueId,
+        season: season,
+      })
     ]).then((res) => {
-      return res;
+      if (res[0].data.results === 0 || res[1].data.results === 0) {
+        throw new Error('데이터를 불러오지 못했습니다');
+      }
+      
+      return [res[0].data.response, res[1].data.response];
     }).catch((err) => {
       console.error(err);
+      throw err;
     });
 
   return promises;
