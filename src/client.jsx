@@ -8,7 +8,7 @@ import RootErrorBoundary from './errors/route/rootErrorBoundary';
 import Root from './root';
 import Home from './pages/home';
 import Fixture, { fixtureLoader } from './pages/fixture';
-import Standing, { standingLoader } from './pages/standing';
+import Standing from './pages/standing';
 import TopPlayers from './pages/topPlayers';
 import MyPage from './pages/myPage';
 
@@ -17,6 +17,7 @@ const queryClient = new QueryClient({
     queries: {
       refetchOnWindowFocus: false,
       retry: 0,
+      useErrorBoundary: true,
     },
   },
 });
@@ -42,12 +43,10 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Standing />,
-            loader: standingLoader,
           },
           {
             path: ":id",
             element: <Standing />,
-            loader: standingLoader,
           }
         ],
       },
