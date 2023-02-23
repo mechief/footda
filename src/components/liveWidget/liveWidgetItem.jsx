@@ -7,7 +7,6 @@ import { removeWidgetFixtureId } from "../../slices/liveWidgetSlice";
 
 import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
 import FixtureDate from "../fixture/fixtureDate";
-import FixtureStatus from "../fixture/fixtureStatus";
 import FixtureScore from "../fixture/fixtureScore";
 import LiveSidebarFixtureTeam from "./liveSidebarFixtureTeam";
 
@@ -84,7 +83,7 @@ const LiveWidgetItem = memo(({ fixtureId }) => {
         <ItemSummary>
           <ItemStatus>
             { fixture.fixture?.status?.short &&
-              <FixtureStatus shortStatus={fixture.fixture.status.short} />
+              FIXTURE_STATUS[fixture.fixture.status.short]?.text
             }
           </ItemStatus>
           <ItemScore>

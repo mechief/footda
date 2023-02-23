@@ -7,7 +7,7 @@ import { NoResultError } from "../../errors/footballAPIError";
 
 import { getFirstExistsDate } from "../../api/scheduleFixture";
 
-import ScheduleFixtureSection from "./scheduleFixtureSection";
+import HomeScheduleFixtureSection from "./homeScheduleFixtureSection";
 
 const LoadButton = styled.button`
   width: 100%;
@@ -20,7 +20,7 @@ const LoadButton = styled.button`
   }
 `;
 
-const ScheduleFixture = () => {
+const HomeScheduleFixture = () => {
   const fetchFirstExistsDate = ({ pageParam = undefined }) => getFirstExistsDate(pageParam);
 
   const {
@@ -53,7 +53,7 @@ const ScheduleFixture = () => {
   return (
     <>
       { data.pages.map(date => 
-        <ScheduleFixtureSection key={`fixtures_${date}`} date={date} />
+        <HomeScheduleFixtureSection key={`fixtures_${date}`} date={date} />
       )}
       <div>
         <LoadButton 
@@ -70,4 +70,4 @@ const ScheduleFixture = () => {
   );
 }
 
-export default ScheduleFixture;
+export default HomeScheduleFixture;

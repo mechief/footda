@@ -9,7 +9,6 @@ import { FIXTURE_STATUS } from "../service/apiFootballService";
 
 import FixtureDate from "../components/fixture/fixtureDate";
 import FixtureLeague from "../components/fixture/fixtureLeague";
-import FixtureStatus from "../components/fixture/fixtureStatus";
 import FixtureEventSummary from "../components/fixture/fixtureEventSummary";
 import FixtureTeam from "../components/fixture/fixtureTeam";
 import FixtureScore from "../components/fixture/fixtureScore";
@@ -71,7 +70,7 @@ const Fixture = () => {
               }
               { status?.short && (
                 <FixtureStatusWrapper>
-                  <FixtureStatus shortStatus={status.short} />
+                  {FIXTURE_STATUS[status.short]?.text}
                 </FixtureStatusWrapper>
               )}
             </FixtureInfo>

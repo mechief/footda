@@ -30,7 +30,7 @@ const TeamLogo = styled.img`
   box-sizing: content-box;
 `;
 
-const ScheduleFixtureTeam = memo(({ team, isHome = false }) => {
+const HomeScheduleFixtureTeam = memo(({ team, isHome = false }) => {
   return (
     <FixtureTeamWrapper isHome={isHome}>
       <TeamLogo src={getTeamLogoURL(team.id)} />
@@ -39,4 +39,4 @@ const ScheduleFixtureTeam = memo(({ team, isHome = false }) => {
   );
 });
 
-export default ScheduleFixtureTeam;
+export default HomeScheduleFixtureTeam;

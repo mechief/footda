@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import ScheduleFixture from "../components/schedule/scheduleFixture";
+import HomeScheduleFixture from "../components/schedule/homeScheduleFixture";
 
 const ScheduleFixtureContainer = styled.div`
   // max-width: 800px;
@@ -11,7 +11,7 @@ const ScheduleFixtureContainer = styled.div`
 const Home = () => {
   return (
     <ScheduleFixtureContainer>
-      <ScheduleFixture />
+      <HomeScheduleFixture />
     </ScheduleFixtureContainer>
   );
 }

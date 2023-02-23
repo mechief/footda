@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { getScheduleFixtures } from "../../api/scheduleFixture";
 import { dayOfWeekToKR } from "../../service/commonFunctions"
 
-import ScheduleFixtureItem from "./scheduleFixtureItem";
+import HomeScheduleFixtureItem from "./homeScheduleFixtureItem";
 
 const Container = styled.div`
   margin-bottom: 15px;
@@ -29,7 +29,7 @@ const scheduleFixturesQuery = (date) => ({
   ...queryConfig,
 });
 
-const ScheduleFixtureSection = ({ date }) => {
+const HomeScheduleFixtureSection = ({ date }) => {
   const { isLoading, isError, data, error } = useQuery(scheduleFixturesQuery(date));
 
   const dayjsDate = useMemo(() => {
@@ -48,10 +48,10 @@ const ScheduleFixtureSection = ({ date }) => {
     <Container>
       <DateTitle>{`${dayjsDate.format('M')}월 ${dayjsDate.format('D')}일 (${dayOfWeekToKR(dayjsDate.format('d'))})`}</DateTitle>
       { data.map(fixtureData => 
-        <ScheduleFixtureItem key={fixtureData.fixture.id} fixture={fixtureData} />
+        <HomeScheduleFixtureItem key={fixtureData.fixture.id} fixture={fixtureData} />
       )}
     </Container>
   );
 }
 
-export default ScheduleFixtureSection;
+export default HomeScheduleFixtureSection;

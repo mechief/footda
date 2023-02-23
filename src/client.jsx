@@ -8,6 +8,7 @@ import RootErrorBoundary from './errors/route/rootErrorBoundary';
 import Root from './root';
 import Home from './pages/home';
 import Fixture, { fixtureLoader } from './pages/fixture';
+import Schedule from './pages/schedule';
 import Standing from './pages/standing';
 import TopPlayers from './pages/topPlayers';
 import MyPage from './pages/myPage';
@@ -36,6 +37,19 @@ const router = createBrowserRouter([
         path: "fixture/:id",
         element: <Fixture />,
         loader: fixtureLoader,
+      },
+      {
+        path: "schedule",
+        children: [
+          {
+            index: true,
+            element: <Schedule />,
+          },
+          {
+            path: ":leagueId",
+            element: <Schedule />,
+          }
+        ],
       },
       {
         path: "standing",

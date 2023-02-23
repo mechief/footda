@@ -6,9 +6,8 @@ import { FIXTURE_STATUS, getLeagueNameForList } from "../../service/apiFootballS
 
 import FixtureDate from "../fixture/fixtureDate";
 import FixtureLeagueRound from "../fixture/fixtureLeagueRound";
-import FixtureStatus from "../fixture/fixtureStatus";
 import FixtureScore from "../fixture/fixtureScore";
-import ScheduleFixtureTeam from "./scheduleFixtureTeam";
+import HomeScheduleFixtureTeam from "./homeScheduleFixtureTeam";
 
 const ItemWrapper = styled.div`
   margin-bottom: 2px;
@@ -58,7 +57,7 @@ const LeagueName = styled.span`
   color: #777;
 `;
 
-const ScheduleFixtureItem = memo(({ fixture }) => {
+const HomeScheduleFixtureItem = memo(({ fixture }) => {
   return (
     <ItemWrapper>
       <Link to={'/fixture/' + fixture.fixture.id}>
@@ -68,12 +67,12 @@ const ScheduleFixtureItem = memo(({ fixture }) => {
               <FixtureDate date={fixture.fixture.date} onlyTime={true} />
             }
             { fixture.fixture?.status?.short &&
-              <FixtureStatus shortStatus={fixture.fixture.status.short} />
+              FIXTURE_STATUS[fixture.fixture.status.short]?.text
             }
           </FixtureInfo>
           <TeamsAndScore>
             { fixture.teams?.home?.id &&
-              <ScheduleFixtureTeam team={fixture.teams.home} isHome={true} />
+              <HomeScheduleFixtureTeam team={fixture.teams.home} isHome={true} />
             }
             <ScoreWrapper>
               { FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0
@@ -82,7 +81,7 @@ const ScheduleFixtureItem = memo(({ fixture }) => {
               }
             </ScoreWrapper>
             { fixture.teams?.away?.id &&
-              <ScheduleFixtureTeam team={fixture.teams.away} />
+              <HomeScheduleFixtureTeam team={fixture.teams.away} />
             }
           </TeamsAndScore>
           <LeagueName>
@@ -97,4 +96,4 @@ const ScheduleFixtureItem = memo(({ fixture }) => {
   );
 });
 
-export default ScheduleFixtureItem;
+export default HomeScheduleFixtureItem;

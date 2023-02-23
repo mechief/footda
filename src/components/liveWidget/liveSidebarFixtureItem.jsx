@@ -5,7 +5,6 @@ import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballServic
 
 import LiveSidebarAddWidgetButton from "./liveSidebarAddWidgetButton";
 import FixtureDate from "../fixture/fixtureDate";
-import FixtureStatus from "../fixture/fixtureStatus";
 import FixtureScore from "../fixture/fixtureScore";
 import LiveSidebarFixtureTeam from "./liveSidebarFixtureTeam";
 
@@ -65,7 +64,7 @@ const LiveSidebarFixtureItem = memo(({ fixture }) => {
         <ItemSummary>
           <ItemStatus>
             { fixture.fixture?.status?.short &&
-              <FixtureStatus shortStatus={fixture.fixture.status.short} />
+              FIXTURE_STATUS[fixture.fixture.status.short]?.text
             }
           </ItemStatus>
           <ItemScore>
