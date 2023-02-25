@@ -1,13 +1,13 @@
 import React, { useEffect, useMemo } from "react";
 import { useLoaderData } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import dayjs from "dayjs";
 
 import { getFixture } from "../apiFootball/fixtures";
 import { setFixtureId, setFixture } from "../slices/currentFixtureSlice";
 
 import { FIXTURE_STATUS } from "../service/apiFootballService";
 
-import FixtureDate from "../components/fixture/fixtureDate";
 import FixtureLeague from "../components/fixture/fixtureLeague";
 import FixtureEventSummary from "../components/fixture/fixtureEventSummary";
 import FixtureTeam from "../components/fixture/fixtureTeam";
@@ -64,7 +64,7 @@ const Fixture = () => {
         id != '' && date && (  
           <FixtureWrapper>
             <FixtureInfo>
-              <div><FixtureDate date={date} /></div>
+              <div>{dayjs(date).format('M/D HH:mm')}</div>
               { league?.id &&
                 <FixtureLeague league={league} />
               }

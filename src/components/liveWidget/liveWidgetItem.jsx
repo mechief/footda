@@ -1,12 +1,12 @@
 import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import dayjs from "dayjs";
 import styled from "styled-components";
 
 import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
 import { removeWidgetFixtureId } from "../../slices/liveWidgetSlice";
 
 import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
-import FixtureDate from "../fixture/fixtureDate";
 import FixtureScore from "../fixture/fixtureScore";
 import LiveSidebarFixtureTeam from "./liveSidebarFixtureTeam";
 
@@ -74,7 +74,7 @@ const LiveWidgetItem = memo(({ fixtureId }) => {
       <RemoveWidgetButton type="button" onClick={onClickRemove}>닫기</RemoveWidgetButton>
       <span>{getLeagueNameKr(fixture.league?.id)}</span>
       { fixture.fixture?.date && 
-        <FixtureDate date={fixture.fixture.date} onlyTime={true} />
+        <span>{dayjs(fixture.fixture.date).format('HH:mm')}</span>
       }
       <ItemDetail>
         { fixture.teams?.home?.id &&

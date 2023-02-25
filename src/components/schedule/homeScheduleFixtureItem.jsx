@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
 import styled from "styled-components";
 
 import { FIXTURE_STATUS, getLeagueNameForList } from "../../service/apiFootballService";
 
-import FixtureDate from "../fixture/fixtureDate";
 import FixtureLeagueRound from "../fixture/fixtureLeagueRound";
 import HomeScheduleFixtureScore from "./homeScheduleFixtureScore";
 import HomeScheduleFixtureTeam from "./homeScheduleFixtureTeam";
@@ -28,13 +28,13 @@ const ItemInner = styled.div`
   font-size: 13px;
 `;
 
-const FixtureInfo = styled.span`
+const TimeAndStatus = styled.span`
   flex: 0 0 150px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 0 10px;
-  justify-content: flex-start;
+`;
+
+const Time = styled.span`
+  display: inline-block;
+  margin-right: 10px;
 `;
 
 const TeamsAndScore = styled.span`
@@ -51,7 +51,7 @@ const ScoreWrapper = styled.span`
   text-align: center;
 `;
 
-const LeagueName = styled.span`
+const LeagueAndRound = styled.span`
   flex: 0 0 150px;
   text-align: right;
   color: #777;
@@ -62,14 +62,14 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
     <ItemWrapper>
       <Link to={'/fixture/' + fixture.fixture.id}>
         <ItemInner>
-          <FixtureInfo>
+          <TimeAndStatus>
             { fixture.fixture?.date && 
-              <FixtureDate date={fixture.fixture.date} onlyTime={true} />
+              <Time>{dayjs(fixture.fixture.date).format('HH:mm')}</Time>
             }
             { fixture.fixture?.status?.short &&
               FIXTURE_STATUS[fixture.fixture.status.short]?.text
             }
-          </FixtureInfo>
+          </TimeAndStatus>
           <TeamsAndScore>
             { fixture.teams?.home?.id &&
               <HomeScheduleFixtureTeam team={fixture.teams.home} isHome={true} />
@@ -84,12 +84,12 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
               <HomeScheduleFixtureTeam team={fixture.teams.away} />
             }
           </TeamsAndScore>
-          <LeagueName>
+          <LeagueAndRound>
             <span>{getLeagueNameForList(fixture.league?.id)}</span>
             { fixture.league?.round && 
               <span>&nbsp;<FixtureLeagueRound round={fixture.league.round} /></span>
             }
-          </LeagueName>
+          </LeagueAndRound>
         </ItemInner>
       </Link>
     </ItemWrapper>

@@ -1,10 +1,10 @@
 import React, { memo } from "react";
+import dayjs from "dayjs";
 import styled from "styled-components";
 
 import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
 
 import LiveSidebarAddWidgetButton from "./liveSidebarAddWidgetButton";
-import FixtureDate from "../fixture/fixtureDate";
 import FixtureScore from "../fixture/fixtureScore";
 import LiveSidebarFixtureTeam from "./liveSidebarFixtureTeam";
 
@@ -55,7 +55,7 @@ const LiveSidebarFixtureItem = memo(({ fixture }) => {
       <LiveSidebarAddWidgetButton fixtureId={fixture.fixture.id} />
       <span>{getLeagueNameKr(fixture.league?.id)}</span>
       { fixture.fixture?.date && 
-        <FixtureDate date={fixture.fixture.date} onlyTime={true} />
+        <span>{dayjs(fixture.fixture.date).format('HH:mm')}</span>
       }
       <ItemDetail>
         { fixture.teams?.home?.id &&
