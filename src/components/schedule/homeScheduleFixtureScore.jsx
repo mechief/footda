@@ -37,16 +37,14 @@ const HomeScheduleFixtureScore = memo(({ goals, score, shortStatus }) => {
  
   return (
     <>
-      {
-        shortStatus === 'P' || shortStatus === 'PEN'
-          && score?.penalty?.home !== null && score?.penalty?.away !== null
-          && <PenaltyScore>({score.penalty.home})</PenaltyScore>
+      { shortStatus === 'P' || shortStatus === 'PEN'
+        && score?.penalty?.home !== null && score?.penalty?.away !== null
+        && <PenaltyScore>({score.penalty.home})</PenaltyScore>
       }
       {showBasicScore()}
-      {
-        shortStatus === 'P' || shortStatus === 'PEN'
-          && score?.penalty?.home !== null && score?.penalty?.away !== null
-          && <PenaltyScore>({score.penalty.away})</PenaltyScore>
+      { shortStatus === 'P' || shortStatus === 'PEN'
+        && score?.penalty?.home !== null && score?.penalty?.away !== null
+        && <PenaltyScore>({score.penalty.away})</PenaltyScore>
       }
     </>
   );

@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             element: <Schedule />,
           },
           {
-            path: ":leagueId",
+            path: ":date",
             element: <Schedule />,
           }
         ],

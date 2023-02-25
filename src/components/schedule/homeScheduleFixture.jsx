@@ -33,7 +33,7 @@ const HomeScheduleFixture = () => {
     isLoading, 
     isError,
   } = useInfiniteQuery('fixturesDates', fetchFirstExistsDate, {
-    getNextPageParam: (lastPage, pages) => dayjs(lastPage).add(1, 'day').format('YYYY-MM-DD'),
+    getNextPageParam: (lastPage, allPages) => dayjs(lastPage).add(1, 'day').format('YYYY-MM-DD'),
     staleTime: 1000 * 60 * 60 * 24,
     cacheTime: 1000 * 60 * 60 * 24,
   });

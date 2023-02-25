@@ -4,12 +4,22 @@ import dayjs from "dayjs";
 import { NoResultError } from "../errors/footballAPIError";
 import { InvalidParamError } from "../errors/validationError";
 
-export const getScheduleFixtures = async ({ date, endDate } = {}) => {
+import { isServiceLeague } from "../service/apiFootballService";
+
+export const getScheduleFixtures = async ({ date, endDate, leagueId } = {}) => {
   if (!date) {
     date = dayjs().format('YYYY-MM-DD');
   }
 
-  const res = await footdaApi('/schedule-fixtures', {
+  if (leagueId && !isServiceLeague(leagueId)) {
+    throw new InvalidParamError('leagueId');
+  }
+
+  const endPoint = leagueId
+    ? '/schedule-fixtures/leagues/' + leagueId
+    : '/schedule-fixtures';
+
+  const res = await footdaApi(endPoint, {
     date: date,
     endDate: endDate,
   });

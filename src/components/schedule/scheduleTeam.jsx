@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { getTeamLogoURL } from "../../service/footballFunctions";
 
 const FixtureTeamWrapper = styled.span`
-  flex: 1 1 40%;
+  flex: 1 1 100%;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -13,6 +13,14 @@ const FixtureTeamWrapper = styled.span`
   ${props => props.isHome && css`
     flex-direction: row-reverse;
   `}
+`;
+
+const WinnerDot = styled.span`
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #eaaaaa;
+  border-radius: 50%;
 `;
 
 const TeamName = styled.span`
@@ -30,13 +38,16 @@ const TeamLogo = styled.img`
   box-sizing: content-box;
 `;
 
-const HomeScheduleFixtureTeam = memo(({ team, isHome = false }) => {
+const ScheduleTeam = memo(({ team, isHome = false, isWinner = false }) => {
   return (
     <FixtureTeamWrapper isHome={isHome}>
+      { isWinner &&
+        <WinnerDot />
+      }
       <TeamLogo src={getTeamLogoURL(team.id)} />
       <TeamName>{team.name}</TeamName>
     </FixtureTeamWrapper>
   );
 });
 
-export default HomeScheduleFixtureTeam;
+export default ScheduleTeam;
