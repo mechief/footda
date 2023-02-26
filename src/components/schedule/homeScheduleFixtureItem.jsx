@@ -4,8 +4,8 @@ import dayjs from "dayjs";
 import styled from "styled-components";
 
 import { FIXTURE_STATUS, getLeagueNameForList } from "../../service/apiFootballService";
+import { getFormattedRound } from "../../service/footballFunctions";
 
-import FixtureLeagueRound from "../fixture/fixtureLeagueRound";
 import HomeScheduleFixtureScore from "./homeScheduleFixtureScore";
 import ScheduleTeam from "./scheduleTeam";
 
@@ -87,7 +87,7 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
           <LeagueAndRound>
             <span>{getLeagueNameForList(fixture.league?.id)}</span>
             { fixture.league?.round && 
-              <span>&nbsp;<FixtureLeagueRound round={fixture.league.round} /></span>
+              <span>&nbsp; {getFormattedRound(fixture.league.round)}</span>
             }
           </LeagueAndRound>
         </ItemInner>
