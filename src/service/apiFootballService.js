@@ -84,14 +84,9 @@ export const SERVICE_LEAGUES = new Map([
     nameKr: '프리미어 리그',
     type: 'league',
   }],
-  [61, {
-    name: 'Ligue 1',
-    nameKr: '리그 앙',
-    type: 'league',
-  }],
-  [78, {
-    name: 'Bundesliga',
-    nameKr: '분데스리가',
+  [140, {
+    name: 'La Liga',
+    nameKr: '라 리가',
     type: 'league',
   }],
   [135, {
@@ -99,9 +94,14 @@ export const SERVICE_LEAGUES = new Map([
     nameKr: '세리에 A',
     type: 'league',
   }],
-  [140, {
-    name: 'La Liga',
-    nameKr: '라 리가',
+  [78, {
+    name: 'Bundesliga',
+    nameKr: '분데스리가',
+    type: 'league',
+  }],
+  [61, {
+    name: 'Ligue 1',
+    nameKr: '리그 앙',
     type: 'league',
   }],
   // 유럽대항전
@@ -123,11 +123,11 @@ export const SERVICE_LEAGUES = new Map([
     nameShort: 'UECL',
     type: 'continental',
   }],
-  [531, {
-    name: 'UEFA Super Cup',
-    nameKr: 'UEFA 슈퍼컵',
-    type: 'cup',
-  }],
+  // [531, {
+  //   name: 'UEFA Super Cup',
+  //   nameKr: 'UEFA 슈퍼컵',
+  //   type: 'cup',
+  // }],
   // 잉글랜드 컵
   [45, {
     name: 'FA Cup',
@@ -139,11 +139,11 @@ export const SERVICE_LEAGUES = new Map([
     nameKr: '잉글랜드 리그 컵',
     type: 'cup',
   }],
-  [528, {
-    name: 'Community Shield',
-    nameKr: '커뮤니티 쉴드',
-    type: 'cup',
-  }],
+  // [528, {
+  //   name: 'Community Shield',
+  //   nameKr: '커뮤니티 쉴드',
+  //   type: 'cup',
+  // }],
   // 프랑스 컵
   [65, {
     name: 'Coupe de la Ligue',
@@ -155,44 +155,44 @@ export const SERVICE_LEAGUES = new Map([
     nameKr: '쿠프 드 프랑스',
     type: 'cup',
   }],
-  [526, {
-    name: 'Trophée des champions',
-    nameKr: '트로페 데 샹피옹',
-    type: 'cup',
-  }],
+  // [526, {
+  //   name: 'Trophée des champions',
+  //   nameKr: '트로페 데 샹피옹',
+  //   type: 'cup',
+  // }],
   // 스페인 컵
   [143, {
     name: 'Copa del Rey',
     nameKr: '코파 델 레이',
     type: 'cup',
   }],
-  [556, {
-    name: 'Super Cup',
-    nameKr: '스페인 슈퍼컵',
-    type: 'cup',
-  }],
+  // [556, {
+  //   name: 'Super Cup',
+  //   nameKr: '스페인 슈퍼컵',
+  //   type: 'cup',
+  // }],
   // 이탈리아 컵
   [137, {
     name: 'Coppa Italia',
     nameKr: '코파 이탈리아',
     type: 'cup',
   }],
-  [547, {
-    name: 'Super Cup',
-    nameKr: '이탈리아 슈퍼컵',
-    type: 'cup',
-  }],
+  // [547, {
+  //   name: 'Super Cup',
+  //   nameKr: '이탈리아 슈퍼컵',
+  //   type: 'cup',
+  // }],
   // 독일 컵
   [81, {
     name: 'DFB Pokal',
     nameKr: 'DFB 포칼컵',
     type: 'cup',
   }],
-  [529, {
-    name: 'Super Cup',
-    nameKr: '독일 슈퍼컵',
-    type: 'cup',
-  }],
+  // [529, {
+  //   name: 'Super Cup',
+  //   nameKr: '독일 슈퍼컵',
+  //   type: 'cup',
+  // }],
 ])
 
 // 승격, 강등, 유럽대항전 규칙
