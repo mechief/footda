@@ -11,12 +11,13 @@ const HeaderInner = styled.div`
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 30px 10px;
+  padding: 20px 10px;
   background: #d6eaea;
   justify-content: space-between;
 `;
 const HeaderLogo = styled.h1`
   margin: 0 auto;
+  font-size: 24px;
 `;
 const HeaderNav = styled.nav`
   position: absolute;

@@ -7,17 +7,25 @@ const FooterInner = styled.div`
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 50px 10px;
+  padding: 15px 10px;
   background: #ebf1f5;
   text-align: center;
 `;
+
+const FooterLogo = styled.h2`
+  font-size: 18px;
+`;
+
+const Copyright = styled.p`
+  font-size: 13px;
+`
 
 const SiteFooter = () => {
   return (
     <footer>
       <FooterInner>
-        <h2>Footda</h2>
-        <p className="copyright">ⓒ 2023. Seonmin Choe All rights reserved</p>
+        <FooterLogo>Footda</FooterLogo>
+        <Copyright>ⓒ 2023. Seonmin Choe All rights reserved</Copyright>
       </FooterInner>
     </footer>
   );

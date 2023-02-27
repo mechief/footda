@@ -5,7 +5,7 @@ import styled from "styled-components";
 import LeagueStat from "./leagueStat";
 
 const StatTooltipPlayerWrapper = styled.div`
-  max-width: 360px;
+  max-width: 400px;
   padding: 25px;
   border: 2px solid #222;
   border-radius: 4px;
@@ -44,7 +44,7 @@ const LeagueStatThead = styled.thead`
   & th {
     padding: 6px 3px 12px 3px;
     &:first-child {
-      width: 100px;
+      width: 120px;
     }
     &:nth-child(n+4) {
       width: 40px;
