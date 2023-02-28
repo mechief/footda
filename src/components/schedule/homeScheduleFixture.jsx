@@ -1,9 +1,7 @@
 import React from "react";
 import { useInfiniteQuery } from "react-query";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import dayjs from "dayjs";
-
-import { NoResultError } from "../../errors/footballAPIError";
 
 import { getFirstExistsDate } from "../../api/scheduleFixture";
 
@@ -15,9 +13,11 @@ const LoadButton = styled.button`
   border: none;
   font-size: 16px;
   font-weight: 500;
-  &:hover:not(disabled) {
-    background: #f5f5f5;
-  }
+  ${props => !props.disabled && css`
+    &:hover {
+      background: #f5f5f5;
+    }
+  `}
 `;
 
 const HomeScheduleFixture = () => {
@@ -25,13 +25,11 @@ const HomeScheduleFixture = () => {
 
   const {
     data,
-    error,
     fetchNextPage,
     // hasNextPage,
     isFetching,
     isFetchingNextPage,
     isLoading, 
-    isError,
   } = useInfiniteQuery('fixturesDates', fetchFirstExistsDate, {
     getNextPageParam: (lastPage, allPages) => dayjs(lastPage).add(1, 'day').format('YYYY-MM-DD'),
     staleTime: 1000 * 60 * 60 * 24,
@@ -40,14 +38,6 @@ const HomeScheduleFixture = () => {
   
   if (isLoading) {
     return <></>
-  }
-
-  if (isError) {
-    if (error instanceof NoResultError) {
-      return <span>예정된 경기가 없습니다.</span>
-    } else {
-      return <span>Error: {error.message}</span>
-    }
   }
 
   return (
@@ -62,7 +52,7 @@ const HomeScheduleFixture = () => {
           >
           { isFetchingNextPage 
             ? '불러오는 중...' 
-            : '다음 일정 불러오기'
+            : '다음 일정 보기'
           }
         </LoadButton>
       </div>

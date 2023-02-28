@@ -7,12 +7,9 @@ import { dayOfWeekToKR } from "../../service/commonFunctions"
 import ScheduleItem from "./scheduleItem";
 
 const DateTitle = styled.h3`
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
   font-size: 16px;
   font-weight: 500;
-  &:nth-of-type(n+2) {
-    margin-top: 16px;
-  }
 `;
 
 const ScheduleList = ({ fixtures, date }) => {

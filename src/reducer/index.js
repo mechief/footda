@@ -6,12 +6,12 @@ import currentFixtureSlice from '../slices/currentFixtureSlice';
 import fixtureSlice from '../slices/fixtureSlice';
 import statTooltipSlice from '../slices/statTooltipSlice';
 import liveWidgetSlice from '../slices/liveWidgetSlice';
+import userSettingSlice from '../slices/userSettingSlice';
 
 const rootPersistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: [],
-  // whitelist: ['liveWidget'],
+  whitelist: ['userSetting'],
   // blacklist: [],
 };
 
@@ -26,6 +26,7 @@ const rootReducer = combineReducers({
   fixture: fixtureSlice.reducer,
   statTooltip: statTooltipSlice.reducer,
   liveWidget: liveWidgetSlice.reducer,
+  userSetting: userSettingSlice.reducer,
 });
 
 const reducer = persistReducer(rootPersistConfig, rootReducer)

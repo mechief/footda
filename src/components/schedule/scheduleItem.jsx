@@ -78,7 +78,7 @@ const ScheduleItem = memo(({ fixture }) => {
           <TeamsAndScore>
             <TeamItem>
               { fixture.teams?.home?.id &&
-                <ScheduleTeam team={fixture.teams.home} isWinner={fixture.teams?.home?.winner} />
+                <ScheduleTeam team={fixture.teams.home} isWinner={fixture.teams?.home?.winner} align="right" />
               }
               <ScheduleScore 
                 goals={fixture.goals} 
@@ -89,7 +89,7 @@ const ScheduleItem = memo(({ fixture }) => {
             </TeamItem>
             <TeamItem>
               { fixture.teams?.away?.id &&
-                <ScheduleTeam team={fixture.teams.away} isWinner={fixture.teams?.away?.winner} />
+                <ScheduleTeam team={fixture.teams.away} isWinner={fixture.teams?.away?.winner} align="right" />
               }
               <ScheduleScore 
                 goals={fixture.goals} 
