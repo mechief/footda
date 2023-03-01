@@ -7,7 +7,7 @@ import ScheduleList from "./scheduleList";
 
 const ListContainer = styled.div`
   overflow-y: scroll;
-  width: calc(50% - 60px);
+  width: calc(40% - 20px);
   height: calc(100vh - 158px);
   padding-right: 4px;
   &::-webkit-scrollbar {
@@ -20,7 +20,6 @@ const ListContainer = styled.div`
     box-shadow: 0 0 1px rgba(255, 255, 255, .4);
   }
 `;
-
 
 const LoadPrevButton = styled.button`
   width: 100%;

@@ -45,8 +45,6 @@ const ScheduleLeagueFilterButton = ({ leagueId }) => {
   const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
   const dispatch = useDispatch();
 
-  console.log(scheduleLeaguesFilter);
-
   const isActive = leagueId === 'all'
     ? scheduleLeaguesFilter.length === 0
     : scheduleLeaguesFilter.includes(leagueId);

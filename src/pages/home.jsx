@@ -7,7 +7,7 @@ import HomeScheduleFixture from "../components/schedule/homeScheduleFixture";
 
 const ScheduleFixtureContainer = styled.div`
   // max-width: 800px;
-  padding: 40px 20px;
+  padding: 20px 0;
 `;
 
 const Home = () => {

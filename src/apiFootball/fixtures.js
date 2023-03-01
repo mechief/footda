@@ -4,12 +4,12 @@ import { CURRENT_LEAGUE } from "./leagues";
 import { CURRENT_SEASON } from "./seasons";
 import { getCurrentRound } from "./rounds";
 
-import { PropertyRequiredError } from "../errors/validationError";
+import { MissingRequiredParamError } from "../errors/validationError";
 import { NoResultNotFoundError } from "../errors/footballAPIError";
 
 export const getFixture = async (fixtureId) => {
   if (!fixtureId) {
-    throw new PropertyRequiredError('fixtureId');
+    throw new MissingRequiredParamError('fixtureId');
   }
   
   const res = await footballApi('/fixtures', {

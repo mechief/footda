@@ -81,28 +81,33 @@ export const SERVICE_LEAGUES = new Map([
   // 리그
   [39, {
     name: 'Premier League',
-    nameKr: '프리미어 리그',
+    nameKr: '프리미어리그',
     type: 'league',
+    color: '#3d195b',
   }],
   [140, {
     name: 'La Liga',
     nameKr: '라 리가',
     type: 'league',
+    color: '#ee8707',
   }],
   [135, {
     name: 'Serie A',
     nameKr: '세리에 A',
     type: 'league',
+    color: '#024494',
   }],
   [78, {
     name: 'Bundesliga',
     nameKr: '분데스리가',
     type: 'league',
+    color: '#d3010c',
   }],
   [61, {
     name: 'Ligue 1',
     nameKr: '리그 앙',
     type: 'league',
+    color: '#dae025',
   }],
   // 유럽대항전
   [2, {
@@ -137,6 +142,7 @@ export const SERVICE_LEAGUES = new Map([
   [48, {
     name: 'League Cup',
     nameKr: '잉글랜드 리그 컵',
+    nameShort: 'EFL컵',
     type: 'cup',
   }],
   // [528, {
@@ -315,6 +321,15 @@ export const getLeagueNameForList = (leagueId) => {
   }
 
   return SERVICE_LEAGUES.get(+leagueId).nameShort || SERVICE_LEAGUES.get(+leagueId).nameKr;
+}
+
+export const getLeagueColor = (leagueId) => {
+  if (!isServiceLeague(leagueId)) {
+    return null;
+  }
+
+  const leagueData = SERVICE_LEAGUES.get(+leagueId);
+  return leagueData.color ?? null;
 }
 
 export const getServiceLeagueIds = ({type, country} = {}) => {

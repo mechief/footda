@@ -1,21 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
+import ScheduleCalendar from "./scheduleCalendar";
 import ScheduleLeagueFilter from "./scheduleLeagueFilter";
 
 const StyledCalendarSection = styled.div`
-  width: 50%;
+  width: 60%;
 `;
 
-const CalendarContainer = styled.div`
-  height: 400px;
-  background: #e9eff1;
-`;
-
-const ScheduleCalendarSection = () => {
+const ScheduleCalendarSection = ({ focusDate }) => {
   return (
     <StyledCalendarSection>
-      <CalendarContainer />
+      <ScheduleCalendar focusDate={focusDate} />
       <ScheduleLeagueFilter />
     </StyledCalendarSection>
   );

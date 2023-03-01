@@ -2,7 +2,7 @@ import footdaApi from "./api";
 import dayjs from "dayjs";
 
 import { NoResultError } from "../errors/footballAPIError";
-import { InvalidParamError } from "../errors/validationError";
+import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
 
 import { isServiceLeague } from "../service/apiFootballService";
 
@@ -47,6 +47,26 @@ export const getFirstExistsDate = async (date) => {
   
   if (!res.data) {
     throw new NoResultError;
+  }
+
+  return res.data;
+}
+
+export const getScheduleCountOfMonth = async (date, endDate) => {
+  if (!date) {
+    throw new MissingRequiredParamError('date');
+  }
+  if (!date) {
+    throw new MissingRequiredParamError('endDate');
+  }
+
+  const res = await footdaApi('/schedule-fixtures/count', {
+    date: date,
+    endDate: endDate,
+  });
+
+  if (res.status !== 200) {
+    throw new Error;
   }
 
   return res.data;

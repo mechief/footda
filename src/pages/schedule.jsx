@@ -16,7 +16,7 @@ const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 40px 20px;
+  padding: 20px 0px;
 `;
 
 const Schedule = () => {
@@ -99,14 +99,12 @@ const Schedule = () => {
     return obj;
   }, [data, scheduleLeaguesFilter]);
 
-  console.log(data);
-
   return (
     <ScheduleContainer>
       { isError &&
         <div>일정을 불러오는 중 에러가 발생했습니다.</div>
       }
-      <ScheduleCalendarSection />
+      <ScheduleCalendarSection focusDate={focusDate} />
       <ScheduleListSection 
         fixturesData={fixturesData}
         isLoading={isLoading}
