@@ -6,12 +6,9 @@ import ScheduleWeek from "./scheduleWeek";
 
 const ListContainer = styled.div`
   overflow-y: scroll;
-  position: fixed;
-  top: 95px;
-  left: calc(60% + 20px);
-  bottom: 95px;
+  position: relative;
   width: calc(40% - 20px);
-  max-width: 460px;
+  height: calc(100vh - 158px);
   padding-right: 4px;
   &::-webkit-scrollbar {
     -webkit-appearance: none;
@@ -74,7 +71,7 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
   const fetchPrev = async () => {
     if (isLoading) return;
 
-    // setIsLoading(true);
+    setIsLoading(true);
     const newWeekDate = dayjs(listWeeks[0]).subtract(1, 'week').format('YYYY-MM-DD');
     setListWeeks((prevState) => [newWeekDate, ...prevState]);
   }
@@ -82,7 +79,7 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
   const fetchNext = async () => {
     if (isLoading) return;
 
-    // setIsLoading(true);
+    setIsLoading(true);
     const newWeekDate = dayjs(listWeeks[listWeeks.length - 1]).add(1, 'week').format('YYYY-MM-DD');
     setListWeeks((prevState) => [...prevState, newWeekDate]);
   }
@@ -100,6 +97,8 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
           isScrollToFocus={isScrollToFocus}
           setIsScrollToFocus={setIsScrollToFocus}
           listRef={listRef}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading}
         />
       )}
       <LoadMoreButton onClick={() => fetchNext()} disabled={isLoading}>
