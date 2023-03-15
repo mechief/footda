@@ -29,7 +29,8 @@ const currentFixtureSlice = createSlice({
           : a.time.elapsed - b.time.elapsed;
       });
 
-      state = {...state,
+      state = {
+        ...state,
         date: action.payload.fixture.date,
         referee: action.payload.fixture.referee,
         status: action.payload.fixture.status,

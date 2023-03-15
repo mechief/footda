@@ -1,9 +1,9 @@
 export const FIXTURE_STATUS = {
-  TBD: {
+  'TBD': {
     code: -11,
     text: '일정 미정',
   },
-  NS: {
+  'NS': {
     code: -1,
     text: '경기 전',
   },
@@ -11,7 +11,7 @@ export const FIXTURE_STATUS = {
     code: 1,
     text: '전반',
   },
-  HT: {
+  'HT': {
     code: 9,
     text: '하프타임',
   },
@@ -19,59 +19,59 @@ export const FIXTURE_STATUS = {
     code: 2,
     text: '후반',
   },
-  ET: {
+  'ET': {
     code: 11,
     text: '연쟝전',
   },
-  P: {
+  'P': {
    code: 21,
    text: '승부차기', 
   },
-  FT: {
+  'FT': {
     code: 0,
     text: '경기 종료',
   },
-  AET: {
+  'AET': {
     code: 0,
     text: '경기 종료',
   },
-  PEN: {
+  'PEN': {
     code: 0,
     text: '경기 종료',
   },
-  BT: {
+  'BT': {
     code: 12,
     text: '',
   },
-  SUSP: {
+  'SUSP': {
     code: -12,
     text: '경기 지연',
   },
-  INT: {
+  'INT': {
     code: -13,
     text: '경기 중단',
   },
-  PST: {
+  'PST': {
     code: -14,
     text: '연기',
   },
-  CANC: {
+  'CANC': {
     code: -15,
     text: '경기 취소',
   },
-  ABD: {
+  'ABD': {
     code: -16,
     text: '기권',
   },
-  AWD: {
+  'AWD': {
     code: -17,
     text: '',
   },
-  WO: {
+  'WO': {
     code: -18,
     text: '',
   },
-  LIVE: {
+  'LIVE': {
     code: -19,
     text: '',
   },    
@@ -306,6 +306,10 @@ export const LEAGUE_RULES = {
 
 export const isServiceLeague = (leagueId) => {
   return SERVICE_LEAGUES.has(+leagueId);
+}
+
+export const getFixtureStatusText = (shortStatus) => {
+  return FIXTURE_STATUS[shortStatus].text ?? null;
 }
 
 export const getLeagueNameKr = (leagueId) => {

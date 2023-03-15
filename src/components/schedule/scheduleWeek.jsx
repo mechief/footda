@@ -21,7 +21,15 @@ const scheduleOfWeekQuery = (weekDate) => ({
   ...queryConfig,
 });
 
-const ScheduleWeek = memo(({ weekDate, focusDate, isScrollToFocus, setIsScrollToFocus, listRef, isLoading, setIsLoading }) => {
+const ScheduleWeek = memo(({ 
+  weekDate, 
+  focusDate, 
+  isScrollToFocus, 
+  setIsScrollToFocus, 
+  listRef, 
+  isLoading, 
+  setIsLoading 
+}) => {
   const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
 
   const { data } = useQuery(scheduleOfWeekQuery(weekDate));
@@ -71,7 +79,11 @@ const ScheduleWeek = memo(({ weekDate, focusDate, isScrollToFocus, setIsScrollTo
     <>
       { dates.length > 0 
         && dates.map((date) => 
-        <ScheduleList key={`schedule-list-${date}`} fixtures={filteredList[date]} date={date} />
+        <ScheduleList 
+          key={`schedule-list-${date}`} 
+          fixtures={filteredList[date]} 
+          date={date}
+        />
       )}
     </>
   );

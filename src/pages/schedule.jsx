@@ -27,7 +27,11 @@ const Schedule = () => {
   return (
     <ScheduleContainer>
       <ScheduleCalendarSection focusDate={focusDate} />
-      <ScheduleListSection focusDate={focusDate} isScrollToFocus={isScrollToFocus} setIsScrollToFocus={setIsScrollToFocus} />
+      <ScheduleListSection 
+        focusDate={focusDate} 
+        isScrollToFocus={isScrollToFocus} 
+        setIsScrollToFocus={setIsScrollToFocus}
+      />
     </ScheduleContainer>
   );
 }

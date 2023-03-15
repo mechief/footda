@@ -12,8 +12,7 @@ import {
 } from "../components/standing/standingStyled";
 
 const Standing = () => {
-  let leagueId = useParams().id;
-  leagueId = leagueId ? +leagueId : 39;
+  const leagueId = Number(useParams().id) || 39;
   
   return (
     <StandingWrapper>
