@@ -56,7 +56,7 @@ export const getScheduleCountOfMonth = async (date, endDate) => {
   if (!date) {
     throw new MissingRequiredParamError('date');
   }
-  if (!date) {
+  if (!endDate) {
     throw new MissingRequiredParamError('endDate');
   }
 

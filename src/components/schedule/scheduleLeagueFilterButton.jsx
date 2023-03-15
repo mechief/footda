@@ -20,6 +20,9 @@ const FilterButton = styled.button`
   border: none;
   background: ${props => props.isActive ? '#dfebee' : '#f1f1f1'};
   border-radius: 2px;
+  &:hover {
+    background: ${props => props.isActive ? '#e5eef0' : '#f5f5f5'};
+  }
 `;
 
 const LogoWrap = styled.span`
