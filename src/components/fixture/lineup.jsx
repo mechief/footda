@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useState, useMemo, useLayoutEffect, memo } from "react";
 import styled from "styled-components";
 
 import LineupPlayer from "./lineupPlayer";
@@ -15,40 +15,29 @@ const Lineup = memo(({ lineup, events }) => {
   const [playingLineup, setPlayingLineup] = useState([]);
   const [substLineup, setSubstLineup] = useState([]);
   const [substOutLineup, setSubstOutLineup] = useState([]);
-  const [eventSubsts, setEventSubsts] = useState([]);
-  const [eventGoals, setEventGoals] = useState([]);
-  const [eventCards, setEventCards] = useState([]);
   // const [eventVars, setEventVars] = useState([]);
   const [playerEvents, setPlayerEvents] = useState({});
 
-  // 이벤트를 종류별로 분할
-  useEffect(() => {
-    setEventSubsts(() => {
-      return events.filter(v => {
-        return v.type === 'subst';
-      });
+  const eventSubsts = useMemo(() => {
+    return events.filter(v => {
+      return v.type === 'subst';
     });
-    setEventGoals(() => {
-      return events.filter(v => {
-        return v.type === 'Goal';
-      });
+  }, [events]);
+  
+  const eventGoals = useMemo(() => {
+    return events.filter(v => {
+      return v.type === 'Goal' && v.comments !== 'Penalty Shootout';
     });
-    setEventCards(() => {
-      return events.filter(v => {
-        return v.type === 'Card';
-      });
+  }, [events]);
+
+  const eventCards = useMemo(() => {
+    return events.filter(v => {
+      return v.type === 'Card';
     });
-    /*
-    setEventVars(() => {
-      return events.filter(v => {
-        return v.type === 'Var';
-      });
-    });    
-    */
   }, [events]);
 
   // 선수 교체 반영
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (eventSubsts.length > 0) {
       const newPlayingLineup = [...lineup.startXI];
       const newSubstLineup = [...lineup.substitutes];
@@ -73,7 +62,7 @@ const Lineup = memo(({ lineup, events }) => {
   }, [eventSubsts]);
 
   // 득점, 도움, 경고, 퇴장 반영
-  useEffect(() => {
+  useLayoutEffect(() => {
     setPlayerEvents(() => {
       let playerEvent = {};
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo } from "react";
+import React, { useMemo, memo } from "react";
 import styled, { css } from "styled-components";
 
 import { IconGoal, IconRedCard } from "../icons/fixtureIcons";
@@ -36,41 +36,64 @@ const EventSummaryTime = styled.span`
   `}
 `;
 
-const FixtureEventSummary = memo(({ events, isHome = false }) => {
-  const [filteredEvents, setFilteredEvents] = useState([]);
+const StyledPenaltyShootout = styled.div`
+  margin-top: 10px;
+  font-size: 13px;
+  color: #777;
+  ${props => props.isHome && css`
+    text-align: right;
+  `}
+`;
 
-  // 이벤트를 종류별로 분할
-  useEffect(() => {
-    setFilteredEvents(() => {
-      return events.filter(v => {
-        return v.type === 'Goal' || v.detail === 'Red Card';
-      });
+const FixtureEventSummary = memo(({ events, isHome = false }) => {
+  const filteredEvents = useMemo(() => {
+    return events.filter(event => {
+      return event.detail === 'Red Card' || (event.type === 'Goal' && event.comments !== 'Penalty Shootout');
     });
   }, [events]);
 
+  const penaltyShootout = useMemo(() => {
+    return events.filter(event => event.type === 'Goal' && event.comments === 'Penalty Shootout');
+  }, [events]);
+
+  const renderTypeIcon = (event) => {
+    if (event.type === 'Goal') {
+      return <IconGoal alt="골" />;
+    }
+    if (event.type === 'Card' && event.detail === 'Red Card') {
+      return <IconRedCard alt="퇴장" />;
+    }
+  }
+
+  const printExtraTime = (time) => {
+    return time.extra ? '+' + time.extra : '';
+  }
+
+  const renderOwnGoalText = (event) => {
+    if (event.type === 'Goal' && event.detail === 'Own Goal') {
+      return <span> (자책)</span>;
+    }
+  }
+
   return (
     <FixtureEventSummaryWrapper isHome={isHome}>
-      {
-        filteredEvents.length > 0 &&
-        filteredEvents.map(v => {
-          return (
-            <EventSummaryItem key={`${v.player.id}_${v.time.elapsed}`} isHome={isHome}>
-              { v.type === 'Goal' &&
-                <IconGoal alt="골" />
-              }
-              { v.type === 'Card' && v.detail === 'Red Card' &&
-                <IconRedCard alt="퇴장" />
-              }
-              <span>
-                <EventSummaryTime isHome={isHome}>{v.time.elapsed}{v.time.extra ? '+' + v.time.extra : ''}`</EventSummaryTime>
-                <span>{v.player.name}</span>
-                { v.type === 'Goal' && v.detail === 'Own Goal' &&
-                  <span> (자책)</span>
-                }
-              </span>
-            </EventSummaryItem>
-          )
-        })
+      { filteredEvents.map(v => 
+        <EventSummaryItem key={`${v.player.id}_${v.time.elapsed}`} isHome={isHome}>
+          {renderTypeIcon(v)}
+          <span>
+            <EventSummaryTime isHome={isHome}>{v.time.elapsed}{printExtraTime(v.time)}`</EventSummaryTime>
+            <span>{v.player.name}</span>
+            {renderOwnGoalText(v)}
+          </span>
+        </EventSummaryItem>
+      )}
+      { penaltyShootout.length > 0 &&
+        <StyledPenaltyShootout isHome={isHome}>
+          <div>승부차기</div>
+          { penaltyShootout.map(v => 
+            <span key={`penaltyShootout_${v.player.id}_${v.time.elapsed}`}>{v.detail === 'Penalty' ? 'O' : 'X'}</span>
+          )}
+        </StyledPenaltyShootout>
       }
     </FixtureEventSummaryWrapper>
   );

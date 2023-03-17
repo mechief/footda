@@ -17,6 +17,14 @@ const EventTime = styled.span`
 const FixtureDetailEventItem = ({ event }) => {
 
   const showEventTextByType = () => {
+    if (event.type === 'Goal' && event.comments === 'Penalty Shootout') {
+      if (event.detail === 'Penalty') {
+        return `성공! ${event.team.name}의 ${event.player.name}`;
+      } else {
+        return `실패! ${event.team.name}의 ${event.player.name}`;
+      }
+    }
+
     switch (event.type) {
       case 'Goal':
         return `득점! ${event.player.name} 선수의 골.` + (event.assist.id ? ` ${event.assist.name} 선수의 도움.` : '');
@@ -35,12 +43,17 @@ const FixtureDetailEventItem = ({ event }) => {
     }
   }
 
+  const printTime = () => {
+    if (event.type === 'Goal' && event.comments === 'Penalty Shootout') {
+      return '승부차기';
+    }
+    return `${event.time.elapsed}${event.time.extra ? '+' + event.time.extra : ''}\``;
+  }
+
   return (
     <EventItemWrapper>
-      <EventTime>{event.time.elapsed}{event.time.extra ? '+' + event.time.extra : ''}`</EventTime>
-      <span>
-        {showEventTextByType()}
-      </span>
+      <EventTime>{printTime()}</EventTime>
+      <span>{showEventTextByType()}</span>
     </EventItemWrapper>
   );
 };

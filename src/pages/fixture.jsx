@@ -52,8 +52,6 @@ const Fixture = () => {
   const status = data?.fixture?.status || null;
   const teams = data?.teams || null;
 
-  console.log('fixture data', data);
-  
   useLayoutEffect(() => {
     dispatch(setFixtureId(fixtureId));
   }, [fixtureId]);
@@ -101,11 +99,8 @@ const Fixture = () => {
             )}
           </FixtureInfo>
           <FixtureSummary>
-            { teams?.home?.id && teams?.away?.id && <>
-                <FixtureTeam team={teams.home} isHome={true} />
-                <FixtureTeam team={teams.away} />
-              </>
-            }
+            <FixtureTeam team={teams.home} isHome={true} />
+            <FixtureTeam team={teams.away} />
             { FIXTURE_STATUS[status?.short]?.code >= 0 && (
               <FixtureScoreWrapper>
                 <FixtureScore goals={data.goals} score={data.score} shortStatus={status.short} />
