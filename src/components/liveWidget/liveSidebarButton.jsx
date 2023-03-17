@@ -11,10 +11,13 @@ const SidebarButtonWrapper = styled.div`
 `;
 
 const SidebarButton = styled.button`
-  border: 1px solid #555;
-  font-size: 18px;
-  font-weight: 500;
-  background: #ccc;
+  padding: 6px 10px;
+  border: none;
+  background: #5f9ea0;
+  font-size: 16px;
+  font-weight: 400;
+  color: #fff;
+  border-radius: 4px;
 `;
 
 const LiveSidebarButton = () => {

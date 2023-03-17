@@ -29,6 +29,7 @@ const ItemDetail = styled.div`
   justify-content: space-evenly;
   align-items: center;
   gap: 0 5px;
+  width: 100%;
   margin-top: 5px;
 `;
 

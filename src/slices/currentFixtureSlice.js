@@ -23,7 +23,7 @@ const currentFixtureSlice = createSlice({
       state.id = +action.payload;
     },
     setFixture: (state, action) => {
-      const sortedEvent = action.payload.events.sort((a, b) => {
+      const sortedEvent = action.payload.events.slice().sort((a, b) => {
         return a.time.elapsed - b.time.elapsed === 0 && (a.time.extra || b.time.extra)
           ? (a.time.extra || 0) - (b.time.extra || 0) 
           : a.time.elapsed - b.time.elapsed;

@@ -308,6 +308,10 @@ export const isServiceLeague = (leagueId) => {
   return SERVICE_LEAGUES.has(+leagueId);
 }
 
+export const getFixtureStatusCode = (shortStatus) => {
+  return FIXTURE_STATUS[shortStatus].code ?? null;
+}
+
 export const getFixtureStatusText = (shortStatus) => {
   return FIXTURE_STATUS[shortStatus].text ?? null;
 }

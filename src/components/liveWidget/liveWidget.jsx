@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useQuery, useQueryClient } from "react-query";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
+
+import { getScheduleFixturesByIds } from "../../api/scheduleFixture";
 
 import LiveWidgetItem from "./liveWidgetItem";
 
@@ -17,17 +20,29 @@ const LiveWidgetArea = styled.div`
   width: 300px;
 `;
 
+const liveWidgetQuery = (widgetFixtureIds) => ({
+  queryKey: ['liveWidget', widgetFixtureIds.join('-')],
+  queryFn: async () => getScheduleFixturesByIds(widgetFixtureIds),
+  staleTime: 15000,
+  cacheTime: 15000,
+});
+
 const LiveWidget = () => {
   const widgetFixtureIds = useSelector((state) => state.liveWidget.widgetFixtureIds);
-  const dispatch = useDispatch();
+
+  const { data, isError, error } = useQuery(liveWidgetQuery(widgetFixtureIds));
+
+  if (isError) {
+    console.error(error);
+    return <></>;
+  }
 
   return (
     <>
-      {
-        widgetFixtureIds.length > 0 && (
+      { data && (
         <LiveWidgetArea>
-          { widgetFixtureIds.map(fixtureId => 
-            <LiveWidgetItem key={`liveWidget_${fixtureId}`} fixtureId={fixtureId} />
+          { data.map(fixtureData => 
+            <LiveWidgetItem key={`liveWidget_${fixtureData.fixture.id}`} fixtureData={fixtureData} />
           )}
         </LiveWidgetArea>
       )}

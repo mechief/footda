@@ -4,6 +4,8 @@ import { useQuery } from "react-query";
 import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 
+import ErrorBoundary from "../components/error/errorBoundary";
+
 import { getFixture } from "../apiFootball/fixtures";
 import { setFixtureId, setFixture } from "../slices/currentFixtureSlice";
 
@@ -49,6 +51,8 @@ const Fixture = () => {
 
   const status = data?.fixture?.status || null;
   const teams = data?.teams || null;
+
+  console.log('fixture data', data);
   
   useLayoutEffect(() => {
     dispatch(setFixtureId(fixtureId));
@@ -123,7 +127,9 @@ const Fixture = () => {
           </FixtureDetailSection>
         </FixtureWrapper>
       }
-      <LiveWidget />
+      <ErrorBoundary key='liveWidget' fallback={<></>}>
+        <LiveWidget />
+      </ErrorBoundary>
     </>
   );
 }

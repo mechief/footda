@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled, { css } from "styled-components";
 
-import { addWidgetFixtureId } from "../../slices/liveWidgetSlice";
+import { addLiveWidget } from "../../slices/liveWidgetSlice";
 
 const AddWidgetButton = styled.button`
   position: absolute;
@@ -44,7 +44,7 @@ const LiveSidebarAddWidgetButton = ({ fixtureId }) => {
   }
 
   const onClickButton = () => {
-    dispatch(addWidgetFixtureId(fixtureId));
+    dispatch(addLiveWidget(fixtureId));
   }
 
   return (

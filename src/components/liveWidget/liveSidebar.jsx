@@ -1,12 +1,10 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { getRoundFixtures } from "../../apiFootball/fixtures";
-import fixtureSlice from "../../slices/fixtureSlice";
-import { addLiveFixtureIds, closeSidebar } from "../../slices/liveWidgetSlice";
+import { closeSidebar } from "../../slices/liveWidgetSlice";
 
-import LiveSidebarFixtureItem from "./liveSidebarFixtureItem";
+import LiveSidebarList from "./liveSidebarList";
 
 const LiveSidebarWrapper = styled.div`
   display: flex;
@@ -20,7 +18,7 @@ const LiveSidebarWrapper = styled.div`
   bottom: 0;
   z-index: 100;
   width: 300px;
-  padding-top: 60px;
+  padding-top: 50px;
   background: #e0e0e0;
 `;
 
@@ -29,16 +27,16 @@ const LiveSidebarTitleArea = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  height: 60px;
+  height: 50px;
   background: #e0e0e0;
 `;
   
 const LiveSidebarTitle = styled.h3`
-  line-height: 20px;
-  padding: 20px 10px;
-  text-align: center;
-  font-size: 20px;
-  font-weight: 700;
+  line-height: 18px;
+  padding: 16px 10px;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
 `;
 
 const CloseButton = styled.button`
@@ -49,7 +47,7 @@ const CloseButton = styled.button`
   padding: 4px 6px;
   border: none;
   line-height: 1;
-  background: #666;
+  background: #aaa;
   font-size: 14px;
   font-weight: 500;
   color: #fff;
@@ -62,27 +60,8 @@ const LiveSidebarContent = styled.div`
   padding: 0 10px 20px;
 `;
 
-const LiveSidebarFixtureList = styled.ul`
-`;
-
 const LiveSidebar = () => {
-  const fixtures = useSelector((state) => state.fixture.fixtures);
-  const liveFixtureIds = useSelector((state) => state.liveWidget.liveFixtureIds);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (liveFixtureIds.length === 0) {
-      getRoundFixtures()
-        .then((res) => {
-          dispatch(fixtureSlice.actions.addFixtures(res));
-          dispatch(addLiveFixtureIds(res.map(item => item.fixture.id)));
-          console.log(res);
-        })
-        .catch((error) => {
-          console.log(error.message);
-        });
-    }
-  }, []);
 
   const onClickClose = () => {
     dispatch(closeSidebar());
@@ -95,11 +74,7 @@ const LiveSidebar = () => {
         <CloseButton type="button" onClick={onClickClose}>닫기</CloseButton>
       </LiveSidebarTitleArea>
       <LiveSidebarContent>
-        <LiveSidebarFixtureList>
-          { liveFixtureIds.map(fixtureId => 
-            <LiveSidebarFixtureItem key={`liveFixture_${fixtureId}`} fixture={fixtures.find(item => item.fixture.id === fixtureId)} />
-          )}
-        </LiveSidebarFixtureList>
+        <LiveSidebarList />
       </LiveSidebarContent>
     </LiveSidebarWrapper>
   );

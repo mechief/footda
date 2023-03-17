@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 
-import { addWidgetFixtureId, removeWidgetFixtureId } from "../../slices/liveWidgetSlice";
+import { addLiveWidget, removeLiveWidget } from "../../slices/liveWidgetSlice";
 
 import { IconOpenInNewReverse } from "../icons/commonIcons";
 
@@ -20,9 +20,9 @@ const LiveWidgetShowFullButton = memo(({ fixtureId }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const onClickButton = async () => {
-    await dispatch(addWidgetFixtureId(currentFixtureId));
-    dispatch(removeWidgetFixtureId(fixtureId));
+  const onClickButton = () => {
+    dispatch(addLiveWidget(currentFixtureId));
+    dispatch(removeLiveWidget(fixtureId));
 
     navigate('/fixture/' + fixtureId);
   }

@@ -4,7 +4,6 @@ const liveWidgetSlice = createSlice({
   name: 'liveWidget',
   initialState: {
     isSidebarOpened: false,
-    liveFixtureIds: [],
     widgetFixtureIds: [],
   },
 
@@ -15,15 +14,12 @@ const liveWidgetSlice = createSlice({
     closeSidebar: (state) => {
       state.isSidebarOpened = false;
     },
-    addLiveFixtureIds: (state, action) => {
-      state.liveFixtureIds = [...state.liveFixtureIds, ...action.payload];
-    },
-    addWidgetFixtureId: (state, action) => {
+    addLiveWidget: (state, action) => {
       if (!state.widgetFixtureIds.find((fixtureId) => fixtureId === action.payload)) {
         state.widgetFixtureIds = [...state.widgetFixtureIds, action.payload];
       }
     },
-    removeWidgetFixtureId: (state, action) => {
+    removeLiveWidget: (state, action) => {
       const newFixtureIds = [...state.widgetFixtureIds];
       const targetIdx = newFixtureIds.findIndex(id => id === action.payload);
       
@@ -38,9 +34,8 @@ const liveWidgetSlice = createSlice({
 export const {
   openSidebar,
   closeSidebar,
-  addLiveFixtureIds,
-  addWidgetFixtureId,
-  removeWidgetFixtureId,
+  addLiveWidget,
+  removeLiveWidget,
 } = liveWidgetSlice.actions;
 
 export default liveWidgetSlice;

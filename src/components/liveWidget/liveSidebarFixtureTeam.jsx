@@ -1,5 +1,7 @@
 import React, { memo } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
+
+import { getTeamLogoURL } from "../../service/footballFunctions";
 
 const FixtureTeamWrapper = styled.span`
   display: flex;
@@ -7,7 +9,7 @@ const FixtureTeamWrapper = styled.span`
   flex-wrap: nowrap;
   justify-contents: center;
   align-items: center;
-  flex: 0 1 40%;
+  flex: 0 0 calc(50% - 27px);
 `;
 
 const TeamLogo = styled.img`
@@ -24,7 +26,7 @@ const TeamName = styled.span`
 const LiveSidebarFixtureTeam = memo(({ team }) => {
   return (
     <FixtureTeamWrapper>
-      <TeamLogo src={team.logo} />
+      <TeamLogo src={getTeamLogoURL(team.id)} />
       <TeamName>{team.name}</TeamName>
     </FixtureTeamWrapper>
   );

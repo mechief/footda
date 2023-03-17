@@ -36,6 +36,33 @@ export const getScheduleFixtures = async ({ date, endDate, leagueId } = {}) => {
   return fixtures;
 }
 
+export const getScheduleFixturesByIds = async (ids) => {
+  if (!ids) {
+    throw new MissingRequiredParamError('ids');
+  }
+
+  if (!Array.isArray(ids)) {
+    throw new InvalidParamError('ids');
+  }
+
+
+  if (ids.length === 0) {
+    return [];
+  }
+
+  const endPoint = '/schedule-fixtures/ids/' + ids.join('-');
+
+  const res = await footdaApi(endPoint);
+
+  if (res.data.results === 0) {
+    throw new NoResultError;
+  }
+
+  const fixtures = res.data.datas;
+
+  return fixtures;
+}
+
 export const getFirstExistsDate = async (date) => {
   if (date && !dayjs(date).isValid()) {
     throw new InvalidParamError('date');

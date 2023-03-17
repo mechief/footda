@@ -1,10 +1,10 @@
 import React, { memo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
-import { removeWidgetFixtureId } from "../../slices/liveWidgetSlice";
+import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameKr } from "../../service/apiFootballService";
+import { removeLiveWidget } from "../../slices/liveWidgetSlice";
 
 import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
 import FixtureScore from "../fixture/fixtureScore";
@@ -61,42 +61,41 @@ const ItemScore = styled.span`
   font-weight: 700;
 `;
 
-const LiveWidgetItem = memo(({ fixtureId }) => {
-  const fixture = useSelector((state) => state.fixture.fixtures.find(item => item.fixture.id === fixtureId));
+const LiveWidgetItem = memo(({ fixtureData }) => {
   const dispatch = useDispatch();
 
   const onClickRemove = () => {
-    dispatch(removeWidgetFixtureId(fixtureId));
+    dispatch(removeLiveWidget(fixtureData.fixture.id));
   }
 
   return (
     <ItemWrapper>
       <RemoveWidgetButton type="button" onClick={onClickRemove}>닫기</RemoveWidgetButton>
-      <span>{getLeagueNameKr(fixture.league?.id)}</span>
-      { fixture.fixture?.date && 
-        <span>{dayjs(fixture.fixture.date).format('HH:mm')}</span>
+      <span>{getLeagueNameKr(fixtureData.league?.id)}</span>
+      { fixtureData.fixture?.date && 
+        <span>{dayjs(fixtureData.fixture.date).format('HH:mm')}</span>
       }
       <ItemDetail>
-        { fixture.teams?.home?.id &&
-          <LiveSidebarFixtureTeam team={fixture.teams.home} />
+        { fixtureData.teams?.home?.id &&
+          <LiveSidebarFixtureTeam team={fixtureData.teams.home} />
         }
         <ItemSummary>
           <ItemStatus>
-            { fixture.fixture?.status?.short &&
-              FIXTURE_STATUS[fixture.fixture.status.short]?.text
+            { fixtureData.fixture?.status?.short &&
+              getFixtureStatusText(fixtureData.fixture.status.short)
             }
           </ItemStatus>
           <ItemScore>
-            { FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0 &&
-              <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
+            { getFixtureStatusCode(fixtureData.fixture.status.short) >= 0 &&
+              <FixtureScore goals={fixtureData.goals} score={fixtureData.score} shortStatus={fixtureData.fixture.status.short} />
             }
           </ItemScore>
         </ItemSummary>
-        { fixture.teams?.away?.id &&
-          <LiveSidebarFixtureTeam team={fixture.teams.away} />
+        { fixtureData.teams?.away?.id &&
+          <LiveSidebarFixtureTeam team={fixtureData.teams.away} />
         }
       </ItemDetail>
-      <LiveWidgetShowFullButton fixtureId={fixtureId} />
+      <LiveWidgetShowFullButton fixtureId={fixtureData.fixture.id} />
     </ItemWrapper>
   );
 });

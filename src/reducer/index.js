@@ -15,6 +15,12 @@ const rootPersistConfig = {
   // blacklist: [],
 };
 
+const liveWidgetPersistConfig = {
+  key: 'liveWidget',
+  storage: storage, 
+  whiteList: ['widgetFixtureIds'],
+}
+
 /**
  * currentFixture: 현재 보고 있는 경기 (상세 정보 포함)
  * fixture: 전체 경기의 리스트 데이터 (fixtures)
@@ -25,7 +31,7 @@ const rootReducer = combineReducers({
   currentFixture: currentFixtureSlice.reducer,
   fixture: fixtureSlice.reducer,
   statTooltip: statTooltipSlice.reducer,
-  liveWidget: liveWidgetSlice.reducer,
+  liveWidget: persistReducer(liveWidgetPersistConfig, liveWidgetSlice.reducer),
   userSetting: userSettingSlice.reducer,
 });
 
