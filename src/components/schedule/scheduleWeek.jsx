@@ -31,7 +31,6 @@ const ScheduleWeek = memo(({
   setIsLoading 
 }) => {
   const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
-
   const { data } = useQuery(scheduleOfWeekQuery(weekDate));
 
   const filteredList = useMemo(() => {
@@ -53,7 +52,7 @@ const ScheduleWeek = memo(({
     }
 
     return obj;
-  }, [data]);
+  }, [data, scheduleLeaguesFilter]);
 
   const dates = useMemo(() => {
     return filteredList ? Object.keys(filteredList) : [];
@@ -77,8 +76,7 @@ const ScheduleWeek = memo(({
   
   return (
     <>
-      { dates.length > 0 
-        && dates.map((date) => 
+      { dates.map((date) => 
         <ScheduleList 
           key={`schedule-list-${date}`} 
           fixtures={filteredList[date]} 
