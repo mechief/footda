@@ -1,22 +1,16 @@
 import React from "react";
 import { useQuery } from "react-query";
-import dayjs from "dayjs";
 
 import { getScheduleFixtures } from "../../api/scheduleFixture";
 
 import LiveSidebarFixtureItem from "./liveSidebarFixtureItem";
 
-const liveSidebarQuery = () => {
-  const nowDayjsObj = dayjs();
-  const endDate = [0, 1, 22, 23].includes(nowDayjsObj.hour()) || null;
-
-  return {
-    queryKey: 'liveSidebar',
-    queryFn: async () => getScheduleFixtures({ endDate }),
-    staleTime: 15000,
-    cacheTime: 15000,
-  }
-};
+const liveSidebarQuery = () => ({
+  queryKey: 'liveSidebar',
+  queryFn: async () => getScheduleFixtures(),
+  staleTime: 15000,
+  cacheTime: 15000,
+});
 
 const LiveSidebarList = () => {
   const { data, isLoading, isError } = useQuery(liveSidebarQuery());

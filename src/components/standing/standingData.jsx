@@ -24,8 +24,6 @@ const StandingData = ({ leagueId }) => {
   const [standings, setStandings] = useState(data?.league?.standings[0] ?? []);
   const [orderType, setOrderType] = useState('rank asc');
 
-  console.log(standings);
-
   const leagueRule = useMemo(() => {
     return getLeagueRule(leagueId);
   }, []);

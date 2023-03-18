@@ -9,7 +9,7 @@ import ErrorBoundary from "../components/error/errorBoundary";
 import { getFixture } from "../apiFootball/fixtures";
 import { setFixtureId, setFixture } from "../slices/currentFixtureSlice";
 
-import { FIXTURE_STATUS, getFixtureStatusText } from "../service/apiFootballService";
+import { getFixtureStatusCode, getFixtureStatusText } from "../service/apiFootballService";
 
 import FixtureLeague from "../components/fixture/fixtureLeague";
 import FixtureEventSummary from "../components/fixture/fixtureEventSummary";
@@ -101,7 +101,7 @@ const Fixture = () => {
           <FixtureSummary>
             <FixtureTeam team={teams.home} isHome={true} />
             <FixtureTeam team={teams.away} />
-            { FIXTURE_STATUS[status?.short]?.code >= 0 && (
+            { getFixtureStatusCode(status?.short) >= 0 && (
               <FixtureScoreWrapper>
                 <FixtureScore goals={data.goals} score={data.score} shortStatus={status.short} />
               </FixtureScoreWrapper>
@@ -114,7 +114,7 @@ const Fixture = () => {
               ? <Lineup lineup={data.lineups[0]} events={teamEvents.home} />
               : <LineupNoData />
             }
-            <FixtureDetail fixtureStatus={FIXTURE_STATUS[status?.short]?.code} />
+            <FixtureDetail fixtureStatus={getFixtureStatusCode(status?.short)} />
             { data.lineups[1]?.team?.id
               ? <Lineup lineup={data.lineups[1]} events={teamEvents.away} />
               : <LineupNoData />

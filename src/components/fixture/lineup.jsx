@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useLayoutEffect, memo } from "react";
+import React, { useState, useMemo, useEffect, memo } from "react";
 import styled from "styled-components";
 
 import LineupPlayer from "./lineupPlayer";
@@ -37,32 +37,34 @@ const Lineup = memo(({ lineup, events }) => {
   }, [events]);
 
   // 선수 교체 반영
-  useLayoutEffect(() => {
-    if (eventSubsts.length > 0) {
-      const newPlayingLineup = [...lineup.startXI];
-      const newSubstLineup = [...lineup.substitutes];
-      const newSubstOutLineup = [];
-  
-      eventSubsts.forEach(substEvent => {
-        const subInIndex = lineup.substitutes.findIndex(substPlayer => {
-          return substPlayer.player.id === substEvent.assist.id; // subst in (assist: 투입 선수)
-        });
-        const subOut = newPlayingLineup.splice(newPlayingLineup.findIndex(v => {
-          return v.player.id === substEvent.player.id; // subst out
-        }), 1, lineup.substitutes[subInIndex]);
-  
-        newSubstLineup.splice(subInIndex, 1);
-        newSubstOutLineup.push(subOut[0]);
+  useEffect(() => {
+    if (eventSubsts.length === 0) return;
+
+    const arrSubstOutIndex = [];
+    const arrSubstInIndex = [];
+
+    eventSubsts.forEach(substEvent => {
+      const substOutIndex = lineup.startXI.findIndex(v => {
+        return v.player.id === substEvent.player.id; // subst out
       });
-  
-      setPlayingLineup(() => newPlayingLineup);
-      setSubstLineup(() => newSubstLineup);
-      setSubstOutLineup(() => newSubstOutLineup);
-    }
+      const substInIndex = lineup.substitutes.findIndex(substPlayer => {
+        return substPlayer.player.id === substEvent.assist.id; // subst in (assist: 투입 선수)
+      });
+
+      arrSubstOutIndex.push(substOutIndex);
+      arrSubstInIndex.push(substInIndex);
+    });
+
+    setSubstOutLineup(lineup.startXI.filter((_, i) => arrSubstOutIndex.includes(i)));
+    setSubstLineup(lineup.substitutes.filter((_, i) => !arrSubstInIndex.includes(i)));
+    setPlayingLineup([
+      ...lineup.startXI.filter((_, i) => !arrSubstOutIndex.includes(i)),
+      ...lineup.substitutes.filter((_, i) => arrSubstInIndex.includes(i))
+    ]);
   }, [eventSubsts]);
 
   // 득점, 도움, 경고, 퇴장 반영
-  useLayoutEffect(() => {
+  useEffect(() => {
     setPlayerEvents(() => {
       let playerEvent = {};
 
@@ -99,15 +101,11 @@ const Lineup = memo(({ lineup, events }) => {
       </div>
       <LineupSubst>
         <p>교체 명단</p>
-        {substLineup.length > 0 && (
-          <>
-            {substLineup.map(v => 
-              <LineupPlayer key={v.player.id} player={v.player} />
-            )}
-            {substOutLineup.map(v => 
-              <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} isSubstOut={true} />
-            )}
-          </>
+        { substLineup.map(v => 
+          <LineupPlayer key={v.player.id} player={v.player} />
+        )}
+        { substOutLineup.map(v => 
+          <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} isSubstOut={true} />
         )}
       </LineupSubst>
     </LineupWrapper>

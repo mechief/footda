@@ -60,23 +60,27 @@ const LineupPlayer = memo(({ player, playerEvent, isSubstOut = false }) => {
       }
       <PlayerNumber>{player.number}</PlayerNumber>
       <PlayerName>{player.name}</PlayerName>
-      { playerEvent && playerEvent.goal > 0 &&
-        <PlayerEventIcon>
-          <IconGoal />
-          <PlayerEventCount>{playerEvent.goal}</PlayerEventCount>
-        </PlayerEventIcon>
-      }
-      { playerEvent && playerEvent.assist > 0 &&
-        <PlayerEventIcon>
-          <IconAssist />
-          <PlayerEventCount>{playerEvent.assist}</PlayerEventCount>
-        </PlayerEventIcon>
-      }
-      { playerEvent && playerEvent.yellow &&
-        <IconYellowCard />
-      }
-      { playerEvent && playerEvent.red &&
-        <IconRedCard />
+      { playerEvent && 
+        <>
+          { playerEvent.goal > 0 &&
+            <PlayerEventIcon>
+              <IconGoal />
+              <PlayerEventCount>{playerEvent.goal}</PlayerEventCount>
+            </PlayerEventIcon>
+          }
+          { playerEvent.assist > 0 &&
+            <PlayerEventIcon>
+              <IconAssist />
+              <PlayerEventCount>{playerEvent.assist}</PlayerEventCount>
+            </PlayerEventIcon>
+          }
+          { playerEvent.yellow &&
+            <IconYellowCard />
+          }
+          { playerEvent.red &&
+            <IconRedCard />
+          }
+        </>
       }
     </LineupPlayerWrapper>
   );
