@@ -51,8 +51,6 @@ export const initTooltip = createAsyncThunk('statTooltip/initTooltip', async (da
       }
     });
     
-    console.log(playerStat);
-    
     return playerStat;
   } catch (err) {
     return rejectWithValue(err.response.data);
