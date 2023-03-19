@@ -46,6 +46,10 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
   useEffect(() => {
     changeListWeeks(focusDate);
   }, [focusDate]);
+  
+  useEffect(() => {
+    setIsLoading(false);
+  }, [listWeeks]);
 
   const changeListWeeks = useCallback((date) => {
     const sunDayjsObj = dayjs(date).day(0); // 기준 요일 - 일요일
@@ -97,8 +101,6 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
           isScrollToFocus={isScrollToFocus}
           setIsScrollToFocus={setIsScrollToFocus}
           listRef={listRef}
-          isLoading={isLoading}
-          setIsLoading={setIsLoading}
         />
       )}
       <LoadMoreButton onClick={() => fetchNext()} disabled={isLoading}>
