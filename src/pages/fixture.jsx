@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 
 import ErrorBoundary from "../components/error/errorBoundary";
@@ -19,6 +19,7 @@ import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
 import LineupNoData from "../components/fixture/lineupNoData";
 
+import LiveSidebar from "../components/liveWidget/liveSidebar";
 import LiveSidebarButton from "../components/liveWidget/liveSidebarButton"
 import LiveWidget from "../components/liveWidget/liveWidget";
 
@@ -46,6 +47,7 @@ const Fixture = () => {
   const fixtureId = Number(useParams().id);
 
   const dispatch = useDispatch();
+  const isSidebarOpened = useSelector((state) => state.liveWidget.isSidebarOpened);
 
   const { data, isLoading, isError } = useQuery(fixtureQuery(fixtureId));
 
@@ -87,6 +89,9 @@ const Fixture = () => {
   return (
     <>
       <LiveSidebarButton />
+      { isSidebarOpened &&
+        <LiveSidebar />
+      }
       { data && 
         <FixtureWrapper>
           <FixtureInfo>
