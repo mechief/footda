@@ -95,7 +95,7 @@ const LiveWidgetItem = memo(({ fixtureData }) => {
           <LiveSidebarFixtureTeam team={fixtureData.teams.away} />
         }
       </ItemDetail>
-      <LiveWidgetShowFullButton fixtureId={fixtureData.fixture.id} />
+      <LiveWidgetShowFullButton fixtureData={fixtureData} />
     </ItemWrapper>
   );
 });

@@ -60,7 +60,7 @@ const LeagueAndRound = styled.span`
 const HomeScheduleFixtureItem = memo(({ fixture }) => {
   return (
     <ItemWrapper>
-      <Link to={'/fixture/' + fixture.fixture.id}>
+      <Link to={'/fixture/' + fixture.fixture.id} state={fixture}>
         <ItemInner>
           <TimeAndStatus>
             { fixture.fixture?.date && 

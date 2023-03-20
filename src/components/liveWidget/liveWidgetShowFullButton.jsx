@@ -15,16 +15,16 @@ const ShowFullButton = styled.button`
   background: none;
 `;
 
-const LiveWidgetShowFullButton = memo(({ fixtureId }) => {
+const LiveWidgetShowFullButton = memo(({ fixtureData }) => {
   const currentFixtureId = useSelector((state) => state.currentFixture.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const onClickButton = () => {
     dispatch(addLiveWidget(currentFixtureId));
-    dispatch(removeLiveWidget(fixtureId));
+    dispatch(removeLiveWidget(fixtureData.fixture.id));
 
-    navigate('/fixture/' + fixtureId);
+    navigate('/fixture/' + fixtureData.fixture.id, { state: fixtureData });
   }
 
   return (

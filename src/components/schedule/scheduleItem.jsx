@@ -57,7 +57,7 @@ const TeamItem = styled.div`
 const ScheduleItem = memo(({ fixture }) => {
   return (
     <ItemWrapper>
-      <Link to={'/fixture/' + fixture.fixture.id}>
+      <Link to={'/fixture/' + fixture.fixture.id} state={fixture}>
         <ItemInner>
           <div>
             <div>

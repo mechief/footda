@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useQuery } from "react-query";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
@@ -17,7 +17,6 @@ import FixtureTeam from "../components/fixture/fixtureTeam";
 import FixtureScore from "../components/fixture/fixtureScore";
 import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
-import LineupNoData from "../components/fixture/lineupNoData";
 
 import LiveSidebar from "../components/liveWidget/liveSidebar";
 import LiveSidebarButton from "../components/liveWidget/liveSidebarButton"
@@ -30,6 +29,7 @@ import {
   FixtureDetailSection,
   FixtureStatusWrapper,
   FixtureScoreWrapper,
+  LineupWrapper,
 } from "../components/fixture/fixtureStyled";
 
 const queryConfig = {
@@ -45,40 +45,55 @@ const fixtureQuery = (fixtureId) => ({
 
 const Fixture = () => {
   const fixtureId = Number(useParams().id);
+  const { state: listData } = useLocation();
 
   const dispatch = useDispatch();
   const isSidebarOpened = useSelector((state) => state.liveWidget.isSidebarOpened);
 
   const { data, isLoading, isError } = useQuery(fixtureQuery(fixtureId));
 
-  const status = data?.fixture?.status || null;
-  const teams = data?.teams || null;
+  const fixtureData = data ?? listData;
+
+  const status = fixtureData?.fixture?.status || null;
+  const teams = fixtureData?.teams || null;
 
   useLayoutEffect(() => {
     dispatch(setFixtureId(fixtureId));
   }, [fixtureId]);
 
   useLayoutEffect(() => {
-    if (!data) return;
+    if (!fixtureData) return;
 
-    dispatch(setFixture(data));
-  }, [data]);
+    dispatch(setFixture(fixtureData));
+  }, [fixtureData]);
 
   // 팀별 events filter
   const teamEvents = useMemo(() => {
-    if (!data?.events) return null;
+    if (!fixtureData?.events) return null;
 
     return {
-      home: data?.events.filter(v => {
+      home: fixtureData?.events.filter(v => {
         return v.team.id === teams.home.id;
       }),
-      away: data?.events.filter(v => {
+      away: fixtureData?.events.filter(v => {
         return v.team.id === teams.away.id;
       })
     }
-  }, [data?.events]);
+  }, [fixtureData?.events]);
 
-  if (isLoading) {
+  const renderLineup = (homeAway) => {
+    const index = homeAway === 'home' ? 0 : 1;
+
+    if (fixtureData.lineups && fixtureData.lineups[index]?.team?.id) {  
+      return <Lineup lineup={fixtureData.lineups[index]} events={teamEvents[homeAway]} />;
+    } else if (isLoading) {
+      return <LineupWrapper>라인업을 불러오는 중입니다.</LineupWrapper>;
+    } else {
+      return <LineupWrapper>라인업 발표 전 입니다.</LineupWrapper>;
+    }
+  }
+
+  if (isLoading && !listData) {
     return <div>Loading...</div>;
   }
 
@@ -92,12 +107,12 @@ const Fixture = () => {
       { isSidebarOpened &&
         <LiveSidebar />
       }
-      { data && 
+      { fixtureData && 
         <FixtureWrapper>
           <FixtureInfo>
-            <div>{dayjs(data.fixture.date).format('M/D HH:mm')}</div>
-            { data.league?.id &&
-              <FixtureLeague league={data.league} />
+            <div>{dayjs(fixtureData.fixture.date).format('M/D HH:mm')}</div>
+            { fixtureData.league?.id &&
+              <FixtureLeague league={fixtureData.league} />
             }
             { status?.short && (
               <FixtureStatusWrapper>{getFixtureStatusText(status.short)}</FixtureStatusWrapper>
@@ -108,22 +123,21 @@ const Fixture = () => {
             <FixtureTeam team={teams.away} />
             { getFixtureStatusCode(status?.short) >= 0 && (
               <FixtureScoreWrapper>
-                <FixtureScore goals={data.goals} score={data.score} shortStatus={status.short} />
+                <FixtureScore goals={fixtureData.goals} score={fixtureData.score} shortStatus={status.short} />
               </FixtureScoreWrapper>
             )}
-            <FixtureEventSummary events={teamEvents.home} isHome={true} />
-            <FixtureEventSummary events={teamEvents.away} />
+            { teamEvents?.home && 
+              teamEvents?.away &&
+              <>
+                <FixtureEventSummary events={teamEvents.home} isHome={true} />
+                <FixtureEventSummary events={teamEvents.away} />
+              </>
+            }
           </FixtureSummary>
           <FixtureDetailSection>
-            { data.lineups[0]?.team?.id 
-              ? <Lineup lineup={data.lineups[0]} events={teamEvents.home} />
-              : <LineupNoData />
-            }
+            {renderLineup('home')}
             <FixtureDetail fixtureStatus={getFixtureStatusCode(status?.short)} />
-            { data.lineups[1]?.team?.id
-              ? <Lineup lineup={data.lineups[1]} events={teamEvents.away} />
-              : <LineupNoData />
-            }
+            {renderLineup('away')}
           </FixtureDetailSection>
         </FixtureWrapper>
       }
