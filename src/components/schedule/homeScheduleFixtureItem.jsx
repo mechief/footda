@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { FIXTURE_STATUS, getLeagueNameForList } from "../../service/apiFootballService";
+import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameForList } from "../../service/apiFootballService";
 import { getFormattedRound } from "../../service/footballFunctions";
 
 import HomeScheduleFixtureScore from "./homeScheduleFixtureScore";
@@ -67,7 +67,7 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
               <Time>{dayjs(fixture.fixture.date).format('HH:mm')}</Time>
             }
             { fixture.fixture?.status?.short &&
-              FIXTURE_STATUS[fixture.fixture.status.short]?.text
+              getFixtureStatusText(fixture.fixture.status.short)
             }
           </TimeAndStatus>
           <TeamsAndScore>
@@ -75,7 +75,7 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
               <ScheduleTeam team={fixture.teams.home} isHome={true} isWinner={fixture.teams?.home?.winner} />
             }
             <ScoreWrapper>
-              { FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0
+              { getFixtureStatusCode(fixture.fixture.status.short) >= 0
                 ? <HomeScheduleFixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
                 : 'vs'
               }
