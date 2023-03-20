@@ -53,7 +53,9 @@ const TopPlayerTableTh = ({ dataName, text, orderData, setOrderData }) => {
 
   return (
     <th>
-      <ReOrderButton onClick={onClickReOrder} clickable={['goals', 'assists'].includes(dataName) ? true : false}>
+      <ReOrderButton 
+        onClick={onClickReOrder}
+        clickable={['goals', 'assists'].includes(dataName) ? true : false}>
         <OrderTextWrapper>
           <span>{text}</span>
           {orderData === dataName &&

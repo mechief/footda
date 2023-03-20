@@ -112,16 +112,13 @@ const StatTooltipPlayerDetail = ({ playerId }) => {
             position={stat.position} 
             isSeasonTotal={true}
           ></LeagueStat>
-          {
-            stat.statistics.length > 0 && 
-            stat.statistics.map(leagueStat => 
-              <LeagueStat 
-                key={'playerTooltip_' + leagueStat.summary.leagueId} 
-                leagueStat={leagueStat.summary} 
-                position={stat.position}
-              ></LeagueStat>
-            )
-          }
+          { stat.statistics.map(leagueStat => 
+            <LeagueStat 
+              key={'playerTooltip_' + leagueStat.summary.leagueId} 
+              leagueStat={leagueStat.summary} 
+              position={stat.position}
+            ></LeagueStat>
+          )}
         </LeagueStatTbody>
       </LeagueStatTable>
     </StatTooltipPlayerWrapper>

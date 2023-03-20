@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useQuery, useQueryClient } from "react-query";
+import React from "react";
+import { useQuery } from "react-query";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 

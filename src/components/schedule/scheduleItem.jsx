@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { FIXTURE_STATUS, getLeagueNameForList } from "../../service/apiFootballService";
+import { getFixtureStatusText, getLeagueNameForList } from "../../service/apiFootballService";
 import { getFormattedRound } from "../../service/footballFunctions";
 
 import ScheduleTeam from "./scheduleTeam";
@@ -65,7 +65,7 @@ const ScheduleItem = memo(({ fixture }) => {
                 <Time>{dayjs(fixture.fixture.date).format('HH:mm')}</Time>
               }
               { fixture.fixture?.status?.short &&
-                FIXTURE_STATUS[fixture.fixture.status.short]?.text
+                getFixtureStatusText(fixture.fixture.status.short)
               }
             </div>
             <LeagueAndRound>

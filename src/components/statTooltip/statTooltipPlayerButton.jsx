@@ -34,7 +34,6 @@ const StatTooltipPlayerButton = memo(({ playerId }) => {
   return (
     <ButtonTooltip onClick={onClickTooltip}>
       <IconPlayer />
-      {/* <SoundOnly>선수 정보 보기</SoundOnly> */}
     </ButtonTooltip>
   );
 });

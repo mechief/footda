@@ -1,7 +1,9 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-const PenaltyScore = styled.div`
+import PenaltyScore from "./penaltyScore";
+
+const StyledPenaltyScore = styled(PenaltyScore)`
   display: inline-block;
   padding-top: 6px;
   font-size: 14px;
@@ -12,13 +14,9 @@ const FixtureScore = memo(({ goals, score, shortStatus }) => {
   return (
     <>
       <div>{goals.home + ' : ' + goals.away}</div>
-      {
-        shortStatus === 'P' || shortStatus === 'PEN'
-          && score?.penalty?.home && score?.penalty?.away 
-          && <PenaltyScore>
-            {score.penalty.home} : {score.penalty.away}
-          </PenaltyScore>
-      }
+      <StyledPenaltyScore score={score} shortStatus={shortStatus}>
+        {score.penalty.home} : {score.penalty.away}
+      </StyledPenaltyScore>
     </>
   );
 });

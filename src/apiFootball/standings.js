@@ -1,9 +1,18 @@
 import footballApi from "./api";
-import { CURRENT_SEASON } from "./seasons";
+
+import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
+import { NoResultError } from "../errors/footballAPIError";
+
+import { CURRENT_SEASON } from "../constants";
+import { isServiceLeague } from "../service/apiFootballService";
 
 export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
-  if (leagueId === undefined) {
-    throw new Error('league 파라미터 없음');
+  if (!leagueId) {
+    throw new MissingRequiredParamError('league');
+  }
+  
+  if (!isServiceLeague(leagueId)) {
+    throw new InvalidParamError('leagueId');
   }
 
   try {
@@ -13,7 +22,7 @@ export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
     });
 
     if (res.data.results === 0) {
-      throw new Error('데이터를 불러오지 못했습니다');
+      throw new NoResultError;
     }
 
     return res.data.response[0];

@@ -1,12 +1,15 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { FIXTURE_STATUS } from "../../service/apiFootballService";
+import { getFixtureStatusCode } from "../../service/apiFootballService";
+
+import PenaltyScore from "../fixture/penaltyScore";
 
 const ScoreWrapper = styled.span`
   flex: 0 0 40px;
-`
-const PenaltyScore = styled.span`
+`;
+
+const StyledPenaltyScore = styled(PenaltyScore)`
   display: inline-block;
   padding: 0 4px;
   font-size: 12px;
@@ -16,12 +19,11 @@ const PenaltyScore = styled.span`
 const ScheduleScore = memo(({ goals, score, shortStatus, homeaway }) => {
   return (
     <ScoreWrapper>
-      { shortStatus && FIXTURE_STATUS[shortStatus]?.code >= 0
+      { shortStatus && getFixtureStatusCode(shortStatus) >= 0
         ? <>
-          { shortStatus === 'P' || shortStatus === 'PEN'
-            && score?.penalty?.home !== null && score?.penalty?.away !== null
-            && <PenaltyScore>({score.penalty[homeaway]})</PenaltyScore>
-          }
+          <StyledPenaltyScore score={score} shortStatus={shortStatus}>
+            ({score.penalty[homeaway]})
+          </StyledPenaltyScore>
           {goals[homeaway]}
         </>
         : '-'

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { getLeagueNameForList, getLeagueColor } from "../../service/apiFootballService";
+import { getLeagueNameForList } from "../../service/apiFootballService";
 
 const StyledCountItem = styled.div`
   display: flex;
@@ -27,7 +27,7 @@ const Count = styled.span`
 
 const ScheduleCalendarCountItem = memo(({ countData }) => {
   return (
-    <StyledCountItem bg={getLeagueColor(countData.id)}>
+    <StyledCountItem>
       <LeagueName>{getLeagueNameForList(countData.id)}</LeagueName>
       <Count>{countData.count}</Count>
     </StyledCountItem>

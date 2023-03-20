@@ -8,9 +8,7 @@ const PreviewWrapper = styled.div`
 const FixtureDetailPreview = () => {
   
   return (
-    <PreviewWrapper>
-      경기 프리뷰
-    </PreviewWrapper>
+    <PreviewWrapper>경기 프리뷰</PreviewWrapper>
   );
 };
 

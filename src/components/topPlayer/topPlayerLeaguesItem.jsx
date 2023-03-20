@@ -1,6 +1,5 @@
 import React, { memo } from "react";
-import { useMatch } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useMatch, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { getLeagueNameKr } from "../../service/apiFootballService";

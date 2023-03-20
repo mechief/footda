@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { FIXTURE_STATUS, getLeagueNameKr } from "../../service/apiFootballService";
+import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameKr } from "../../service/apiFootballService";
 
 import LiveSidebarAddWidgetButton from "./liveSidebarAddWidgetButton";
 import FixtureScore from "../fixture/fixtureScore";
@@ -65,11 +65,11 @@ const LiveSidebarFixtureItem = memo(({ fixture }) => {
         <ItemSummary>
           <ItemStatus>
             { fixture.fixture?.status?.short &&
-              FIXTURE_STATUS[fixture.fixture.status.short]?.text
+              getFixtureStatusText(fixture.fixture.status.short)
             }
           </ItemStatus>
           <ItemScore>
-            { FIXTURE_STATUS[fixture.fixture.status.short]?.code >= 0 &&
+            { getFixtureStatusCode(fixture.fixture.status.short) >= 0 &&
               <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
             }
           </ItemScore>

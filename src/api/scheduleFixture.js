@@ -1,8 +1,8 @@
 import footdaApi from "./api";
 import dayjs from "dayjs";
 
-import { NoResultError } from "../errors/footballAPIError";
 import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
+import { NoResultError } from "../errors/footballAPIError";
 
 import { isServiceLeague } from "../service/apiFootballService";
 

@@ -3,8 +3,9 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameKr } from "../../service/apiFootballService";
 import { removeLiveWidget } from "../../slices/liveWidgetSlice";
+
+import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameKr } from "../../service/apiFootballService";
 
 import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
 import FixtureScore from "../fixture/fixtureScore";

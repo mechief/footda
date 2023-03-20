@@ -1,6 +1,5 @@
 import axios from "axios"
-
-const FOOTDA_API_URL = 'http://localhost:3002';
+import { FOOTDA_API_URL } from "../constants";
 
 const footdaApi = (endpoint, params = {}) => {
   return axios({

@@ -39,20 +39,36 @@ const columns = [
   {dataName: 'form', text: '최근 5경기'},
 ];
 
-const StandingTable = ({ standings, leagueId, orderType, setOrderType, leagueRule }) => {
+const StandingTable = ({ 
+  standings, 
+  leagueId, 
+  orderType, 
+  setOrderType, 
+  leagueRule 
+}) => {
   return (
     <Table>
       <caption>{getLeagueNameKr(leagueId)} 순위표</caption>
       <thead>
         <tr>
           { columns.map((column) => 
-            <StandingTableTh key={`th_${column.dataName}`} dataName={column.dataName} text={column.text} orderType={orderType} setOrderType={setOrderType} />
+            <StandingTableTh 
+              key={`th_${column.dataName}`} 
+              dataName={column.dataName} 
+              text={column.text} 
+              orderType={orderType} 
+              setOrderType={setOrderType}
+            />
           )}
         </tr>
       </thead>
       <tbody>
         { standings.map((teamData) => 
-          <StandingTableTr key={`team_${teamData.team.id}`} teamData={teamData} leagueRule={leagueRule} />
+          <StandingTableTr 
+            key={`team_${teamData.team.id}`} 
+            teamData={teamData} 
+            leagueRule={leagueRule}
+          />
         )}
       </tbody>
     </Table>    

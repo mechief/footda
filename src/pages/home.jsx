@@ -6,7 +6,6 @@ import ErrorBoundary from "../components/error/errorBoundary";
 import HomeScheduleFixture from "../components/schedule/homeScheduleFixture";
 
 const ScheduleFixtureContainer = styled.div`
-  // max-width: 800px;
   padding: 20px 0;
 `;
 

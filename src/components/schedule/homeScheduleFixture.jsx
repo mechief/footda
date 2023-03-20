@@ -1,7 +1,7 @@
 import React from "react";
 import { useInfiniteQuery } from "react-query";
-import styled, { css } from "styled-components";
 import dayjs from "dayjs";
+import styled, { css } from "styled-components";
 
 import { getFirstExistsDate } from "../../api/scheduleFixture";
 

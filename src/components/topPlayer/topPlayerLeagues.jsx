@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import styled from "styled-components";
 
 import { getServiceLeagueIds } from "../../service/apiFootballService";
+
 import TopPlayerLeaguesItem from "./topPlayerLeaguesItem";
 
 const serviceLeagueIds = getServiceLeagueIds({type: 'league'});

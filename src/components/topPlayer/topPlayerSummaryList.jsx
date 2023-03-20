@@ -28,7 +28,11 @@ const TopPlayerSummaryList = ({ listData, type }) => {
         <SummaryTitle>{type === 'goals' ? '득점' : '도움'} TOP 5</SummaryTitle>
         <SummaryList>
           { listData.slice(0, 5).map((item) => 
-            <TopPlayerSummaryItem key={`summary_${type}_${item.player.id}`} data={item} type={type} />
+            <TopPlayerSummaryItem 
+              key={`summary_${type}_${item.player.id}`} 
+              data={item} 
+              type={type}
+            />
           )}
         </SummaryList>
       </SummaryListWrapper>

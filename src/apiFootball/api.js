@@ -1,10 +1,9 @@
 import axios from "axios"
-
-const FOOTBALL_API_HOST = 'v3.football.api-sports.io';
-const FOOTBALL_API_KEY = 'f4df44c38155f4f74c1cf423b0fa2971';
-const FOOTBALL_API_URL = 'https://v3.football.api-sports.io';
-
-export const FOOTBALL_API_TIMEZONE = 'Asia/Seoul';
+import {
+  FOOTBALL_API_HOST,
+  FOOTBALL_API_KEY,
+  FOOTBALL_API_URL,
+} from "../constants";
 
 const footballApi = (endpoint, params = {}) => {
   return axios({
