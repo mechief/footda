@@ -15,10 +15,10 @@ const ItemLink = styled(Link)`
   font-size: 15px;
   border-radius: 4px;
   &:hover {
-    background: #f3dfc9;
+    background: #e5eef0;
   }
   &.active {
-    background: #f3dfc9;
+    background: #e5eef0;
   }
 `;
 

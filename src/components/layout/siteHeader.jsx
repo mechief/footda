@@ -3,19 +3,30 @@ import styled from "styled-components";
 
 import SiteHeaderNavLi from "./siteHeaderNavLi";
 
+const StyledHeader = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  padding: 0 10px;
+  border-bottom: 1px solid #ddd;
+  background: #fafafa;
+`;
+
 const HeaderInner = styled.div`
   display: flex;
   position: relative;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px 10px;
-  background: #d6eaea;
+  padding: 10px 0;
   justify-content: space-between;
 `;
+
 const HeaderLogo = styled.h1`
-  margin: 0 auto;
   font-size: 24px;
 `;
+
 const HeaderNav = styled.nav`
   position: absolute;
   top: 50%;
@@ -31,7 +42,7 @@ const HeaderNavUl = styled.ul`
 
 const SiteHeader = () => {
   return (
-    <header>
+    <StyledHeader>
       <HeaderInner>
         <HeaderLogo>Footda</HeaderLogo>
         <HeaderNav>
@@ -44,7 +55,7 @@ const SiteHeader = () => {
           </HeaderNavUl>
         </HeaderNav>
       </HeaderInner>
-    </header>
+    </StyledHeader>
   );
 }
 

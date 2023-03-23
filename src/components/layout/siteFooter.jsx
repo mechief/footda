@@ -5,9 +5,9 @@ const FooterInner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1200px;
+  // max-width: 1200px;
   margin: 0 auto;
-  padding: 15px 10px;
+  padding: 10px;
   background: #ebf1f5;
   text-align: center;
 `;

@@ -16,8 +16,8 @@ const SummaryTitle = styled.h3`
 
 const SummaryList = styled.ul`
   padding: 12px 16px;
-  border: 1px solid #e5e5e5;
-  background: #eee;
+  border: 1px solid #eaeaea;
+  background: #f5f5f5;
   border-radius: 4px;
 `;
 

@@ -8,18 +8,25 @@ const Table = styled.table`
   width: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  border-collapse: collapse;
+  border-collapse: separate;
+  border-spacing: 0 2px;
   & th,
   & td {
     text-align: center;
-    border: 1px solid #bbb;
   }
   & th {
-    font-size: 16px;
+    background: #e5eef0;
+    font-size: 14px;
   }
   & td {
-    padding: 8px 12px;
-    font-size: 14px;
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  tbody tr:nth-child(odd) td {
+    background: #fafafa;
+  }
+  tbody tr:nth-child(even) td {
+    background: #f5f5f5;
   }
 `;
 
@@ -59,13 +66,23 @@ const TopPlayerTable = ({ playersData, orderData, setOrderData }) => {
       <thead>
         <tr>
           { columns.map((column) => 
-            <TopPlayerTableTh key={`th_${column.dataName}`} dataName={column.dataName} text={column.text} orderData={orderData} setOrderData={setOrderData} />
+            <TopPlayerTableTh 
+              key={`th_${column.dataName}`} 
+              dataName={column.dataName} 
+              text={column.text} 
+              orderData={orderData} 
+              setOrderData={setOrderData} 
+            />
           )}
         </tr>
       </thead>
       <tbody>
         { playersData.map((playerData, i) => 
-          <TopPlayerTableTr key={`player_${playerData.player.id}`} playerData={playerData} rank={ranks[i]} />
+          <TopPlayerTableTr 
+            key={`player_${playerData.player.id}`} 
+            playerData={playerData} 
+            rank={ranks[i]}
+          />
         )}
       </tbody>
     </Table>    

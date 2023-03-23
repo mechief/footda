@@ -15,6 +15,6 @@ export const TopPlayerSummaryWrapper = styled.div`
   display: flex;
   gap: 0 40px;
   justify-content: space-between;
-  max-width: 600px;
+  max-width: 720px;
   margin: 0 auto 40px;
 `;

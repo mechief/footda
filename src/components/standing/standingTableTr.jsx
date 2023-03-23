@@ -1,20 +1,22 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
+import StandingFormItem from "./standingFormItem";
+
 const StandingTr = styled.tr`
   ${(props) => props.ruleHighlight === 'demotion' && css`
     & td {
-      background: #eec5d2;
+      background: #eec5d2 !important;
     }
   `}
   ${(props) => props.ruleHighlight === 'ChampionsLeague' && css`
     & td {
-      background: #c5d1ee;
+      background: #d5ddf1 !important;
     }
   `}
   ${(props) => props.ruleHighlight === 'EuropaLeague' && css`
     & td {
-      background: #c6eec5;
+      background: #d6eed5 !important;
     }
   `}
 `;
@@ -42,7 +44,11 @@ const StandingTableTr = memo(({ teamData, leagueRule }) => {
       <td>{teamData.all.goals.against}</td>
       <td>{teamData.goalsDiff}</td>
       <td>{teamData.points}</td>
-      <td>{teamData.form}</td>
+      <td>
+        {teamData.form.split('').map((matchResult, i) => 
+          <StandingFormItem key={`standingForm_${teamData.team.id}_${i}`} matchResult={matchResult} />
+        )}
+      </td>
     </StandingTr>
   );
 });

@@ -6,12 +6,12 @@ const ReOrderButton = styled.button`
   width: 100%;
   padding: 8px 12px;
   border: none;
-  background: #f5f5f5;
+  background: #e5eef0;
   cursor: default;
   ${(props) => props.clickable && css`
     cursor: pointer;
     &:hover {
-      background: #eee;
+      background: #ebf1f5;
     }
   `}
 `;
@@ -19,7 +19,7 @@ const ReOrderButton = styled.button`
 const OrderTextWrapper = styled.span`
   display: inline-block;
   position: relative;
-  vertical-align: middle;
+  color: #222;
 `;
 
 const OrderArrow = styled.span`
@@ -32,7 +32,7 @@ const OrderArrow = styled.span`
   border-bottom: 6px solid #222;
   ${(props) => props.direction == 'asc' && css`
     border-bottom-color: transparent;
-    margin-top: +3px
+    margin-top: 3px;
   `}
   ${(props) => props.direction == 'desc' && css`
     border-top-color: transparent;

@@ -7,9 +7,10 @@ const FixtureTeamColumn = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   width: 50%;
-  padding: 0 80px;
+  padding: 0 0 0 80px;
   ${props => props.isHome && css`
     flex-direction: row-reverse;
+    padding: 0 80px 0 0;
   `}
 `;
 
