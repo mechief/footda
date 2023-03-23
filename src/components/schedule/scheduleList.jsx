@@ -9,7 +9,7 @@ import ScheduleItem from "./scheduleItem";
 const DateTitle = styled.h3`
   padding: 16px 0 8px;
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
 `;
 
 const ScheduleList = memo(({ fixtures, date }) => {

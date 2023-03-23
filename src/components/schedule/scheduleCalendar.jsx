@@ -8,8 +8,10 @@ import { getScheduleCountOfMonth } from "../../api/scheduleFixture";
 import ScheduleCalendarTr from "./scheduleCalendarTr";
 
 const CalendarTable = styled.table`
+  overflow: hidden;
   width: 100%;
   table-layout: fixed;
+  border-radius: 8px;
   border-spacing: 1px;
   border-collapse: separate;
 `;

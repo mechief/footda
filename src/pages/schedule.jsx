@@ -3,14 +3,14 @@ import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import ScheduleCalendarSection from "../components/schedule/scheduleCalendarSection";
+import ScheduleControlAside from "../components/schedule/scheduleControlAside";
 import ScheduleListSection from "../components/schedule/scheduleListSection";
 
 const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 20px 0px;
+  flex: 1 1 auto;
 `;
 
 const Schedule = () => {
@@ -26,7 +26,7 @@ const Schedule = () => {
 
   return (
     <ScheduleContainer>
-      <ScheduleCalendarSection focusDate={focusDate} />
+      <ScheduleControlAside focusDate={focusDate} />
       <ScheduleListSection 
         focusDate={focusDate} 
         isScrollToFocus={isScrollToFocus} 

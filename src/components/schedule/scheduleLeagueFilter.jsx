@@ -6,7 +6,6 @@ import { getServiceLeagueIds }from "../../service/apiFootballService"
 import ScheduleLeagueFilterButton from "./scheduleLeagueFilterButton";
 
 const StyledLeagueFilter = styled.div`
-  margin-top: 20px;
 `;
 
 const ScheduleLeagueFilter = () => {

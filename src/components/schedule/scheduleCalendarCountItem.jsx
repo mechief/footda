@@ -8,7 +8,7 @@ const StyledCountItem = styled.div`
   justify-content: space-between;
   margin-top: 1px;
   padding: 1px 2px;
-  background: #f0ebd9;
+  background: #fdf8e8;
   font-size: 11px;
   border-radius: 2px;
   color: #222;

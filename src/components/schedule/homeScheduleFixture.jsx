@@ -12,7 +12,6 @@ const LoadButton = styled.button`
   padding: 0.4em;
   border: none;
   font-size: 16px;
-  font-weight: 500;
   ${props => !props.disabled && css`
     &:hover {
       background: #f5f5f5;

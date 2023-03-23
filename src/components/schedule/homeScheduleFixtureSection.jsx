@@ -15,7 +15,6 @@ const Container = styled.div`
 const DateTitle = styled.h3`
   margin-bottom: 8px;
   font-size: 16px;
-  font-weight: 500;
 `;
 
 const queryConfig = {

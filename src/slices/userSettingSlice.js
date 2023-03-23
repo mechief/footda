@@ -3,9 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const userSettingSlice = createSlice({
   name: 'userSetting',
   initialState: {
+    scheduleAsideType: 0,
     scheduleLeaguesFilter: [],
   },
   reducers: {
+    setScheduleAsideType: (state, action) => {
+      state.scheduleAsideType = action.payload;
+    },
     addScheduleLeaguesFilterId: (state, action) => {
       if (!state.scheduleLeaguesFilter.includes(action.payload)) {
         state.scheduleLeaguesFilter = [...state.scheduleLeaguesFilter, action.payload];
@@ -27,6 +31,7 @@ const userSettingSlice = createSlice({
 });
 
 export const {
+  setScheduleAsideType,
   addScheduleLeaguesFilterId,
   removeScheduleLeaguesFilterId,
   removeAllScheduleLeaguesFilterId,

@@ -49,7 +49,7 @@ export const FixtureScoreWrapper = styled.div`
   text-align: center;
   line-height: 42px;
   font-size: 28px;
-  font-weight: 700;
+  font-weight: 500;
   color: #222;
   letter-spacing: 5px;
 `;

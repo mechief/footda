@@ -5,7 +5,6 @@ const FooterInner = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // max-width: 1200px;
   margin: 0 auto;
   padding: 10px;
   background: #ebf1f5;
@@ -14,6 +13,7 @@ const FooterInner = styled.div`
 
 const FooterLogo = styled.h2`
   font-size: 18px;
+  font-weight: 500;
 `;
 
 const Copyright = styled.p`

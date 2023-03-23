@@ -28,7 +28,7 @@ const TeamName = styled.span`
   display: inline-block;
   line-height: 1.2;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   color: #222;
 `;
 

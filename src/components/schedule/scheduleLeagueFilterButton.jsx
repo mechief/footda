@@ -15,13 +15,13 @@ const FilterButton = styled.button`
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  margin-bottom: ${props => props.isAll ? '10px' : '2px'};
-  padding: 8px 16px;
+  margin-bottom: ${props => props.isAll ? '6px' : '3px'};
+  padding: 6px 16px;
   border: none;
-  background: ${props => props.isActive ? '#dfebee' : '#f1f1f1'};
-  border-radius: 2px;
+  background: ${props => props.isActive ? '#bce3ec' : '#fff'};
+  border-radius: 4px;
   &:hover {
-    background: ${props => props.isActive ? '#e5eef0' : '#f5f5f5'};
+    background: ${props => props.isActive ? '#dfebee' : '#dfebee'};
   }
 `;
 
@@ -41,7 +41,6 @@ const LogoImg = styled.img`
 
 const LeagueName = styled.span`
   font-size: 14px;
-  font-weight: 700;
 `;
 
 const ScheduleLeagueFilterButton = ({ leagueId }) => {

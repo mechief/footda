@@ -9,7 +9,7 @@ const StyledFormItem = styled.span`
   line-height: 18px;
   margin: 0 1px;
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 400;
   color: #fff;
   border-radius: 4px;
 

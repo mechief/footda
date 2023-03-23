@@ -5,20 +5,9 @@ import styled, { css } from "styled-components";
 import ScheduleWeek from "./scheduleWeek";
 
 const ListContainer = styled.div`
-  overflow-y: scroll;
+  flex: 1 1 auto;
   position: relative;
-  width: calc(40% - 20px);
-  height: calc(100vh - 158px);
-  padding-right: 4px;
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, .4);
-    box-shadow: 0 0 1px rgba(255, 255, 255, .4);
-  }
+  padding: 20px 0 60px 40px;
 `;
 
 const LoadMoreButton = styled.button`
@@ -90,9 +79,9 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
 
   return (
     <ListContainer ref={listRef}>
-      <LoadMoreButton onClick={() => fetchPrev()} disabled={isLoading}>
+      {/* <LoadMoreButton onClick={() => fetchPrev()} disabled={isLoading}>
         { isLoading ? '불러오는 중...' : '이전 일정 보기' }
-      </LoadMoreButton>
+      </LoadMoreButton> */}
       { listWeeks.map(weekDate => 
         <ScheduleWeek 
           key={`schedule_week_${weekDate}`}
@@ -103,9 +92,9 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
           listRef={listRef}
         />
       )}
-      <LoadMoreButton onClick={() => fetchNext()} disabled={isLoading}>
+      {/* <LoadMoreButton onClick={() => fetchNext()} disabled={isLoading}>
         { isLoading ? '불러오는 중...' : '다음 일정 보기' }
-      </LoadMoreButton>
+      </LoadMoreButton> */}
     </ListContainer>
   );
 }

@@ -20,9 +20,9 @@ const DateButton = styled.button`
   text-align: left;
   min-height: 100%;
   border: none;
-  background: ${props => props.isFocusDate ? '#e1dfee' : '#f1f1f1'};
+  background: ${props => props.isFocusDate ? '#dfebee' : '#fff'};
   &:hover {
-    background: ${props => props.isFocusDate ? '#e1dfee' : '#f5f5f5'}
+    background: ${props => props.isFocusDate ? '#dfebee' : '#fafafa'}
   }
 `;
   

@@ -43,6 +43,7 @@ const LeagueStatThead = styled.thead`
   text-align: center;
   & th {
     padding: 6px 3px 12px 3px;
+    font-weight: 500;
     &:first-child {
       width: 120px;
     }

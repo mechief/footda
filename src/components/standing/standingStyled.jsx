@@ -9,4 +9,5 @@ export const StandingTitle = styled.h2`
   margin-bottom: 40px;
   text-align: center;
   font-size: 24px;
+  font-weight: 500;
 `;

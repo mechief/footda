@@ -12,6 +12,7 @@ import ScheduleScore from "./scheduleScore";
 const ItemWrapper = styled.div`
   margin-bottom: 2px;
   background: #f1f1f1;
+  border-radius: 4px;
   &:hover {
     background: #f5f5f5;
   }

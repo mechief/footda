@@ -11,7 +11,7 @@ const SummaryTitle = styled.h3`
   margin-bottom: 20px;
   text-align: center;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
 `; 
 
 const SummaryList = styled.ul`

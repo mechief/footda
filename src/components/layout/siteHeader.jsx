@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Link } from "react-router-dom";
+
 import SiteHeaderNavLi from "./siteHeaderNavLi";
 
 const StyledHeader = styled.header`
@@ -17,7 +19,7 @@ const StyledHeader = styled.header`
 const HeaderInner = styled.div`
   display: flex;
   position: relative;
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
   padding: 10px 0;
   justify-content: space-between;
@@ -25,12 +27,13 @@ const HeaderInner = styled.div`
 
 const HeaderLogo = styled.h1`
   font-size: 24px;
+  font-weight: 500;
 `;
 
 const HeaderNav = styled.nav`
   position: absolute;
   top: 50%;
-  right: 20px;
+  right: 0;
   transform: translateY(-50%);
 `;
 
@@ -44,7 +47,9 @@ const SiteHeader = () => {
   return (
     <StyledHeader>
       <HeaderInner>
-        <HeaderLogo>Footda</HeaderLogo>
+        <HeaderLogo>
+          <Link to={'/'}>Footda</Link>
+        </HeaderLogo>
         <HeaderNav>
           <HeaderNavUl>
             <SiteHeaderNavLi link="/" name="홈" />

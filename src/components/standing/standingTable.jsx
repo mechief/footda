@@ -19,6 +19,7 @@ const Table = styled.table`
   & th {
     background: #e5eef0;
     font-size: 14px;
+    font-weight: 500;
   }
   & td {
     padding: 6px 12px;
