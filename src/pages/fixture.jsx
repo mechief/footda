@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useMemo } from "react";
 import { useParams, useLocation } from "react-router-dom";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 

@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import styled from "styled-components";
 

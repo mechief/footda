@@ -1,5 +1,5 @@
 import React from "react";
-import { useInfiniteQuery } from "react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import styled, { css } from "styled-components";
 
@@ -29,7 +29,7 @@ const HomeScheduleFixture = () => {
     isFetching,
     isFetchingNextPage,
     isLoading, 
-  } = useInfiniteQuery('fixturesDates', fetchFirstExistsDate, {
+  } = useInfiniteQuery(['fixturesDates'], fetchFirstExistsDate, {
     getNextPageParam: (lastPage, allPages) => dayjs(lastPage).add(1, 'day').format('YYYY-MM-DD'),
     staleTime: 1000 * 60 * 60 * 24,
     cacheTime: 1000 * 60 * 60 * 24,

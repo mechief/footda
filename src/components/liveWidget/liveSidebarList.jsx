@@ -1,12 +1,12 @@
 import React from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { getScheduleFixtures } from "../../api/scheduleFixture";
 
 import LiveSidebarFixtureItem from "./liveSidebarFixtureItem";
 
 const liveSidebarQuery = () => ({
-  queryKey: 'liveSidebar',
+  queryKey: ['liveSidebar'],
   queryFn: async () => getScheduleFixtures(),
   staleTime: 15000,
   cacheTime: 15000,

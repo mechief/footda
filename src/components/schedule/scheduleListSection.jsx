@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-import ScheduleWeek from "./scheduleWeek";
+import { useWeekSchedule } from "../../hooks/schedule/useWeekSchedule";
+
+import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
+
+import ScheduleList from "./scheduleList";
 
 const ListContainer = styled.div`
   flex: 1 1 auto;
@@ -10,91 +14,78 @@ const ListContainer = styled.div`
   padding: 20px 0 60px 40px;
 `;
 
+const WeekControler = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 20px;
+`;
+
+const WeekTitle = styled.h3`
+  font-size: 18px;
+  font-weight: 500;
+`;
+
 const LoadMoreButton = styled.button`
-  width: 100%;
   padding: 0.4em;
   border: none;
-  font-size: 16px;
-  font-weight: 500;
-  ${props => !props.disabled && css`
-    &:hover {
-      background: #f5f5f5;
-    }
-  `}
-  &:last-child {
-    margin-top: 16px;
-  }
+  line-height: 1;
+  background: none;
+  font-size: 20px;
 `;
 
 const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus }) => {
-  const [listWeeks, setListWeeks] = useState([]); // 주 단위 기준 요일: 일요일
-  const [isLoading, setIsLoading] = useState(false);
-
-  const listRef = useRef(null);
+  const [weekSunday, setWeekSunday] = useState(null); // 주 단위 기준 요일: 일요일
+  const [filteredList, dates] = useWeekSchedule(weekSunday);
 
   useEffect(() => {
-    changeListWeeks(focusDate);
+    setWeekSunday(dayjs(focusDate).day(0).format('YYYY-MM-DD'));
   }, [focusDate]);
-  
+
+  // focusDate 로 scroll 이동
   useEffect(() => {
-    setIsLoading(false);
-  }, [listWeeks]);
+    if (dates.length === 0 || !isScrollToFocus) return;
+    if (!dayjs(weekSunday).isSame(dayjs(focusDate), 'week')) return;
 
-  const changeListWeeks = useCallback((date) => {
-    const sunDayjsObj = dayjs(date).day(0); // 기준 요일 - 일요일
-    const formattedDate = sunDayjsObj.format('YYYY-MM-DD');
-
-    if (listWeeks.includes(formattedDate)) {
+    const dataTitleElem = document.getElementById(`list_date_${focusDate}`);
+    if (!dataTitleElem) {
+      setIsScrollToFocus(false);
       return;
     }
+    
+    setIsScrollToFocus(false);
+  }, [dates, isScrollToFocus]);
 
-    // listWeeks 에 해당 주와 연속된 주가 있으면 기존 배열에 추가, 연속되지 않으면 해당 주만 list 에 담음
-    if (listWeeks.includes(sunDayjsObj.add(1, 'week').format('YYYY-MM-DD'))
-      || listWeeks.includes(sunDayjsObj.subtract(1, 'week').format('YYYY-MM-DD'))) {
-      if (sunDayjsObj.isBefore(dayjs(listWeeks[0]))) {
-        setListWeeks((prevState) => [formattedDate, ...prevState]);
-      } else {
-        setListWeeks((prevState) => [...prevState, formattedDate]);
-      }
-    } else {
-      setListWeeks([formattedDate]);
-    }
-  }, [listWeeks])
-
-  const fetchPrev = async () => {
-    if (isLoading) return;
-
-    setIsLoading(true);
-    const newWeekDate = dayjs(listWeeks[0]).subtract(1, 'week').format('YYYY-MM-DD');
-    setListWeeks((prevState) => [newWeekDate, ...prevState]);
+  const onClickPrev = async () => {
+    const newWeekDate = dayjs(weekSunday).subtract(1, 'week').format('YYYY-MM-DD');
+    setWeekSunday(newWeekDate);
   }
 
-  const fetchNext = async () => {
-    if (isLoading) return;
+  const onClickNext = async () => {
+    const newWeekDate = dayjs(weekSunday).add(1, 'week').format('YYYY-MM-DD');
+    setWeekSunday(newWeekDate);
+  }
 
-    setIsLoading(true);
-    const newWeekDate = dayjs(listWeeks[listWeeks.length - 1]).add(1, 'week').format('YYYY-MM-DD');
-    setListWeeks((prevState) => [...prevState, newWeekDate]);
+  const getWeekPeriod = () => {
+    const dayjsObj = dayjs(weekSunday);
+    return dayjsObj.format('M.D') + ' ~ ' + dayjsObj.add(6, 'day').format('M.D');
   }
 
   return (
-    <ListContainer ref={listRef}>
-      {/* <LoadMoreButton onClick={() => fetchPrev()} disabled={isLoading}>
-        { isLoading ? '불러오는 중...' : '이전 일정 보기' }
-      </LoadMoreButton> */}
-      { listWeeks.map(weekDate => 
-        <ScheduleWeek 
-          key={`schedule_week_${weekDate}`}
-          weekDate={weekDate}
-          focusDate={focusDate}
-          isScrollToFocus={isScrollToFocus}
-          setIsScrollToFocus={setIsScrollToFocus}
-          listRef={listRef}
+    <ListContainer>
+      <WeekControler>
+        <LoadMoreButton onClick={() => onClickPrev()}><AiOutlineLeft title="이전" /><span className="sound-only">이전</span></LoadMoreButton>
+        <WeekTitle>{getWeekPeriod()}</WeekTitle>
+        <LoadMoreButton onClick={() => onClickNext()}><AiOutlineRight title="다음" /><span className="sound-only">다음</span></LoadMoreButton>
+      </WeekControler>
+      { dates.map((date) => 
+        <ScheduleList 
+          key={`schedule-list-${date}`} 
+          fixtures={filteredList[date]} 
+          date={date}
         />
       )}
-      {/* <LoadMoreButton onClick={() => fetchNext()} disabled={isLoading}>
-        { isLoading ? '불러오는 중...' : '다음 일정 보기' }
-      </LoadMoreButton> */}
     </ListContainer>
   );
 }

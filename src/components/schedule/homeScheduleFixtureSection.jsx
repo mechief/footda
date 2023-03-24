@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
@@ -15,6 +15,7 @@ const Container = styled.div`
 const DateTitle = styled.h3`
   margin-bottom: 8px;
   font-size: 16px;
+  font-weight: 400;
 `;
 
 const queryConfig = {

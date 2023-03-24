@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { QueryClient } from 'react-query'
+import { QueryClient } from '@tanstack/react-query'
 
 import RootErrorBoundary from './errors/route/rootErrorBoundary';
 

@@ -6,10 +6,13 @@ import { dayOfWeekToKR } from "../../service/commonFunctions"
 
 import ScheduleItem from "./scheduleItem";
 
-const DateTitle = styled.h3`
+const DateTitle = styled.h4`
   padding: 16px 0 8px;
   font-size: 16px;
   font-weight: 400;
+  &:first-of-type {
+    padding-top: 0;
+  }
 `;
 
 const ScheduleList = memo(({ fixtures, date }) => {

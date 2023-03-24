@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 import { getStandings } from "../../apiFootball/standings";
 import { getLeagueRule } from "../../service/apiFootballService";

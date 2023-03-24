@@ -13,7 +13,7 @@ const StyledControlAside = styled.aside`
   flex: 0 0 auto;
   width: ${props => props.tab === 0 ? '25%' : '55%'};
   min-width: 280px;
-  padding: 12px 16px;
+  padding: 20px 16px;
   background: #f5f5f5;
   transition: width 0.5s;
 `;
