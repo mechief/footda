@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
@@ -11,7 +11,7 @@ import ScheduleList from "./scheduleList";
 const ListContainer = styled.div`
   flex: 1 1 auto;
   position: relative;
-  padding: 20px 0 60px 40px;
+  padding: 20px 0 20px 40px;
 `;
 
 const WeekControler = styled.div`
@@ -27,6 +27,22 @@ const WeekTitle = styled.h3`
   font-weight: 500;
 `;
 
+const ScheduleListWrapper = styled.div`
+  overflow: auto;
+  position: relative;
+  height: calc(100% - 60px);
+  padding-right: 4px;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .4);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .4);
+  }
+`;
+
 const LoadMoreButton = styled.button`
   padding: 0.4em;
   border: none;
@@ -35,9 +51,16 @@ const LoadMoreButton = styled.button`
   font-size: 20px;
 `;
 
+const NoListData = styled.div`
+  line-height: 100px;
+  text-align: center;
+`;
+
 const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus }) => {
-  const [weekSunday, setWeekSunday] = useState(null); // 주 단위 기준 요일: 일요일
+  const [weekSunday, setWeekSunday] = useState(dayjs(focusDate).day(0).format('YYYY-MM-DD')); // 주 단위 기준 요일: 일요일
   const [filteredList, dates] = useWeekSchedule(weekSunday);
+
+  const listRef = useRef(null);
 
   useEffect(() => {
     setWeekSunday(dayjs(focusDate).day(0).format('YYYY-MM-DD'));
@@ -53,17 +76,18 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
       setIsScrollToFocus(false);
       return;
     }
+
+    listRef.current.scrollTo(0, dataTitleElem.offsetTop);
     
     setIsScrollToFocus(false);
   }, [dates, isScrollToFocus]);
 
-  const onClickPrev = async () => {
-    const newWeekDate = dayjs(weekSunday).subtract(1, 'week').format('YYYY-MM-DD');
-    setWeekSunday(newWeekDate);
-  }
-
-  const onClickNext = async () => {
-    const newWeekDate = dayjs(weekSunday).add(1, 'week').format('YYYY-MM-DD');
+  const onClickArrow = (direction) => {
+    const newWeekDate = direction === 'prev'
+      ? dayjs(weekSunday).subtract(1, 'week').format('YYYY-MM-DD')
+      : dayjs(weekSunday).add(1, 'week').format('YYYY-MM-DD');
+    
+    listRef.current.scrollTo(0, 0);
     setWeekSunday(newWeekDate);
   }
 
@@ -75,17 +99,22 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
   return (
     <ListContainer>
       <WeekControler>
-        <LoadMoreButton onClick={() => onClickPrev()}><AiOutlineLeft title="이전" /><span className="sound-only">이전</span></LoadMoreButton>
+        <LoadMoreButton onClick={() => onClickArrow('prev')}><AiOutlineLeft title="이전" /><span className="sound-only">이전</span></LoadMoreButton>
         <WeekTitle>{getWeekPeriod()}</WeekTitle>
-        <LoadMoreButton onClick={() => onClickNext()}><AiOutlineRight title="다음" /><span className="sound-only">다음</span></LoadMoreButton>
+        <LoadMoreButton onClick={() => onClickArrow('next')}><AiOutlineRight title="다음" /><span className="sound-only">다음</span></LoadMoreButton>
       </WeekControler>
-      { dates.map((date) => 
-        <ScheduleList 
-          key={`schedule-list-${date}`} 
-          fixtures={filteredList[date]} 
-          date={date}
-        />
-      )}
+      <ScheduleListWrapper ref={listRef}>
+        { dates.length === 0 
+          ? <NoListData>선택된 주간에 경기 일정이 없습니다.</NoListData>
+          : dates.map((date) => 
+              <ScheduleList 
+                key={`schedule-list-${date}`} 
+                fixtures={filteredList[date]} 
+                date={date}
+              />
+            )
+        }
+      </ScheduleListWrapper>
     </ListContainer>
   );
 }

@@ -11,6 +11,7 @@ const ScheduleContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   flex: 1 1 auto;
+  height: 100%;
 `;
 
 const Schedule = () => {
