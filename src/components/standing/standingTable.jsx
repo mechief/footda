@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 
-import { getLeagueNameKr } from "../../service/apiFootballService";
+import { getLeagueNameKr, getLeagueRule } from "../../service/apiFootballService";
 
 import StandingTableTh from "./standingTableTh";
 import StandingTableTr from "./standingTableTr";
@@ -52,8 +52,11 @@ const StandingTable = ({
   leagueId, 
   orderType, 
   setOrderType, 
-  leagueRule 
 }) => {
+  const leagueRule = useMemo(() => {
+    return getLeagueRule(leagueId);
+  }, []);
+
   return (
     <Table>
       <caption>{getLeagueNameKr(leagueId)} 순위표</caption>

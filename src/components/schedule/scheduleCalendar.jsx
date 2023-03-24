@@ -1,9 +1,8 @@
 import React, { memo } from "react";
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { getScheduleCountOfMonth } from "../../api/scheduleFixture";
+import { useScheduleCounts } from "../../hooks/schedule/useScheduleCounts";
 
 import ScheduleCalendarTr from "./scheduleCalendarTr";
 
@@ -16,26 +15,11 @@ const CalendarTable = styled.table`
   border-collapse: separate;
 `;
 
-const queryConfig = {
-  staleTime: 1000 * 60 * 60 * 24,
-  cacheTime: 1000 * 60 * 60 * 24,
-}
-
-const scheduleCountOfMonthQuery = ({ key, date, endDate }) => ({
-  queryKey: ['scheduleCountOfMonth', key],
-  queryFn: async () => getScheduleCountOfMonth(date, endDate),
-  ...queryConfig,
-});
-
 const ScheduleCalendar = memo(({ focusDate }) => {
   const dayjsObj = dayjs(focusDate);
   const currentMonth = dayjsObj.month();
   
-  const { isLoading, isError, data, error } = useQuery(scheduleCountOfMonthQuery({
-    key: dayjsObj.format('YYYY-MM'),
-    date: dayjsObj.startOf('month').format('YYYY-MM-DD'),
-    endDate: dayjsObj.endOf('month').format('YYYY-MM-DD')
-  }));
+  const { data, isLoading, isError, error } = useScheduleCounts(dayjsObj);
   
   const firstSunday = dayjsObj.date(1).day(0);
   const sundaysObjOfWeeks = [];

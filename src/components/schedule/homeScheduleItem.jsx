@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameForList } from "../../service/apiFootballService";
 import { getFormattedRound } from "../../service/footballFunctions";
 
-import HomeScheduleFixtureScore from "./homeScheduleFixtureScore";
+import HomeScheduleScore from "./homeScheduleScore";
 import ScheduleTeam from "./scheduleTeam";
 
 const ItemWrapper = styled.div`
@@ -57,7 +57,7 @@ const LeagueAndRound = styled.span`
   color: #777;
 `;
 
-const HomeScheduleFixtureItem = memo(({ fixture }) => {
+const HomeScheduleItem = memo(({ fixture }) => {
   return (
     <ItemWrapper>
       <Link to={'/fixture/' + fixture.fixture.id} state={fixture}>
@@ -76,7 +76,7 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
             }
             <ScoreWrapper>
               { getFixtureStatusCode(fixture.fixture.status.short) >= 0
-                ? <HomeScheduleFixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
+                ? <HomeScheduleScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
                 : 'vs'
               }
             </ScoreWrapper>
@@ -96,4 +96,4 @@ const HomeScheduleFixtureItem = memo(({ fixture }) => {
   );
 });
 
-export default HomeScheduleFixtureItem;
+export default HomeScheduleItem;

@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
-import { useQuery } from "@tanstack/react-query";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { getScheduleFixtures } from "../../api/scheduleFixture";
+import { useDateSchedule } from "../../hooks/schedule/useDateSchedule";
+
 import { dayOfWeekToKR } from "../../service/commonFunctions"
 
-import HomeScheduleFixtureItem from "./homeScheduleFixtureItem";
+import HomeScheduleItem from "./homeScheduleItem";
 
 const Container = styled.div`
   margin-bottom: 15px;
@@ -18,19 +18,8 @@ const DateTitle = styled.h3`
   font-weight: 400;
 `;
 
-const queryConfig = {
-  staleTime: 1000 * 60 * 5,
-  cacheTime: 1000 * 60 * 5,
-}
-
-const scheduleFixturesQuery = (date) => ({
-  queryKey: ['fixtures', date],
-  queryFn: async () => getScheduleFixtures({date: date}),
-  ...queryConfig,
-});
-
-const HomeScheduleFixtureSection = ({ date }) => {
-  const { isLoading, isError, data, error } = useQuery(scheduleFixturesQuery(date));
+const HomeScheduleSection = ({ date }) => {
+  const { isLoading, isError, data, error } = useDateSchedule(date);
 
   const dayjsDate = useMemo(() => {
     return dayjs(date);
@@ -48,10 +37,10 @@ const HomeScheduleFixtureSection = ({ date }) => {
     <Container>
       <DateTitle>{`${dayjsDate.format('M')}월 ${dayjsDate.format('D')}일 (${dayOfWeekToKR(dayjsDate.format('d'))})`}</DateTitle>
       { data.map(fixtureData => 
-        <HomeScheduleFixtureItem key={fixtureData.fixture.id} fixture={fixtureData} />
+        <HomeScheduleItem key={fixtureData.fixture.id} fixture={fixtureData} />
       )}
     </Container>
   );
 }
 
-export default HomeScheduleFixtureSection;
+export default HomeScheduleSection;

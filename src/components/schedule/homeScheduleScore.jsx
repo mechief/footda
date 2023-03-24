@@ -17,7 +17,7 @@ const StyledPenaltyScore = styled(PenaltyScore)`
   color: #e14444;
 `;
 
-const HomeScheduleFixtureScore = memo(({ goals, score, shortStatus }) => {
+const HomeScheduleFixture = memo(({ goals, score, shortStatus }) => {
 
   const showBasicScore = () => {
     // 경기 종료 and 무승부 아닌 경우 승리 팀 강조 표시
@@ -50,4 +50,4 @@ const HomeScheduleFixtureScore = memo(({ goals, score, shortStatus }) => {
   );
 });
 
-export default HomeScheduleFixtureScore;
+export default HomeScheduleFixture;

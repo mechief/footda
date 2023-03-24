@@ -1,14 +1,10 @@
-import React, { useLayoutEffect, useMemo } from "react";
-import { useParams, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 
 import ErrorBoundary from "../components/error/errorBoundary";
 
-import { getFixture } from "../apiFootball/fixtures";
-import { setFixtureId, setFixture } from "../slices/currentFixtureSlice";
-
+import { useFixture } from "../hooks/fixture/useFixture";
 import { getFixtureStatusCode, getFixtureStatusText } from "../service/apiFootballService";
 
 import FixtureLeague from "../components/fixture/fixtureLeague";
@@ -32,54 +28,13 @@ import {
   LineupWrapper,
 } from "../components/fixture/fixtureStyled";
 
-const queryConfig = {
-  staleTime: 1000 * 60 * 5,
-  cacheTime: 1000 * 60 * 5,
-}
-
-const fixtureQuery = (fixtureId) => ({
-  queryKey: ['fixture', fixtureId],
-  queryFn: async () => getFixture(fixtureId),
-  ...queryConfig,
-});
-
 const Fixture = () => {
-  const fixtureId = Number(useParams().id);
-  const { state: listData } = useLocation();
-
-  const dispatch = useDispatch();
   const isSidebarOpened = useSelector((state) => state.liveWidget.isSidebarOpened);
 
-  const { data, isLoading, isError } = useQuery(fixtureQuery(fixtureId));
-
-  const fixtureData = data ?? listData;
+  const { isNoInitialLoading, isLoading, isError, fixtureData, teamEvents } = useFixture();
 
   const status = fixtureData?.fixture?.status || null;
   const teams = fixtureData?.teams || null;
-
-  useLayoutEffect(() => {
-    dispatch(setFixtureId(fixtureId));
-  }, [fixtureId]);
-
-  useLayoutEffect(() => {
-    if (!fixtureData) return;
-
-    dispatch(setFixture(fixtureData));
-  }, [fixtureData]);
-
-  // 팀별 events filter
-  const teamEvents = useMemo(() => {
-    if (!fixtureData?.events) return null;
-
-    return {
-      home: fixtureData?.events.filter(v => {
-        return v.team.id === teams.home.id;
-      }),
-      away: fixtureData?.events.filter(v => {
-        return v.team.id === teams.away.id;
-      })
-    }
-  }, [fixtureData?.events]);
 
   const renderLineup = (homeAway) => {
     const index = homeAway === 'home' ? 0 : 1;
@@ -93,7 +48,7 @@ const Fixture = () => {
     }
   }
 
-  if (isLoading && !listData) {
+  if (isNoInitialLoading) {
     return <div>Loading...</div>;
   }
 

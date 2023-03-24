@@ -1,27 +1,14 @@
 import React, { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 
-import { getTopPlayers } from "../../apiFootball/topPlayers"
+import { useTopPlayer } from "../../hooks/topPlayer/useTopPlayer";
 
 import TopPlayerSummaryList from "./topPlayerSummaryList";
 import TopPlayerTable from "./topPlayerTable";
 
 import { TopPlayerSummaryWrapper } from "./topPlayerStyled";
 
-const queryConfig = {
-  staleTime: 1000 * 60 * 5,
-  cacheTime: 1000 * 60 * 5,
-  suspense: true,
-}
-
-const topPlayersQuery = (leagueId) => ({
-  queryKey: ['topPlayers', leagueId],
-  queryFn: async () => getTopPlayers(leagueId),
-  ...queryConfig,
-});
-
 const TopPlayerData = ({ leagueId }) => {
-  const { data } = useQuery(topPlayersQuery(leagueId)); // 기본값: 프리미어 리그
+  const { data } = useTopPlayer(leagueId);
   const [orderData, setOrderData] = useState('goals');
 
   return (

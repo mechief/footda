@@ -21,11 +21,11 @@ export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
       season: season,
     });
 
-    if (res.data.results === 0) {
+    if (res.data.results === 0 || !res.data.response[0]?.league?.standings[0]) {
       throw new NoResultError;
     }
 
-    return res.data.response[0];
+    return res.data.response[0]?.league?.standings[0];
   } catch (err) {
     console.error(err);
     throw err;
