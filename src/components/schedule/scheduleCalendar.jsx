@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { useScheduleCounts } from "../../hooks/schedule/useScheduleCounts";
 
+import ScheduleCalendarControl from "./scheduleCalendarControl";
 import ScheduleCalendarTr from "./scheduleCalendarTr";
 
 const CalendarTable = styled.table`
@@ -15,32 +16,35 @@ const CalendarTable = styled.table`
   border-collapse: separate;
 `;
 
-const ScheduleCalendar = memo(({ focusDate }) => {
-  const dayjsObj = dayjs(focusDate);
+const ScheduleCalendar = memo(({ focusDate, calendarMonth, setCalendarMonth }) => {
+  const dayjsObj = dayjs.isDayjs(calendarMonth) ? calendarMonth : dayjs(focusDate);
   const currentMonth = dayjsObj.month();
   
   const { data, isLoading, isError, error } = useScheduleCounts(dayjsObj);
   
   const firstSunday = dayjsObj.date(1).day(0);
   const sundaysObjOfWeeks = [];
-  for (let i = 0; firstSunday.add(i, 'week').month() <= currentMonth; i++) {
+  for (let i = 0; firstSunday.add(i, 'week').isBefore(dayjsObj.date(1).add(1, 'month')); i++) {
     sundaysObjOfWeeks.push(firstSunday.add(i, 'week'));
   }
   
   return (
-    <CalendarTable>
-      <tbody>
-        { sundaysObjOfWeeks.map(sundayObj =>
-          <ScheduleCalendarTr 
-            key={`scheduleWeek_${sundayObj.format('YYYY-MM-DD')}`}
-            scheduleCountData={data}
-            sundayObj={sundayObj} 
-            currentMonth={currentMonth}
-            focusDate={focusDate}
-          />
-        )}
-      </tbody>
-    </CalendarTable>
+    <>
+      <ScheduleCalendarControl currentMonthObj={dayjsObj} setCalendarMonth={setCalendarMonth} />
+      <CalendarTable>
+        <tbody>
+          { sundaysObjOfWeeks.map(sundayObj =>
+            <ScheduleCalendarTr 
+              key={`scheduleWeek_${sundayObj.format('YYYY-MM-DD')}`}
+              scheduleCountData={data}
+              sundayObj={sundayObj} 
+              currentMonth={currentMonth}
+              focusDate={focusDate}
+            />
+          )}
+        </tbody>
+      </CalendarTable>
+    </>
   );
 });
 

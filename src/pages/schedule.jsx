@@ -17,6 +17,7 @@ const ScheduleContainer = styled.div`
 const Schedule = () => {
   const params = useParams();
   const [isScrollToFocus, setIsScrollToFocus] = useState(false);
+  const [calendarMonth, setCalendarMonth] = useState(null);
 
   const focusDate = useMemo(() => {
     setIsScrollToFocus(true);
@@ -27,11 +28,17 @@ const Schedule = () => {
 
   return (
     <ScheduleContainer>
-      <ScheduleControlAside focusDate={focusDate} />
+      <ScheduleControlAside 
+        focusDate={focusDate} 
+        calendarMonth={calendarMonth} 
+        setCalendarMonth={setCalendarMonth} 
+      />
       <ScheduleListSection 
         focusDate={focusDate} 
         isScrollToFocus={isScrollToFocus} 
         setIsScrollToFocus={setIsScrollToFocus}
+        calendarMonth={calendarMonth}
+        setCalendarMonth={setCalendarMonth}
       />
     </ScheduleContainer>
   );

@@ -16,7 +16,7 @@ const ScheduleCalendarTr = memo(({ scheduleCountData = [], sundayObj, currentMon
             key={`scheduleTable_${dateObj.format('YYYY-MM-DD')}`}
             dateObj={dateObj}
             isCurrentMonth={dateObj.month() === currentMonth}
-            countArr={!countItem ? [] : countItem.leagues}
+            countArray={!countItem ? [] : countItem.leagues}
             focusDate={focusDate}
           />
         )

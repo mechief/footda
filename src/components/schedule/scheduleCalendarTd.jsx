@@ -1,12 +1,13 @@
-import React, { memo } from "react";
+import React, { useMemo, memo } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
 import ScheduleCalendarCountItem from "./scheduleCalendarCountItem";
 
 const StyledTd = styled.td`
-  height: 60px;
+  height: 80px;
   vertical-align: top;
 `;
 
@@ -41,8 +42,15 @@ const DateToday = styled.span`
   color: #55149c;
 `;
 
-const ScheduleCalendarTd = memo(({ dateObj, isCurrentMonth, countArr, focusDate }) => {
+const ScheduleCalendarTd = memo(({ dateObj, isCurrentMonth, countArray, focusDate }) => {
   const navigate = useNavigate();
+  const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
+
+  const filteredArray = useMemo(() => {
+    return scheduleLeaguesFilter.length === 0
+      ? countArray.sort((a, b) => a.id - b.id)
+      : countArray.filter(countData => scheduleLeaguesFilter.includes(countData.id)).sort((a, b) => a.id - b.id);
+  }, [countArray]);
 
   const onClickDate = () => {
     navigate('/schedule/' + dateObj.format('YYYYMMDD'));
@@ -61,7 +69,7 @@ const ScheduleCalendarTd = memo(({ dateObj, isCurrentMonth, countArr, focusDate 
             <DateToday>오늘</DateToday>
           }
         </DateText>
-        { countArr.sort((a, b) => a.id - b.id).map(countData => 
+        { filteredArray.map(countData => 
           <ScheduleCalendarCountItem key={`scheduleCountItem_${dateObj.format('YYYY-MM-DD')}_${countData.id}`} countData={countData} />
         )}
       </DateButton>

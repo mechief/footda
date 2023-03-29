@@ -56,7 +56,7 @@ const NoListData = styled.div`
   text-align: center;
 `;
 
-const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus }) => {
+const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus, calendarMonth, setCalendarMonth }) => {
   const [weekSunday, setWeekSunday] = useState(dayjs(focusDate).day(0).format('YYYY-MM-DD')); // 주 단위 기준 요일: 일요일
   const [filteredList, dates] = useWeekSchedule(weekSunday);
 
@@ -83,12 +83,18 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus })
   }, [dates, isScrollToFocus]);
 
   const onClickArrow = (direction) => {
-    const newWeekDate = direction === 'prev'
-      ? dayjs(weekSunday).subtract(1, 'week').format('YYYY-MM-DD')
-      : dayjs(weekSunday).add(1, 'week').format('YYYY-MM-DD');
+    const weekSundayObj = dayjs(weekSunday);
+    const newWeekDateObj = direction === 'prev'
+      ? weekSundayObj.subtract(1, 'week')
+      : weekSundayObj.add(1, 'week');
     
     listRef.current.scrollTo(0, 0);
-    setWeekSunday(newWeekDate);
+
+    if (!newWeekDateObj.isSame(weekSundayObj, 'month')) {
+      setCalendarMonth(dayjs(newWeekDateObj).date(1));
+    }
+
+    setWeekSunday(newWeekDateObj.format('YYYY-MM-DD'));
   }
 
   const getWeekPeriod = () => {

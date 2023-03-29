@@ -11,6 +11,7 @@ import ScheduleLeagueFilter from "./scheduleLeagueFilter";
 
 const StyledControlAside = styled.aside`
   flex: 0 0 auto;
+  overflow-y: auto;
   width: ${props => props.tab === 0 ? '25%' : '55%'};
   min-width: 280px;
   padding: 20px 16px;
@@ -43,7 +44,7 @@ const TabButton = styled.button`
   }
 `;
 
-const ScheduleControlAside = ({ focusDate }) => {
+const ScheduleControlAside = ({ focusDate, calendarMonth, setCalendarMonth }) => {
   const dispatch = useDispatch();
   const tab = useSelector(state => state.userSetting.scheduleAsideType);
 
@@ -61,7 +62,7 @@ const ScheduleControlAside = ({ focusDate }) => {
         <ScheduleLeagueFilter />
       }
       { tab === 1 &&
-        <ScheduleCalendar focusDate={focusDate} />
+        <ScheduleCalendar focusDate={focusDate} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} />
       }
     </StyledControlAside>
   );
