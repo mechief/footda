@@ -20,6 +20,7 @@ export const FixtureSummary = styled.div`
   flex-wrap: wrap;
   align-items: flex-start;
   position: relative;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto 40px;
 `;
@@ -28,8 +29,8 @@ export const FixtureDetailSection = styled.section`
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: stretch;
   width: 100%;
   margin: 0 auto;
 `;
@@ -57,6 +58,11 @@ export const FixtureScoreWrapper = styled.div`
 export const LineupWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: calc(50% - 250px);
-  padding: 0 50px;
+  width: 300px;
+  max-width: calc(50% - 270px);
+  padding-top: 10px;
+  background: #fff;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, .08);
 `;

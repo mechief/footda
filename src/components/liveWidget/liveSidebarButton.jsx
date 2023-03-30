@@ -6,7 +6,7 @@ import { openSidebar } from "../../slices/liveWidgetSlice";
 
 const SidebarButtonWrapper = styled.div`
   position: fixed;
-  top: 10px;
+  top: 66px;
   left: 10px;
 `;
 

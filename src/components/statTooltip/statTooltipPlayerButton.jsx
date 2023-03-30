@@ -4,14 +4,21 @@ import styled from "styled-components";
 
 import { initTooltip } from "../../actions/statTooltip";
 import { openTooltip } from "../../slices/statTooltipSlice";
-import { IconPlayer } from "../icons/fixtureIcons";
+
+import { IoMdStats } from "react-icons/io";
 
 const ButtonTooltip = styled.button`
-  background: inherit;
-  padding: 2px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
   border: none;
+  background: #e1e1e1;
+  font-size: 20px;
   box-shadow: none;
   border-radius: 0;
+  color: #000;
 `;
 
 const StatTooltipPlayerButton = memo(({ playerId }) => {
@@ -32,8 +39,8 @@ const StatTooltipPlayerButton = memo(({ playerId }) => {
   }
 
   return (
-    <ButtonTooltip onClick={onClickTooltip}>
-      <IconPlayer />
+    <ButtonTooltip onClick={onClickTooltip} title="시즌 기록">
+      <IoMdStats />
     </ButtonTooltip>
   );
 });

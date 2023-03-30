@@ -5,8 +5,15 @@ import LineupPlayer from "./lineupPlayer";
 
 import { LineupWrapper } from "./fixtureStyled";
 
-const LineupSubst = styled.div`
-  margin-top: 40px;
+const LineupTitle = styled.h3`
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+const LineupSubstTitle = styled(LineupTitle)`
+  padding-top: 10px;
 `;
 
 const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false};
@@ -17,50 +24,42 @@ const Lineup = memo(({ lineup, events }) => {
   const [substOutLineup, setSubstOutLineup] = useState([]);
   // const [eventVars, setEventVars] = useState([]);
   const [playerEvents, setPlayerEvents] = useState({});
+  const [substTimes, setSubstTimes] = useState({in: {}, out: {}});
 
-  const eventSubsts = useMemo(() => {
-    return events.filter(v => {
-      return v.type === 'subst';
-    });
-  }, [events]);
-  
-  const eventGoals = useMemo(() => {
-    return events.filter(v => {
-      return v.type === 'Goal' && v.comments !== 'Penalty Shootout';
-    });
-  }, [events]);
+  const [eventSubsts, eventGoals, eventCards] = useMemo(() => {
+    const substs = [];
+    const goals = [];
+    const cards = [];
 
-  const eventCards = useMemo(() => {
-    return events.filter(v => {
-      return v.type === 'Card';
+    events.forEach(v => {
+      if (v.type === 'subst') substs.push(v);
+      else if (v.type === 'Card') cards.push(v);
+      else if (v.type === 'Goal' && v.comments !== 'Penalty Shootout') goals.push(v);
     });
+    
+    return [substs, goals, cards];
   }, [events]);
 
   // 선수 교체 반영
   useEffect(() => {
     if (eventSubsts.length === 0) return;
 
-    const arrSubstOutIndex = [];
-    const arrSubstInIndex = [];
+    const arrSubstOutIds = [];
+    const arrSubstInIds = [];
+    const newSubstTimes = {in: {}, out: {}};
 
     eventSubsts.forEach(substEvent => {
-      const substOutIndex = lineup.startXI.findIndex(v => {
-        return v.player.id === substEvent.player.id; // subst out
-      });
-      const substInIndex = lineup.substitutes.findIndex(substPlayer => {
-        return substPlayer.player.id === substEvent.assist.id; // subst in (assist: 투입 선수)
-      });
+      arrSubstOutIds.push(substEvent.player.id);
+      arrSubstInIds.push(substEvent.assist.id);
 
-      arrSubstOutIndex.push(substOutIndex);
-      arrSubstInIndex.push(substInIndex);
+      newSubstTimes.in[substEvent.assist.id] = substEvent.time.elapsed + (substEvent.time.extra ? '+' + substEvent.time.extra : '');
+      newSubstTimes.out[substEvent.player.id] = substEvent.time.elapsed + (substEvent.time.extra ? '+' + substEvent.time.extra : '');
     });
 
-    setSubstOutLineup(lineup.startXI.filter((_, i) => arrSubstOutIndex.includes(i)));
-    setSubstLineup(lineup.substitutes.filter((_, i) => !arrSubstInIndex.includes(i)));
-    setPlayingLineup([
-      ...lineup.startXI.filter((_, i) => !arrSubstOutIndex.includes(i)),
-      ...lineup.substitutes.filter((_, i) => arrSubstInIndex.includes(i))
-    ]);
+    setSubstLineup(lineup.substitutes.filter((v) => !arrSubstInIds.includes(v.player.id)).sort(sortByPosition));
+    setSubstOutLineup([...lineup.startXI, ...lineup.substitutes].filter(v => arrSubstOutIds.includes(v.player.id)).sort(sortByPosition));
+    setPlayingLineup([...lineup.startXI, ...lineup.substitutes.filter((v) => arrSubstInIds.includes(v.player.id))].filter(v => !arrSubstOutIds.includes(v.player.id)).sort(sortByPosition));
+    setSubstTimes(newSubstTimes);
   }, [eventSubsts]);
 
   // 득점, 도움, 경고, 퇴장 반영
@@ -92,22 +91,24 @@ const Lineup = memo(({ lineup, events }) => {
     });
   }, [eventGoals, eventCards]);
 
+  const sortByPosition = (a, b) => {
+    const order = ['G', 'D', 'M', 'F'];
+    return order.indexOf(a.player.pos) - order.indexOf(b.player.pos);
+  }
+
   return (
     <LineupWrapper>
-      <div>
-        {playingLineup.map(v => 
-          <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} />
-        )}
-      </div>
-      <LineupSubst>
-        <p>교체 명단</p>
-        { substLineup.map(v => 
-          <LineupPlayer key={v.player.id} player={v.player} />
-        )}
-        { substOutLineup.map(v => 
-          <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} isSubstOut={true} />
-        )}
-      </LineupSubst>
+      <LineupTitle>라인업</LineupTitle>
+      { playingLineup.map(v => 
+        <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} substTimes={substTimes} />
+      )}
+      <LineupSubstTitle>교체 명단</LineupSubstTitle>
+      { substLineup.map(v => 
+        <LineupPlayer key={v.player.id} player={v.player} />
+      )}
+      { substOutLineup.map(v => 
+        <LineupPlayer key={v.player.id} player={v.player} playerEvent={playerEvents[v.player.id]} substTimes={substTimes} isSubstOut={true} />
+      )}
     </LineupWrapper>
   );
 });

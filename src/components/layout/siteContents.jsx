@@ -13,7 +13,7 @@ const ContentsBasic = styled.div`
 const ContentsFull = styled.div`
   min-height: calc(100vh - 56px - 65px);
   margin: 56px auto 0;
-  background: #f5f5f5;
+  background: #ebebeb;
 `;
 
 const ContentsFullInner = styled.div`
