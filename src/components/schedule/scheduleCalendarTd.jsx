@@ -66,7 +66,7 @@ const ScheduleCalendarTd = memo(({ dateObj, isCurrentMonth, countArray, focusDat
         <DateText isCurrentMonth={isCurrentMonth}>
           {dateObj.format('D')}
           { dateObj.isSame(dayjs(), 'day') && 
-            <DateToday>오늘</DateToday>
+            <DateToday>Today</DateToday>
           }
         </DateText>
         { filteredArray.map(countData => 

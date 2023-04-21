@@ -25,6 +25,7 @@ const ItemInner = styled.div`
   align-items: center;
   padding: 4px 10px;
   gap: 0 10px;
+  line-height: 20px;
   font-size: 13px;
 `;
 
