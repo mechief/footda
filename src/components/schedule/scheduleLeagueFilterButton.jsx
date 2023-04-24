@@ -10,6 +10,8 @@ import {
 
 import { getLeagueNameKr } from "../../service/apiFootballService"
 
+import { DummyLeagueLogo, DummyAllLeagueLogo } from "../icons/footballIcons";
+
 const FilterButton = styled.button`
   display: flex;
   justify-content: flex-start;
@@ -33,11 +35,11 @@ const LogoWrap = styled.span`
   text-align: center;
 `;
 
-const LogoImg = styled.img`
-  display: block;
-  height: 100%;
-  margin: 0 auto;
-`;
+// const LogoImg = styled.img`
+//   display: block;
+//   height: 100%;
+//   margin: 0 auto;
+// `;
 
 const LeagueName = styled.span`
   font-size: 14px;
@@ -86,8 +88,12 @@ const ScheduleLeagueFilterButton = ({ leagueId }) => {
       isActive={isActive}
       >
       <LogoWrap>
-        { leagueId !== 'all' &&
-          <LogoImg src={`https://media-1.api-sports.io/football/leagues/${leagueId}.png`} alt="" />
+        { leagueId !== 'all' 
+          ? <>
+            {/* <LogoImg src={`https://media-1.api-sports.io/football/leagues/${leagueId}.png`} alt="" /> */}
+            <DummyLeagueLogo size='100%' />
+          </>
+          : <DummyAllLeagueLogo size='100%' />
         }
       </LogoWrap>
       <LeagueName>{btnName}</LeagueName>

@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
-import { getTeamLogoURL } from "../../service/footballFunctions";
+// import { getTeamLogoURL } from "../../service/footballFunctions";
+import { DummyTeamLogo } from "../icons/footballIcons";
 
 const FixtureTeamWrapper = styled.span`
   flex: 1 1 100%;
@@ -32,11 +33,11 @@ const TeamName = styled.span`
   color: #222;
 `;
 
-const TeamLogo = styled.img`
-  display: inline-block;
-  width: 20px;
-  box-sizing: content-box;
-`;
+// const TeamLogo = styled.img`
+//   display: inline-block;
+//   width: 20px;
+//   box-sizing: content-box;
+// `;
 
 const ScheduleTeam = memo(({ team, isHome = false, isWinner = false, align }) => {
   return (
@@ -44,7 +45,8 @@ const ScheduleTeam = memo(({ team, isHome = false, isWinner = false, align }) =>
       { isWinner && align === 'right' &&
         <WinnerDot />
       }
-      <TeamLogo src={getTeamLogoURL(team.id)} />
+      {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
+      <DummyTeamLogo size="20px" />
       <TeamName>{team.name}</TeamName>
       { isWinner && align !== 'right' &&
         <WinnerDot />

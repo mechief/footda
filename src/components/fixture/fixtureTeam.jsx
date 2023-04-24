@@ -1,6 +1,8 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
+import { DummyTeamLogo } from "../icons/footballIcons";
+
 const FixtureTeamColumn = styled.div`
   display: flex;
   flex-direction: row;
@@ -22,9 +24,14 @@ const TeamName = styled.span`
   color: #222;
 `;
 
-const TeamLogo = styled.img`
-  display: inline-block;
-  width: 42px;
+// const TeamLogo = styled.img`
+//   display: inline-block;
+//   width: 42px;
+//   padding: 0 15px;
+//   box-sizing: content-box;
+// `;
+
+const DummyTeamLogoCustom = styled(DummyTeamLogo)`
   padding: 0 15px;
   box-sizing: content-box;
 `;
@@ -33,7 +40,8 @@ const FixtureTeam = memo(({ team, isHome = false }) => {
   return (
     <FixtureTeamColumn isHome={isHome}>
       <TeamName>{team.name}</TeamName>
-      <TeamLogo src={team.logo} />
+      {/* <TeamLogo src={team.logo} /> */}
+      <DummyTeamLogoCustom size="42px" />
     </FixtureTeamColumn>
   );
 });

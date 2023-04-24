@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { DummyTeamLogo } from "../icons/footballIcons";
+
 const SummaryItem = styled.li`
   display: flex;
   align-items: center;
@@ -10,8 +12,12 @@ const SummaryItem = styled.li`
   }
 `;
 
-const Logo = styled.img`
-  width: 20px;
+// const Logo = styled.img`
+//   width: 20px;
+//   margin-right: 10px;
+// `;
+
+const DummyTeamLogoCustom = styled(DummyTeamLogo)`
   margin-right: 10px;
 `;
 
@@ -27,7 +33,8 @@ const Stat = styled.span`
 const TopPlayerSummaryItem = ({ data, type }) => {
   return (
     <SummaryItem>
-      <Logo src={data.statistics[0].team.logo} />
+      {/* <Logo src={data.statistics[0].team.logo} /> */}
+      <DummyTeamLogoCustom size="20px" />
       <Name>{data.player.name}</Name>
       <Stat>
         { type === 'goals' 
