@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import styled from "styled-components";
 
 // import { getTeamLogoURL } from "../../service/footballFunctions";
+import TeamName from "../fixture/teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";
 
 const FixtureTeamWrapper = styled.span`
@@ -22,7 +23,7 @@ const DummyTeamLogoCustom = styled(DummyTeamLogo)`
   margin-bottom: 2px;
 `;
 
-const TeamName = styled.span`
+const StyledTeamName = styled.span`
   line-height: 1.2;
   font-size: 14px;
   color: #222;
@@ -33,7 +34,7 @@ const LiveSidebarFixtureTeam = memo(({ team }) => {
     <FixtureTeamWrapper>
       {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
       <DummyTeamLogoCustom size="28px" />
-      <TeamName>{team.name}</TeamName>
+      <StyledTeamName><TeamName team={team} /></StyledTeamName>
     </FixtureTeamWrapper>
   );
 });

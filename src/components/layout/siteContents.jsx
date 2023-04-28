@@ -18,6 +18,7 @@ const ContentsFull = styled.div`
 
 const ContentsFullInner = styled.div`
   max-width: 1920px;
+  margin: 0 auto;
 `;
 
 const ContentsFullHeight = styled.div`

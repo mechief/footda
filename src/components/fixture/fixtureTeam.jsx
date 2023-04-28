@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
+import TeamName from "./teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";
 
 const FixtureTeamColumn = styled.div`
@@ -16,7 +17,7 @@ const FixtureTeamColumn = styled.div`
   `}
 `;
 
-const TeamName = styled.span`
+const StyledTeamName = styled.span`
   display: inline-block;
   line-height: 1.2;
   font-size: 28px;
@@ -39,7 +40,7 @@ const DummyTeamLogoCustom = styled(DummyTeamLogo)`
 const FixtureTeam = memo(({ team, isHome = false }) => {
   return (
     <FixtureTeamColumn isHome={isHome}>
-      <TeamName>{team.name}</TeamName>
+      <StyledTeamName><TeamName team={team} /></StyledTeamName>
       {/* <TeamLogo src={team.logo} /> */}
       <DummyTeamLogoCustom size="42px" />
     </FixtureTeamColumn>

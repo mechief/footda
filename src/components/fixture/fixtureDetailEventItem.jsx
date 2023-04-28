@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import TeamName from "./teamName";
+
 const EventItemWrapper = styled.li`
   display: flex;
   padding: 4px 0;
@@ -19,9 +21,9 @@ const FixtureDetailEventItem = ({ event }) => {
   const showEventTextByType = () => {
     if (event.type === 'Goal' && event.comments === 'Penalty Shootout') {
       if (event.detail === 'Penalty') {
-        return `성공! ${event.team.name}의 ${event.player.name}`;
+        return <>성공! <TeamName team={event.team} />의 {event.player.name}</>;
       } else {
-        return `실패! ${event.team.name}의 ${event.player.name}`;
+        return <>실패! <TeamName team={event.team} />의 {event.player.name}</>;
       }
     }
 

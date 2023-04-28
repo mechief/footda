@@ -6,11 +6,12 @@ import currentFixtureSlice from '../slices/currentFixtureSlice';
 import statTooltipSlice from '../slices/statTooltipSlice';
 import liveWidgetSlice from '../slices/liveWidgetSlice';
 import userSettingSlice from '../slices/userSettingSlice';
+import languageSlice from '../slices/languageSlice';
 
 const rootPersistConfig = {
   key: 'root',
   storage: storage,
-  whitelist: ['userSetting'],
+  whitelist: ['userSetting', 'language'],
   // blacklist: [],
 };
 
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   statTooltip: statTooltipSlice.reducer,
   liveWidget: persistReducer(liveWidgetPersistConfig, liveWidgetSlice.reducer),
   userSetting: userSettingSlice.reducer,
+  language: languageSlice.reducer,
 });
 
 const reducer = persistReducer(rootPersistConfig, rootReducer)

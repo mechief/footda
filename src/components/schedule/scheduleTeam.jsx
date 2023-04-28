@@ -2,6 +2,8 @@ import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
 // import { getTeamLogoURL } from "../../service/footballFunctions";
+
+import TeamName from "../fixture/teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";
 
 const FixtureTeamWrapper = styled.span`
@@ -25,7 +27,7 @@ const WinnerDot = styled.span`
   border-radius: 50%;
 `;
 
-const TeamName = styled.span`
+const StyledTeamName = styled.span`
   display: inline-block;
   line-height: 1.2;
   font-size: 14px;
@@ -47,7 +49,7 @@ const ScheduleTeam = memo(({ team, isHome = false, isWinner = false, align }) =>
       }
       {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
       <DummyTeamLogo size="20px" />
-      <TeamName>{team.name}</TeamName>
+      <StyledTeamName><TeamName team={team} /></StyledTeamName>
       { isWinner && align !== 'right' &&
         <WinnerDot />
       }

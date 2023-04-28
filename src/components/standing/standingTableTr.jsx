@@ -2,6 +2,7 @@ import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
 import StandingFormItem from "./standingFormItem";
+import TeamName from "../fixture/teamName";
 
 const StandingTr = styled.tr`
   ${(props) => props.ruleHighlight === 'demotion' && css`
@@ -35,7 +36,7 @@ const StandingTableTr = memo(({ teamData, leagueRule }) => {
   return (
     <StandingTr ruleHighlight={ruleHighlight}>
       <td>{teamData.rank}</td>
-      <td>{teamData.team.name}</td>
+      <td><TeamName team={teamData.team} /></td>
       <td>{teamData.all.played}</td>
       <td>{teamData.all.win}</td>
       <td>{teamData.all.draw}</td>

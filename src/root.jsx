@@ -12,18 +12,22 @@ import SiteHeader from './components/layout/siteHeader';
 import SiteContents from './components/layout/siteContents';
 import SiteFooter from './components/layout/siteFooter';
 
+import withCommonLogic from './service/withCommonLogic';
+
+const SiteWrapperWithCommonLogic = withCommonLogic(SiteWrapper);
+
 const Root = ({ queryClient }) => {
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-          <SiteWrapper>
+          <SiteWrapperWithCommonLogic>
             <SiteHeader />
             <SiteContents>
               <Outlet />
             </SiteContents>
             <SiteFooter />
-          </SiteWrapper>
+          </SiteWrapperWithCommonLogic>
         </PersistGate>
       </Provider>
       <ReactQueryDevtools initialIsOpen={false} />
