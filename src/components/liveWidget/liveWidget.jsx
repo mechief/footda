@@ -23,6 +23,7 @@ const LiveWidgetArea = styled.div`
 const liveWidgetQuery = (widgetFixtureIds) => ({
   queryKey: ['liveWidget', widgetFixtureIds.join('-')],
   queryFn: async () => getScheduleFixturesByIds(widgetFixtureIds),
+  keepPreviousData: true,
   staleTime: 15000,
   cacheTime: 15000,
 });
