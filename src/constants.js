@@ -1,7 +1,7 @@
-export const FOOTDA_API_URL = 'http://localhost:3002';
+export const FOOTDA_API_URL = process.env.NODE_ENV === 'development' ? process.env.FOOTDA_API_URL_DEV : process.env.FOOTDA_API_URL_PROD;
 
 export const FOOTBALL_API_HOST = 'v3.football.api-sports.io';
-export const FOOTBALL_API_KEY = 'f4df44c38155f4f74c1cf423b0fa2971';
+export const FOOTBALL_API_KEY = process.env.FOOTBALL_API_HOST_KEY;
 export const FOOTBALL_API_URL = 'https://v3.football.api-sports.io';
 export const FOOTBALL_API_TIMEZONE = 'Asia/Seoul';
 
