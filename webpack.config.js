@@ -1,7 +1,7 @@
 const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
-const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+// const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
   name: 'Footda-setting',
