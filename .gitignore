@@ -42,5 +42,9 @@ node_modules
 # database
 dump.rdb
 
-# yarn build files
-dist
+# Ignore everything in the "dist" folder
+/dist/*
+
+# Except for the "_redirects" file
+!/dist/_redirects
+!/dist/index.html
