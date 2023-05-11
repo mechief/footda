@@ -1,5 +1,6 @@
 const Dotenv = require('dotenv-webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackObfuscator = require('webpack-obfuscator');
 const path = require('path');
 
 module.exports = {
@@ -44,6 +45,9 @@ module.exports = {
           to: path.resolve(__dirname, 'dist', 'assets'),
         },
       ],
+    }),
+    new WebpackObfuscator ({
+      "rotateStringArray": true
     }),
   ],
 
