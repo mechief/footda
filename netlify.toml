@@ -4,3 +4,6 @@
 
 [context.main.environment]
   TOML_ENV_VAR = "From netlify.toml"
+
+[context.production.environment]
+  TOML_ENV_VAR = "From netlify.toml"
