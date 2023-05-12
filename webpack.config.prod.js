@@ -42,8 +42,8 @@ module.exports = (env) => ({
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.FOOTDA_API_URL': JSON.stringify(env.FOOTDA_API_URL),
-      'process.env.FOOTBALL_API_HOST_KEY': JSON.stringify(env.FOOTBALL_API_HOST_KEY),
+      'process.env.FOOTDA_API_URL': JSON.stringify(process.env.FOOTDA_API_URL),
+      'process.env.FOOTBALL_API_HOST_KEY': JSON.stringify(process.env.FOOTBALL_API_HOST_KEY),
     }),
     // Copy assets dir to dist
     new CopyWebpackPlugin({
