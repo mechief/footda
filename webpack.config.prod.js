@@ -1,4 +1,4 @@
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
@@ -41,7 +41,7 @@ module.exports = {
   },
 
   plugins: [
-    new Dotenv(),
+    // new Dotenv(),
     // Copy assets dir to dist
     new CopyWebpackPlugin({
       patterns: [
