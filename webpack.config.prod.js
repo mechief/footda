@@ -42,7 +42,6 @@ module.exports = (env) => ({
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
       'process.env.FOOTDA_API_URL': JSON.stringify(env.FOOTDA_API_URL),
       'process.env.FOOTBALL_API_HOST_KEY': JSON.stringify(env.FOOTBALL_API_HOST_KEY),
     }),
