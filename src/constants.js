@@ -1,4 +1,4 @@
-export const FOOTDA_API_URL = process.env.NODE_ENV === 'development' ? process.env.FOOTDA_API_URL_DEV : process.env.FOOTDA_API_URL_PROD;
+export const FOOTDA_API_URL = process.env.FOOTDA_API_URL;
 
 export const FOOTBALL_API_HOST = 'v3.football.api-sports.io';
 export const FOOTBALL_API_KEY = process.env.FOOTBALL_API_HOST_KEY;

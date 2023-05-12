@@ -1,9 +1,9 @@
-// const Dotenv = require('dotenv-webpack');
+const webpack = require('webpack');
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-module.exports = {
+module.exports = (env) => ({
   name: 'Footda-setting',
   mode: 'production',
   devtool: 'eval',
@@ -41,7 +41,11 @@ module.exports = {
   },
 
   plugins: [
-    // new Dotenv(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(env.NODE_ENV),
+      'process.env.FOOTDA_API_URL': JSON.stringify(env.FOOTDA_API_URL),
+      'process.env.FOOTBALL_API_HOST_KEY': JSON.stringify(env.FOOTBALL_API_HOST_KEY),
+    }),
     // Copy assets dir to dist
     new CopyWebpackPlugin({
       patterns: [
@@ -58,4 +62,4 @@ module.exports = {
     filename: 'app.js',
     publicPath: '/dist',
   }, // 출력
-};
+});

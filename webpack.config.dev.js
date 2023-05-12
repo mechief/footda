@@ -1,4 +1,3 @@
-const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
 // const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
@@ -40,7 +39,6 @@ module.exports = {
 
   plugins: [
     // new RefreshWebpackPlugin(), // API 사용 횟수 때문에 임시로 중단
-    new Dotenv(),
   ],
 
   output: {
