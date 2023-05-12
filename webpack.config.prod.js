@@ -3,7 +3,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
-module.exports = (env) => ({
+module.exports = {
   name: 'Footda-setting',
   mode: 'production',
   devtool: 'eval',
@@ -42,7 +42,7 @@ module.exports = (env) => ({
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.NODE_ENV': 'production',
       'process.env.FOOTDA_API_URL': JSON.stringify(process.env.FOOTDA_API_URL),
       'process.env.FOOTBALL_API_HOST_KEY': JSON.stringify(process.env.FOOTBALL_API_HOST_KEY),
     }),
@@ -62,4 +62,4 @@ module.exports = (env) => ({
     filename: 'app.js',
     publicPath: '/dist',
   }, // 출력
-});
+};
