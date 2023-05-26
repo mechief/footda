@@ -32,6 +32,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.8",
     "babel-loader": "^8.2.5",
     "copy-webpack-plugin": "^11.0.0",
+    "dotenv": "^16.0.3",
     "react-refresh": "^0.14.0",
     "terser-webpack-plugin": "^5.3.8",
     "webpack": "^5.76.0",

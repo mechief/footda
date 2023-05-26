@@ -1,4 +1,8 @@
+const dotenv = require('dotenv');
+const webpack = require('webpack');
 const path = require('path');
+
+dotenv.config();
 
 // const RefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
@@ -39,6 +43,10 @@ module.exports = {
 
   plugins: [
     // new RefreshWebpackPlugin(), // API 사용 횟수 때문에 임시로 중단
+    new webpack.DefinePlugin({
+      'process.env.FOOTDA_API_URL': JSON.stringify(process.env.FOOTDA_API_URL),
+      'process.env.FOOTBALL_API_HOST_KEY': JSON.stringify(process.env.FOOTBALL_API_HOST_KEY),
+    }),
   ],
 
   output: {
