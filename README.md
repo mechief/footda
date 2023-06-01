@@ -1,3 +1,7 @@
+https://www.footda.com
+
+<br>
+
 Footda는 해외축구 실시간 데이터 및 일정, 기록을 제공하는 사이트입니다. 
 
 ⚠ 개인 연습을 위한 프로젝트로 현재는 축구 정보 API의 일일 무료 사용 횟수가 낮아 
@@ -19,7 +23,16 @@ Footda는 해외축구 실시간 데이터 및 일정, 기록을 제공하는 �
 - react-router
 - react-query
 - redux-toolkit (For client state)
-
-
 - styled-components
 - webpack
+
+<br>
+<br>
+
+# Backend Environment
+- AWS Lightsail
+- AWS Codedeploy
+- Github actions
+- Node.js
+- MongoDB
+- Redis
