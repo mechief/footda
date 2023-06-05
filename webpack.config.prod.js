@@ -6,7 +6,6 @@ const path = require('path');
 module.exports = {
   name: 'Footda-setting',
   mode: 'production',
-  devtool: 'eval',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
