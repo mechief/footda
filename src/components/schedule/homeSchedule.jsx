@@ -18,8 +18,13 @@ const LoadButton = styled.button`
 `;
 
 const HomeSchedule = () => {
-  const { data, isInitialLoading, fetchNextPage, isFetchingNextPage } = useExistsDate();
-  
+  const { 
+    data, 
+    isInitialLoading, 
+    fetchNextPage, 
+    isFetchingNextPage 
+  } = useExistsDate();
+
   if (isInitialLoading) {
     return <></>;
   }

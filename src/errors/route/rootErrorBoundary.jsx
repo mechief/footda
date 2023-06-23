@@ -47,7 +47,7 @@ const StyledLink = styled(Link)`
 `;
 
 
-import { NoResultNotFoundError } from "../footballAPIError";
+import { NotFoundError } from "../footballAPIError";
 
 const RootErrorBoundary = () => {
   const error = useRouteError();
@@ -66,8 +66,8 @@ const RootErrorBoundary = () => {
         return <ErrorDetail>Looks like our API is down</ErrorDetail>;
       }
     } else {
-      if (error instanceof NoResultNotFoundError) {
-        return <ErrorDetail>데이터가 존재하지 않는 페이지를 요청했습니다.</ErrorDetail>
+      if (error instanceof NotFoundError) {
+        return <ErrorDetail>존재하지 않는 페이지를 요청했습니다.</ErrorDetail>
       }
     }
   }

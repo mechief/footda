@@ -19,21 +19,25 @@ export const getScheduleFixtures = async ({ date, endDate, leagueId } = {}) => {
     ? '/schedule-fixtures/leagues/' + leagueId
     : '/schedule-fixtures';
 
-  const res = await footdaApi(endPoint, {
-    date: date,
-    endDate: endDate,
-  });
-
-  if (res.data.results === 0) {
-    throw new NoResultError;
+  try {
+    const res = await footdaApi(endPoint, {
+      date: date,
+      endDate: endDate,
+    });
+  
+    if (res.data.results === 0) {
+      throw new NoResultError;
+    }
+  
+    const fixtures = res.data.datas;
+  
+    // 경기일자 기준으로 재정렬
+    fixtures.sort((a, b) => a.fixture.timestamp - b.fixture.timestamp);
+  
+    return fixtures;
+  } catch(error) {
+    throw error;
   }
-
-  const fixtures = res.data.datas;
-
-  // 경기일자 기준으로 재정렬
-  fixtures.sort((a, b) => a.fixture.timestamp - b.fixture.timestamp);
-
-  return fixtures;
 }
 
 export const getScheduleFixturesByIds = async (ids) => {
@@ -52,15 +56,19 @@ export const getScheduleFixturesByIds = async (ids) => {
 
   const endPoint = '/schedule-fixtures/ids/' + ids.join('-');
 
-  const res = await footdaApi(endPoint);
+  try {
+    const res = await footdaApi(endPoint);
 
-  if (res.data.results === 0) {
-    throw new NoResultError;
+    if (res.data.results === 0) {
+      throw new NoResultError;
+    }
+
+    const fixtures = res.data.datas;
+
+    return fixtures;
+  } catch (error) {
+    throw error;
   }
-
-  const fixtures = res.data.datas;
-
-  return fixtures;
 }
 
 export const getFirstExistsDate = async (date) => {
@@ -68,15 +76,19 @@ export const getFirstExistsDate = async (date) => {
     throw new InvalidParamError('date');
   }
 
-  const res = await footdaApi('/schedule-fixtures/first-exists-date', {
-    date: date,
-  });
+  try {
+    const res = await footdaApi('/schedule-fixtures/first-exists-date', {
+      date: date,
+    });
+    
+    if (!res.data) {
+      throw new NoResultError;
+    }
   
-  if (!res.data) {
-    throw new NoResultError;
+    return res.data;
+  } catch(error) {
+    throw error;
   }
-
-  return res.data;
 }
 
 export const getScheduleCountOfMonth = async (date, endDate) => {
@@ -87,14 +99,18 @@ export const getScheduleCountOfMonth = async (date, endDate) => {
     throw new MissingRequiredParamError('endDate');
   }
 
-  const res = await footdaApi('/schedule-fixtures/count', {
-    date: date,
-    endDate: endDate,
-  });
+  try {
+    const res = await footdaApi('/schedule-fixtures/count', {
+      date: date,
+      endDate: endDate,
+    });
 
-  if (res.status !== 200) {
-    throw new Error;
+    if (res.status !== 200) {
+      throw new Error;
+    }
+
+    return res.data;
+  } catch(error) {
+    throw error;
   }
-
-  return res.data;
 }

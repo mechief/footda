@@ -2,7 +2,7 @@ import footballApi from "../apiFootball/api";
 import { FOOTBALL_API_TIMEZONE } from "../constants";
 
 import { MissingRequiredParamError } from "../errors/validationError";
-import { NoResultNotFoundError } from "../errors/footballAPIError";
+import { NotFoundError } from "../errors/footballAPIError";
 
 export const getFixture = async (fixtureId) => {
   if (!fixtureId) {
@@ -15,7 +15,7 @@ export const getFixture = async (fixtureId) => {
   });
   
   if (res.data.results === 0) {
-    throw new NoResultNotFoundError;
+    throw new NotFoundError;
   }
 
   return res.data.response[0];

@@ -12,7 +12,7 @@ const ScheduleFixtureContainer = styled.div`
 const Home = () => {
   return (
     <ScheduleFixtureContainer>
-      <ErrorBoundary key='homeSchedule' fallback={<div>일정을 불러오는 중 오류가 발생했습니다.</div>}>
+      <ErrorBoundary key='homeSchedule' fallback={<div>30일 이내에 예정된 경기가 없습니다.</div>}>
         <HomeSchedule />
       </ErrorBoundary>
     </ScheduleFixtureContainer>

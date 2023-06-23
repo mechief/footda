@@ -1,8 +1,14 @@
 import CustomError from "./customError";
 
 class FootballAPIError extends CustomError {
+  constructor(error) {
+    super(error ?? 'Football API Error');
+  }
+}
+
+export class NetworkError extends FootballAPIError {
   constructor() {
-    super('Football API Error');
+    super();
   }
 }
 
@@ -12,7 +18,7 @@ export class NoResultError extends FootballAPIError {
   }
 }
 
-export class NoResultNotFoundError extends FootballAPIError {
+export class NotFoundError extends FootballAPIError {
   constructor() {
     super();
   }
