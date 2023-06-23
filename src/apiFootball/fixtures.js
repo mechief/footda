@@ -1,3 +1,4 @@
+import footdaApi from "../api/api";
 import footballApi from "../apiFootball/api";
 import { FOOTBALL_API_TIMEZONE } from "../constants";
 
@@ -9,10 +10,7 @@ export const getFixture = async (fixtureId) => {
     throw new MissingRequiredParamError('fixtureId');
   }
   
-  const res = await footballApi('/fixtures', {
-    id: fixtureId,
-    timezone: FOOTBALL_API_TIMEZONE,
-  });
+  const res = await footdaApi('/fixtures/' + fixtureId);
   
   if (res.data.results === 0) {
     throw new NotFoundError;
