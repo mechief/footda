@@ -109,7 +109,19 @@ export const SERVICE_LEAGUES = new Map([
     type: 'league',
     color: '#dae025',
   }],
-  // 유럽대항전
+  [292, {
+    name: 'K League 1',
+    nameKr: 'K리그1',
+    type: 'league',
+    color: '#182241',
+  }],
+  [293, {
+    name: 'K League 2',
+    nameKr: 'K리그2',
+    type: 'league',
+    color: '#182241',
+  }],
+  // 대륙 클럽 대항전
   [2, {
     name: 'UEFA Champions League',
     nameKr: 'UEFA 챔피언스 리그',
@@ -126,6 +138,12 @@ export const SERVICE_LEAGUES = new Map([
     name: 'UEFA Europa Conference League',
     nameKr: '유로파 컨퍼런스 리그',
     nameShort: 'UECL',
+    type: 'continental',
+  }],
+  [17, {
+    name: 'AFC Champions League',
+    nameKr: 'AFC 챔피언스 리그',
+    nameShort: 'ACL',
     type: 'continental',
   }],
   // [531, {
@@ -199,6 +217,12 @@ export const SERVICE_LEAGUES = new Map([
   //   nameKr: '독일 슈퍼컵',
   //   type: 'cup',
   // }],
+  // 대한민국 컵
+  [294, {
+    name: 'FA Cup',
+    nameKr: 'FA컵 (KFA)',
+    type: 'cup',
+  }],
 ])
 
 // 승격, 강등, 유럽대항전 규칙
@@ -283,23 +307,36 @@ export const LEAGUE_RULES = {
       league: 3,
     },
   ],
-  '140': [
+  // K리그 1
+  '292': [
     {
       type: 'demotion',
       detail: null,
-      ranks: [18, 19, 20],
+      ranks: [12],
+    },
+    {
+      type: 'demotionPlayoffs',
+      detail: null,
+      ranks: [10, 11],
     },
     {
       type: 'continental',
       detail: 'ChampionsLeague',
-      ranks: [1, 2, 3, 4],
-      league: 2,
+      ranks: [1, 2, 3],
+      league: 17,
+    },
+  ],
+  // K리그 2
+  '293': [
+    {
+      type: 'promotion',
+      detail: null,
+      ranks: [1],
     },
     {
-      type: 'continental',
-      detail: 'EuropaLeague',
-      ranks: [5, 6],
-      league: 3,
+      type: 'promotionPlayoffs',
+      detail: null,
+      ranks: [2, 3, 4, 5],
     },
   ],
 }

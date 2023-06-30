@@ -1,6 +1,4 @@
 import footdaApi from "../api/api";
-import footballApi from "../apiFootball/api";
-import { FOOTBALL_API_TIMEZONE } from "../constants";
 
 import { MissingRequiredParamError } from "../errors/validationError";
 import { NotFoundError } from "../errors/footballAPIError";
