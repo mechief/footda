@@ -1,4 +1,4 @@
-import footballApi from "./api";
+import footdaApi from "./api";
 
 import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
@@ -16,16 +16,15 @@ export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
   }
 
   try {
-    const res = await footballApi('/standings', {
-      league: leagueId,
+    const res = await footdaApi('/standings/' + leagueId, {
       season: season,
     });
 
-    if (res.data.results === 0 || !res.data.response[0]?.league?.standings[0]) {
+    if (res.data.meta.results === 0 || !res.data.datas[0]) {
       throw new NoResultError;
     }
 
-    return res.data.response[0]?.league?.standings[0];
+    return res.data.datas[0];
   } catch (err) {
     console.error(err);
     throw err;

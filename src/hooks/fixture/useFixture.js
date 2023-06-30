@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-import { getFixture } from "../../apiFootball/fixtures";
+import { getFixture } from "../../api/fixtures";
 import { setFixtureId, setFixture } from "../../slices/currentFixtureSlice";
 
 export const useFixture = () => {

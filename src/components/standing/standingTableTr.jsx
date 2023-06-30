@@ -5,9 +5,24 @@ import StandingFormItem from "./standingFormItem";
 import TeamName from "../fixture/teamName";
 
 const StandingTr = styled.tr`
+  ${(props) => props.ruleHighlight === 'promotion' && css`
+    & td {
+      background: #d5ddf1 !important;
+    }
+  `}
+  ${(props) => props.ruleHighlight === 'promotionPlayoffs' && css`
+    & td {
+      background: #d6eed5 !important;
+    }
+  `}
   ${(props) => props.ruleHighlight === 'demotion' && css`
     & td {
       background: #eec5d2 !important;
+    }
+  `}
+  ${(props) => props.ruleHighlight === 'demotionPlayoffs' && css`
+    & td {
+      background: #f3dae2 !important;
     }
   `}
   ${(props) => props.ruleHighlight === 'ChampionsLeague' && css`

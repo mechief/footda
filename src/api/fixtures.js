@@ -1,4 +1,4 @@
-import footdaApi from "../api/api";
+import footdaApi from "./api";
 
 import { MissingRequiredParamError } from "../errors/validationError";
 import { NotFoundError } from "../errors/footballAPIError";

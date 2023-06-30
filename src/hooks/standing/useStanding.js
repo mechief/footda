@@ -1,7 +1,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { getStandings } from "../../apiFootball/standings";
+import { getStandings } from "../../api/standings";
 
 const formToScore = (form) => {
   return form.split('').map((v) => v === 'W' ? 3 : (v === 'D' ? 1 : 0)).reduce((acc, v) => acc + v, 0);
