@@ -2,7 +2,7 @@
   "name": "footda",
   "version": "0.1.0",
   "description": "football communication website",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "build": "webpack --config webpack.config.prod.js",
     "dev": "webpack serve --env development --config webpack.config.dev.js"

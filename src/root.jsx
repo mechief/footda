@@ -1,7 +1,6 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 
@@ -30,7 +29,6 @@ const Root = ({ queryClient }) => {
           </SiteWrapperWithCommonLogic>
         </PersistGate>
       </Provider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
