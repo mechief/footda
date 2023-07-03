@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { getFixtureStatusCode } from "../../service/apiFootballService";
+import { getFixtureStatusCode } from "../../utils/fixture";
 
 import PenaltyScore from "../fixture/penaltyScore";
 

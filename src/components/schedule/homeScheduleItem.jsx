@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameForList } from "../../service/apiFootballService";
-import { getFormattedRound } from "../../service/footballFunctions";
+import { getFixtureStatusCode, getFixtureStatusText } from "../../utils/fixture";
+import { getLeagueNameForList } from "../../utils/league";
+import { getFormattedRound } from "../../utils/footballRound";
 
 import HomeScheduleScore from "./homeScheduleScore";
 import ScheduleTeam from "./scheduleTeam";

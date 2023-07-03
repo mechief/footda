@@ -2,8 +2,6 @@ import footballApi from "./api";
 
 import { NoResultError } from "../errors/footballAPIError";
 
-import { CURRENT_SEASON } from "../constants";
-
 export const getLeagues = async () => {
   try {
     const res = await footballApi('/leagues', {

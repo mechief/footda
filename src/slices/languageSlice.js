@@ -10,7 +10,6 @@ const languageSlice = createSlice({
   },
   reducers: {
     setTeams: (state, action) => {
-      console.log(action.payload, Object.keys(action.payload).length);
       state['ko-kr'].teams = action.payload;
       state['ko-kr'].teamsLength = Object.keys(action.payload).length;
     },

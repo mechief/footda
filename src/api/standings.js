@@ -3,8 +3,8 @@ import footdaApi from "./api";
 import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
-import { CURRENT_SEASON } from "../constants";
-import { isServiceLeague } from "../service/apiFootballService";
+import { CURRENT_SEASON } from "../constants/season";
+import { isServiceLeague } from "../utils/league";
 
 export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
   if (!leagueId) {

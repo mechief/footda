@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
-import { isServiceLeague } from "../service/apiFootballService";
+import { isServiceLeague } from "../utils/league";
 
 export const getScheduleFixtures = async ({ date, endDate, leagueId } = {}) => {
   if (!date) {

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { useDateSchedule } from "../../hooks/schedule/useDateSchedule";
 
-import { dayOfWeekToKR } from "../../service/commonFunctions"
+import { dayOfWeekToKR } from "../../utils/dates"
 
 import HomeScheduleItem from "./homeScheduleItem";
 

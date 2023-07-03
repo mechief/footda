@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import ErrorBoundary from "../components/error/errorBoundary";
 
 import { useFixture } from "../hooks/fixture/useFixture";
-import { getFixtureStatusCode, getFixtureStatusText } from "../service/apiFootballService";
+import { getFixtureStatusCode, getFixtureStatusText } from "../utils/fixture";
 
 import FixtureLeague from "../components/fixture/fixtureLeague";
 import FixtureEventSummary from "../components/fixture/fixtureEventSummary";
@@ -13,7 +13,6 @@ import FixtureTeam from "../components/fixture/fixtureTeam";
 import FixtureScore from "../components/fixture/fixtureScore";
 import FixtureDetail from "../components/fixture/fixtureDetail";
 import Lineup from "../components/fixture/lineup";
-
 import LiveSidebar from "../components/liveWidget/liveSidebar";
 import LiveSidebarButton from "../components/liveWidget/liveSidebarButton"
 import LiveWidget from "../components/liveWidget/liveWidget";

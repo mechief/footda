@@ -3,7 +3,7 @@ import { useMatch } from "react-router-dom";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { getLeagueNameKr } from "../../service/apiFootballService";
+import { getLeagueNameKr } from "../../utils/league";
 
 const ItemLink = styled(Link)`
   display: flex;

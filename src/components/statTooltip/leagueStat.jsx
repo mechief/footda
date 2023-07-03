@@ -3,7 +3,7 @@ import React from "react";
 import LeagueStatGoalkeeper from "./leagueStatGoalkeeper";
 import LeagueStatFieldPlayer from "./leagueStatFieldPlayer";
 
-import { getLeagueNameKr } from "../../service/apiFootballService";
+import { getLeagueNameKr } from "../../utils/league";
 
 const LeagueStat = ({ leagueStat, position, isSeasonTotal = false }) => {
   const showLeagueStatByPosition = (leagueName) => {

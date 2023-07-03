@@ -3,7 +3,7 @@ import footballApi from "../apiFootball/api";
 import { MissingRequiredParamError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
-import { CURRENT_SEASON } from "../constants";
+import { CURRENT_SEASON } from "../constants/season";
 
 export const getIsAvailableSeason = async (playerId, CURRENT_SEASON) => {
   if (!playerId) {

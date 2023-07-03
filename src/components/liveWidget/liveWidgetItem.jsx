@@ -5,7 +5,8 @@ import styled from "styled-components";
 
 import { removeLiveWidget } from "../../slices/liveWidgetSlice";
 
-import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameKr } from "../../service/apiFootballService";
+import { getFixtureStatusCode, getFixtureStatusText } from "../../utils/fixture";
+import { getLeagueNameKr } from "../../utils/league";
 
 import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
 import FixtureScore from "../fixture/fixtureScore";

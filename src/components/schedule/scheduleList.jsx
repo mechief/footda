@@ -2,7 +2,7 @@ import React, { useMemo, memo } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { dayOfWeekToKR } from "../../service/commonFunctions"
+import { dayOfWeekToKR } from "../../utils/dates"
 
 import ScheduleItem from "./scheduleItem";
 

@@ -1,11 +1,3 @@
-export const positionTo2Char = (position) => {
-  const arrPosition = ['GK', 'DF', 'MF', 'FW'];
-  
-  return arrPosition.find(v => {
-    return v[0] === position[0];
-  });
-}
-
 export const getFormattedRound = (round) => {
   let formattedRound = round;
 
@@ -28,8 +20,4 @@ export const getFormattedRound = (round) => {
   }
 
   return formattedRound;
-}
-
-export const getTeamLogoURL = (teamId) => {
-  return `https://media.api-sports.io/football/teams/${teamId}.png`;
 }

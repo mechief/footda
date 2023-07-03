@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import { isServiceLeague } from "../service/apiFootballService";
+import { isServiceLeague } from "../utils/league";
 import { getPlayerSeasonStat } from "../apiFootball/stat";
 
 export const initTooltip = createAsyncThunk('statTooltip/initTooltip', async (data, { rejectWithValue }) => {

@@ -33,7 +33,6 @@ const StatTooltipPlayerButton = memo(({ playerId }) => {
       
       dispatch(openTooltip(playerId));
     } catch (err) {
-      console.log('catch Tooltip Error!');
       console.error(err);
     }
   }

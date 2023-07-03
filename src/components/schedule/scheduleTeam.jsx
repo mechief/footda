@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
-// import { getTeamLogoURL } from "../../service/footballFunctions";
+// import { getTeamLogoURL } from "../../utils/football";
 
 import TeamName from "../fixture/teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";

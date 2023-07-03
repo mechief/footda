@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 
-import { getLeagueNameKr, getLeagueRule } from "../../service/apiFootballService";
+import { getLeagueNameKr, getLeagueRule } from "../../utils/league";
 
 import StandingTableTh from "./standingTableTh";
 import StandingTableTr from "./standingTableTr";

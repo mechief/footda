@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
-import { positionTo2Char } from "../../service/footballFunctions";
+import { positionTo2Char } from "../../utils/football";
 
 import StatTooltipPlayer from "../statTooltip/statTooltipPlayer";
 import { HiOutlineArrowLeftCircle, HiOutlineArrowRightCircle } from "react-icons/hi2";

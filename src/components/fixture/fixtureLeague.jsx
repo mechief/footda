@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { getLeagueNameKr } from "../../service/apiFootballService";
-import { getFormattedRound } from "../../service/footballFunctions";
+import { getLeagueNameKr } from "../../utils/league";
+import { getFormattedRound } from "../../utils/footballRound";
 
 const StyledFixtureLeague = styled.h2`
   font-size: 16px;

@@ -8,7 +8,7 @@ import {
   removeAllScheduleLeaguesFilterId,
 } from "../../slices/userSettingSlice"
 
-import { getLeagueNameKr } from "../../service/apiFootballService"
+import { getLeagueNameKr } from "../../utils/league"
 
 import { DummyLeagueLogo, DummyAllLeagueLogo } from "../icons/footballIcons";
 

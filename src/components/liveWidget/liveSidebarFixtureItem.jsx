@@ -2,7 +2,8 @@ import React, { memo } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { getFixtureStatusCode, getFixtureStatusText, getLeagueNameKr } from "../../service/apiFootballService";
+import { getFixtureStatusCode, getFixtureStatusText } from "../../utils/fixture";
+import { getLeagueNameKr } from "../../utils/league";
 
 import LiveSidebarAddWidgetButton from "./liveSidebarAddWidgetButton";
 import FixtureScore from "../fixture/fixtureScore";

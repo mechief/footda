@@ -3,7 +3,7 @@ import {
   FOOTBALL_API_HOST,
   FOOTBALL_API_KEY,
   FOOTBALL_API_URL,
-} from "../constants";
+} from "../constants/api";
 
 const footballApi = (endpoint, params = {}) => {
   return axios({
