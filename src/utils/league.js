@@ -19,6 +19,22 @@ export const getLeagueNameForList = (leagueId) => {
   return SERVICE_LEAGUES.get(+leagueId).nameShort || SERVICE_LEAGUES.get(+leagueId).nameKr;
 }
 
+export const getLeagueType = (leagueId) => {
+  if (!isServiceLeague(leagueId)) {
+    return null;
+  }
+  
+  return SERVICE_LEAGUES.get(+leagueId).type;
+}
+
+export const getLeagueRegion = (leagueId) => {
+  if (!isServiceLeague(leagueId)) {
+    return null;
+  }
+  
+  return SERVICE_LEAGUES.get(+leagueId).region;
+}
+
 export const getLeagueColor = (leagueId) => {
   if (!isServiceLeague(leagueId)) {
     return null;

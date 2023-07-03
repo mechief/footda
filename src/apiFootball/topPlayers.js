@@ -3,10 +3,10 @@ import footballApi from "./api";
 import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
-import { CURRENT_SEASON } from "../constants/season";
 import { isServiceLeague } from "../utils/league";
+import { getCurrentSeason } from "../utils/season";
 
-export const getTopPlayers = async (leagueId, season = CURRENT_SEASON) => {
+export const getTopPlayers = async (leagueId) => {
   if (!leagueId) {
     throw new MissingRequiredParamError('leagueId');
   }
@@ -14,6 +14,8 @@ export const getTopPlayers = async (leagueId, season = CURRENT_SEASON) => {
   if (!isServiceLeague(leagueId)) {
     throw new InvalidParamError('leagueId');
   }
+
+  const season = getCurrentSeason(leagueId);
 
   let promises = await Promise.all([
       footballApi('/players/topscorers', {

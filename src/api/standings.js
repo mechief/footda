@@ -3,10 +3,10 @@ import footdaApi from "./api";
 import { MissingRequiredParamError, InvalidParamError } from "../errors/validationError";
 import { NoResultError } from "../errors/footballAPIError";
 
-import { CURRENT_SEASON } from "../constants/season";
 import { isServiceLeague } from "../utils/league";
+import { getCurrentSeason } from "../utils/season";
 
-export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
+export const getStandings = async (leagueId) => {
   if (!leagueId) {
     throw new MissingRequiredParamError('league');
   }
@@ -17,7 +17,7 @@ export const getStandings = async (leagueId, season = CURRENT_SEASON) => {
 
   try {
     const res = await footdaApi('/standings/' + leagueId, {
-      season: season,
+      season: getCurrentSeason(leagueId),
     });
 
     if (res.data.meta.results === 0 || !res.data.datas[0]) {
