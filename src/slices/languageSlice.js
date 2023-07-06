@@ -3,6 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 const languageSlice = createSlice({
   name: 'language',
   initialState: {
+    'expireTime': {
+      teams: null,
+    },
     'ko-kr': {
       teams: {},
       teamsLength: 0,
@@ -10,8 +13,11 @@ const languageSlice = createSlice({
   },
   reducers: {
     setTeams: (state, action) => {
-      state['ko-kr'].teams = action.payload;
-      state['ko-kr'].teamsLength = Object.keys(action.payload).length;
+      const lang = action.payload.lang;
+      
+      state[lang].teams = action.payload.teams;
+      state[lang].teamsLength = Object.keys(action.payload.teams).length;
+      state.expireTime.teams = Date.now() + 86400; // 1일 후 
     },
   }
 });

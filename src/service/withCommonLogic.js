@@ -1,25 +1,10 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 
-import { getLangTeams } from "../api/lang";
-import { setTeams } from "../slices/languageSlice";
+import useTeamLangs from "../hooks/lang/useTeamLangs";
 
 const withCommonLogic = (WrappedComponent) => {
   const CommonLogicWrapper = (props) => {
-    const dispatch = useDispatch();
-    const langTeamsLength = useSelector((state) => state.language['ko-kr'].teamsLength);
-
-    useEffect(() => {
-      if (langTeamsLength === 0) {
-        fetchLangTeams();
-      }
-    }, []);
-
-    const fetchLangTeams = async () => {
-      const teams = await getLangTeams();
-
-      dispatch(setTeams(teams));
-    }
+    useTeamLangs();
     
     return <WrappedComponent {...props} />;
   };
