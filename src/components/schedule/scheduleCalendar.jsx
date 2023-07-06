@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { useScheduleCounts } from "../../hooks/schedule/useScheduleCounts";
+import useScheduleCounts from "../../hooks/schedule/useScheduleCounts";
 
 import ScheduleCalendarControl from "./scheduleCalendarControl";
 import ScheduleCalendarTr from "./scheduleCalendarTr";

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { useTopPlayer } from "../../hooks/topPlayer/useTopPlayer";
+import useTopPlayer from "../../hooks/topPlayer/useTopPlayer";
 
 import TopPlayerSummaryList from "./topPlayerSummaryList";
 import TopPlayerTable from "./topPlayerTable";

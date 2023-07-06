@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { useWeekSchedule } from "../../hooks/schedule/useWeekSchedule";
+import useWeekSchedule from "../../hooks/schedule/useWeekSchedule";
 
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
 

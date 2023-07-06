@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import ErrorBoundary from "../components/error/errorBoundary";
 
-import { useFixture } from "../hooks/fixture/useFixture";
+import useFixture from "../hooks/fixture/useFixture";
 import { getFixtureStatusCode, getFixtureStatusText } from "../utils/fixture";
 
 import FixtureLeague from "../components/fixture/fixtureLeague";

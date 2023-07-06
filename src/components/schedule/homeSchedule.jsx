@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-import { useExistsDate } from "../../hooks/schedule/useExistsDate";
+import useExistsDate from "../../hooks/schedule/useExistsDate";
 
 import HomeScheduleSection from "./homeScheduleSection";
 

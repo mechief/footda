@@ -2,8 +2,7 @@ import React, { useMemo } from "react";
 import dayjs from "dayjs";
 import styled from "styled-components";
 
-import { useDateSchedule } from "../../hooks/schedule/useDateSchedule";
-
+import useDateSchedule from "../../hooks/schedule/useDateSchedule";
 import { dayOfWeekToKR } from "../../utils/dates"
 
 import HomeScheduleItem from "./homeScheduleItem";

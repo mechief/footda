@@ -19,7 +19,7 @@ const getColumnDataFromTeamData = (dataName, teamData) => {
 }
 
 // 기본값: 프리미어 리그
-export const useStanding = (leagueId) => {
+const useStanding = (leagueId) => {
   const { data } = useQuery({
     queryKey: ['standing', leagueId],
     queryFn: async () => getStandings(leagueId),
@@ -70,3 +70,5 @@ export const useStanding = (leagueId) => {
 
   return [standings, orderType, setOrderType];
 }
+
+export default useStanding;

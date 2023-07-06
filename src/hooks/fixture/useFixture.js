@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { getFixture } from "../../api/fixtures";
 import { setFixtureId, setFixture } from "../../slices/currentFixtureSlice";
 
-export const useFixture = () => {
+const useFixture = () => {
   const fixtureId = Number(useParams().id);
   const { state: listData } = useLocation();
 
@@ -52,3 +52,5 @@ export const useFixture = () => {
     teamEvents: teamEvents,
   }
 }
+
+export default useFixture;

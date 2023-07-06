@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getTopPlayers } from "../../apiFootball/topPlayers"
 
 // 기본값: 프리미어 리그
-export const useTopPlayer = (leagueId) => {
+const useTopPlayer = (leagueId) => {
   return useQuery({
     queryKey: ['topPlayers', leagueId],
     queryFn: async () => getTopPlayers(leagueId),
@@ -12,3 +12,5 @@ export const useTopPlayer = (leagueId) => {
     suspense: true,
   });
 }
+
+export default useTopPlayer;

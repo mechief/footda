@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useStanding } from "../../hooks/standing/useStanding";
+import useStanding from "../../hooks/standing/useStanding";
 
 import StandingTable from "./standingTable";
 

@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 
 import { getScheduleFixtures } from "../../api/scheduleFixture";
 
-export const useWeekSchedule = (weekSunday) => {
+const useWeekSchedule = (weekSunday) => {
   const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
 
   const { data } = useQuery({
@@ -43,3 +43,5 @@ export const useWeekSchedule = (weekSunday) => {
 
   return [filteredList, dates];
 }
+
+export default useWeekSchedule;

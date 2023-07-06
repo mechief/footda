@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { getScheduleFixtures } from "../../api/scheduleFixture";
 
-export const useDateSchedule = (date) => {
+const useDateSchedule = (date) => {
   return useQuery({
     queryKey: ['fixtures', date],
     queryFn: async () => getScheduleFixtures({date: date}),
@@ -10,3 +10,5 @@ export const useDateSchedule = (date) => {
     cacheTime: 1000 * 60 * 5,
   });
 }
+
+export default useDateSchedule;
