@@ -55,7 +55,7 @@ const StandingTable = ({
 }) => {
   const leagueRule = useMemo(() => {
     return getLeagueRule(leagueId);
-  }, []);
+  }, [leagueId]);
 
   return (
     <Table>

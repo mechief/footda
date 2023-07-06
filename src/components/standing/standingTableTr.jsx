@@ -35,6 +35,11 @@ const StandingTr = styled.tr`
       background: #d6eed5 !important;
     }
   `}
+  ${(props) => props.ruleHighlight === 'ConferenceLeague' && css`
+    & td {
+      background: #f0f3d1 !important;
+    }
+  `}
 `;
 
 const StandingTableTr = memo(({ teamData, leagueRule }) => {

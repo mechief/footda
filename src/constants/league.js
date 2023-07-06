@@ -183,8 +183,14 @@ export const LEAGUE_RULES = {
     {
       type: 'continental',
       detail: 'EuropaLeague',
-      ranks: [5, 6],
+      ranks: [5],
       league: 3,
+    },
+    {
+      type: 'continental',
+      detail: 'ConferenceLeague',
+      ranks: [6],
+      league: 848,
     },
   ],
   // 리그 1
@@ -206,6 +212,12 @@ export const LEAGUE_RULES = {
       ranks: [4],
       league: 3,
     },
+    {
+      type: 'continental',
+      detail: 'ConferenceLeague',
+      ranks: [5],
+      league: 848,
+    },
   ],
   // 분데스리가
   '78': [ 
@@ -223,8 +235,14 @@ export const LEAGUE_RULES = {
     {
       type: 'continental',
       detail: 'EuropaLeague',
-      ranks: [5, 6],
+      ranks: [5],
       league: 3,
+    },
+    {
+      type: 'continental',
+      detail: 'ConferenceLeague',
+      ranks: [6],
+      league: 848,
     },
   ],
   // 세리에 A
@@ -245,6 +263,38 @@ export const LEAGUE_RULES = {
       detail: 'EuropaLeague',
       ranks: [5],
       league: 3,
+    },
+    {
+      type: 'continental',
+      detail: 'ConferenceLeague',
+      ranks: [6],
+      league: 848,
+    },
+  ],
+  // 라리가
+  '140': [
+    {
+      type: 'demotion',
+      detail: null,
+      ranks: [18, 19, 20],
+    },
+    {
+      type: 'continental',
+      detail: 'ChampionsLeague',
+      ranks: [1, 2, 3, 4],
+      league: 2,
+    },
+    {
+      type: 'continental',
+      detail: 'EuropaLeague',
+      ranks: [5],
+      league: 3,
+    },
+    {
+      type: 'continental',
+      detail: 'ConferenceLeague',
+      ranks: [6],
+      league: 848,
     },
   ],
   // K리그 1
