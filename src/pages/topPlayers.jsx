@@ -6,11 +6,6 @@ import ErrorBoundary from "../components/error/errorBoundary";
 import TopPlayerLeagues from "../components/topPlayer/topPlayerLeagues";
 import TopPlayerData from "../components/topPlayer/topPlayerData";
 
-import {
-  TopPlayerWrapper,
-  TopPlayerTitle,
-} from "../components/topPlayer/topPlayerStyled";
-
 const TopPlayers = () => {
   const leagueId = Number(useParams().id) || 39;
   
@@ -26,5 +21,16 @@ const TopPlayers = () => {
     </TopPlayerWrapper>
   );
 }
+
+export const TopPlayerWrapper = styled.section`
+  padding: 60px 20px;
+`;
+
+export const TopPlayerTitle = styled.h2`
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+`;
 
 export default TopPlayers;

@@ -7,14 +7,6 @@ import TopPlayerLeaguesItem from "./topPlayerLeaguesItem";
 
 const serviceLeagueIds = getServiceLeagueIds({type: 'league'});
 
-const TopPlayerLeaguesList = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: bottom;
-  gap: 0 30px;
-  margin-bottom: 50px;
-`;
-
 const TopPlayerLeagues = memo(() => {
   return (
     <TopPlayerLeaguesList>
@@ -27,5 +19,13 @@ const TopPlayerLeagues = memo(() => {
     </TopPlayerLeaguesList>
   );
 });
+
+const TopPlayerLeaguesList = styled.nav`
+  display: flex;
+  justify-content: center;
+  align-items: bottom;
+  gap: 0 30px;
+  margin-bottom: 50px;
+`;
 
 export default TopPlayerLeagues;

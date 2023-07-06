@@ -4,6 +4,16 @@ import styled, { css } from "styled-components";
 import TeamName from "./teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";
 
+const FixtureTeam = memo(({ team, isHome = false }) => {
+  return (
+    <FixtureTeamColumn isHome={isHome}>
+      <StyledTeamName><TeamName team={team} /></StyledTeamName>
+      {/* <TeamLogo src={team.logo} /> */}
+      <DummyTeamLogoCustom size="42px" />
+    </FixtureTeamColumn>
+  );
+});
+
 const FixtureTeamColumn = styled.div`
   display: flex;
   flex-direction: row;
@@ -36,15 +46,5 @@ const DummyTeamLogoCustom = styled(DummyTeamLogo)`
   padding: 0 15px;
   box-sizing: content-box;
 `;
-
-const FixtureTeam = memo(({ team, isHome = false }) => {
-  return (
-    <FixtureTeamColumn isHome={isHome}>
-      <StyledTeamName><TeamName team={team} /></StyledTeamName>
-      {/* <TeamLogo src={team.logo} /> */}
-      <DummyTeamLogoCustom size="42px" />
-    </FixtureTeamColumn>
-  );
-});
 
 export default FixtureTeam;

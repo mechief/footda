@@ -6,14 +6,6 @@ import styled from "styled-components";
 import ScheduleControlAside from "../components/schedule/scheduleControlAside";
 import ScheduleListSection from "../components/schedule/scheduleListSection";
 
-const ScheduleContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  flex: 1 1 auto;
-  height: 100%;
-`;
-
 const Schedule = () => {
   const params = useParams();
   const [isScrollToFocus, setIsScrollToFocus] = useState(false);
@@ -43,5 +35,13 @@ const Schedule = () => {
     </ScheduleContainer>
   );
 }
+
+const ScheduleContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  height: 100%;
+`;
 
 export default Schedule;

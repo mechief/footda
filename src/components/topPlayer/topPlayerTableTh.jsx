@@ -1,6 +1,33 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+const TopPlayerTableTh = ({ dataName, text, orderData, setOrderData }) => {
+  const onClickReOrder = () => {
+    if (!['goals', 'assists'].includes(dataName)) {
+      return;
+    }
+
+    if (orderData != dataName) {
+      setOrderData(dataName);
+    }
+  }
+
+  return (
+    <th>
+      <ReOrderButton 
+        onClick={onClickReOrder}
+        clickable={['goals', 'assists'].includes(dataName) ? true : false}>
+        <OrderTextWrapper>
+          <span>{text}</span>
+          {orderData === dataName &&
+            <OrderArrow direction="desc" />
+          }
+        </OrderTextWrapper>
+      </ReOrderButton>
+    </th>
+  );
+}
+
 const ReOrderButton = styled.button`
   display: block;
   width: 100%;
@@ -39,32 +66,5 @@ const OrderArrow = styled.span`
     margin-top: -3px;
   `}
 `;
-
-const TopPlayerTableTh = ({ dataName, text, orderData, setOrderData }) => {
-  const onClickReOrder = () => {
-    if (!['goals', 'assists'].includes(dataName)) {
-      return;
-    }
-
-    if (orderData != dataName) {
-      setOrderData(dataName);
-    }
-  }
-
-  return (
-    <th>
-      <ReOrderButton 
-        onClick={onClickReOrder}
-        clickable={['goals', 'assists'].includes(dataName) ? true : false}>
-        <OrderTextWrapper>
-          <span>{text}</span>
-          {orderData === dataName &&
-            <OrderArrow direction="desc" />
-          }
-        </OrderTextWrapper>
-      </ReOrderButton>
-    </th>
-  );
-}
 
 export default TopPlayerTableTh;

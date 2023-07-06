@@ -3,48 +3,6 @@ import styled, { css } from "styled-components";
 
 import { IconGoal, IconRedCard } from "../icons/fixtureIcons";
 
-const FixtureEventSummaryWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  width: 50%;
-  padding: 0 80px;
-  ${props => props.isHome && css`
-    align-items: flex-end;  
-  `}
-`;
-
-const EventSummaryItem = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 2px 0;
-  font-size: 13px;
-  color: #555;
-  ${props => props.isHome && css`
-    flex-direction: row-reverse;
-  `}
-`;
-
-const EventSummaryTime = styled.span`
-  display: inline-block;
-  margin-right: 2px;
-  ${props => !props.isHome && css`
-    min-width: 3em;
-  `}
-`;
-
-const StyledPenaltyShootout = styled.div`
-  margin-top: 10px;
-  font-size: 13px;
-  color: #777;
-  ${props => props.isHome && css`
-    text-align: right;
-  `}
-`;
-
 const FixtureEventSummary = memo(({ events, isHome = false }) => {
   const filteredEvents = useMemo(() => {
     return events.filter(event => {
@@ -98,5 +56,47 @@ const FixtureEventSummary = memo(({ events, isHome = false }) => {
     </FixtureEventSummaryWrapper>
   );
 });
+
+const FixtureEventSummaryWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 50%;
+  padding: 0 80px;
+  ${props => props.isHome && css`
+    align-items: flex-end;  
+  `}
+`;
+
+const EventSummaryItem = styled.div`
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 2px 0;
+  font-size: 13px;
+  color: #555;
+  ${props => props.isHome && css`
+    flex-direction: row-reverse;
+  `}
+`;
+
+const EventSummaryTime = styled.span`
+  display: inline-block;
+  margin-right: 2px;
+  ${props => !props.isHome && css`
+    min-width: 3em;
+  `}
+`;
+
+const StyledPenaltyShootout = styled.div`
+  margin-top: 10px;
+  font-size: 13px;
+  color: #777;
+  ${props => props.isHome && css`
+    text-align: right;
+  `}
+`;
 
 export default FixtureEventSummary;

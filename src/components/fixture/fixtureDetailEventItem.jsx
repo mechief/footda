@@ -3,19 +3,6 @@ import styled from "styled-components";
 
 import TeamName from "./teamName";
 
-const EventItemWrapper = styled.li`
-  display: flex;
-  padding: 4px 0;
-  font-size: 13px;
-`
-
-const EventTime = styled.span`
-  display: inline-block;
-  min-width: 3.5em;
-  padding-right: 0.3em;
-  text-align: right;
-`
-
 const FixtureDetailEventItem = ({ event }) => {
 
   const showEventTextByType = () => {
@@ -59,5 +46,18 @@ const FixtureDetailEventItem = ({ event }) => {
     </EventItemWrapper>
   );
 };
+
+const EventItemWrapper = styled.li`
+  display: flex;
+  padding: 4px 0;
+  font-size: 13px;
+`;
+
+const EventTime = styled.span`
+  display: inline-block;
+  min-width: 3.5em;
+  padding-right: 0.3em;
+  text-align: right;
+`;
 
 export default FixtureDetailEventItem;

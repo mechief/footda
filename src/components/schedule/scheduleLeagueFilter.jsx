@@ -5,9 +5,6 @@ import { getServiceLeagueIds }from "../../utils/league"
 
 import ScheduleLeagueFilterButton from "./scheduleLeagueFilterButton";
 
-const StyledLeagueFilter = styled.div`
-`;
-
 const ScheduleLeagueFilter = () => {
   const leagueIds = useMemo(() => {
     return getServiceLeagueIds();
@@ -22,5 +19,8 @@ const ScheduleLeagueFilter = () => {
     </StyledLeagueFilter>
   );
 }
+
+const StyledLeagueFilter = styled.div`
+`;
 
 export default ScheduleLeagueFilter;

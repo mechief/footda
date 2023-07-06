@@ -5,17 +5,6 @@ import LineupPlayer from "./lineupPlayer";
 
 import { LineupWrapper } from "./fixtureStyled";
 
-const LineupTitle = styled.h3`
-  margin-bottom: 10px;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 400;
-`;
-
-const LineupSubstTitle = styled(LineupTitle)`
-  padding-top: 10px;
-`;
-
 const playerEventDefault = {goal: 0, assist: 0, yellow: false, red: false};
 
 const Lineup = memo(({ lineup, events }) => {
@@ -112,5 +101,16 @@ const Lineup = memo(({ lineup, events }) => {
     </LineupWrapper>
   );
 });
+
+const LineupTitle = styled.h3`
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+`;
+
+const LineupSubstTitle = styled(LineupTitle)`
+  padding-top: 10px;
+`;
 
 export default Lineup;

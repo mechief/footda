@@ -5,6 +5,16 @@ import styled from "styled-components";
 import TeamName from "../fixture/teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";
 
+const LiveSidebarFixtureTeam = memo(({ team }) => {
+  return (
+    <FixtureTeamWrapper>
+      {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
+      <DummyTeamLogoCustom size="28px" />
+      <StyledTeamName><TeamName team={team} /></StyledTeamName>
+    </FixtureTeamWrapper>
+  );
+});
+
 const FixtureTeamWrapper = styled.span`
   display: flex;
   flex-direction: column;
@@ -28,15 +38,5 @@ const StyledTeamName = styled.span`
   font-size: 14px;
   color: #222;
 `;
-
-const LiveSidebarFixtureTeam = memo(({ team }) => {
-  return (
-    <FixtureTeamWrapper>
-      {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
-      <DummyTeamLogoCustom size="28px" />
-      <StyledTeamName><TeamName team={team} /></StyledTeamName>
-    </FixtureTeamWrapper>
-  );
-});
 
 export default LiveSidebarFixtureTeam;

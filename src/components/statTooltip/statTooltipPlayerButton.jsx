@@ -7,20 +7,6 @@ import { openTooltip } from "../../slices/statTooltipSlice";
 
 import { IoMdStats } from "react-icons/io";
 
-const ButtonTooltip = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 40px;
-  border: none;
-  background: #e1e1e1;
-  font-size: 20px;
-  box-shadow: none;
-  border-radius: 0;
-  color: #000;
-`;
-
 const StatTooltipPlayerButton = memo(({ playerId }) => {
   const statTooltipPlayers = useSelector((state) => state.statTooltip.players);
   const dispatch = useDispatch();
@@ -43,5 +29,19 @@ const StatTooltipPlayerButton = memo(({ playerId }) => {
     </ButtonTooltip>
   );
 });
+
+const ButtonTooltip = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 40px;
+  border: none;
+  background: #e1e1e1;
+  font-size: 20px;
+  box-shadow: none;
+  border-radius: 0;
+  color: #000;
+`;
 
 export default StatTooltipPlayerButton;

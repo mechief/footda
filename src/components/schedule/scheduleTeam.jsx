@@ -6,6 +6,22 @@ import styled, { css } from "styled-components";
 import TeamName from "../fixture/teamName";
 import { DummyTeamLogo } from "../icons/footballIcons";
 
+const ScheduleTeam = memo(({ team, isHome = false, isWinner = false, align }) => {
+  return (
+    <FixtureTeamWrapper isHome={isHome}>
+      { isWinner && align === 'right' &&
+        <WinnerDot />
+      }
+      {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
+      <DummyTeamLogo size="20px" />
+      <StyledTeamName><TeamName team={team} /></StyledTeamName>
+      { isWinner && align !== 'right' &&
+        <WinnerDot />
+      }
+    </FixtureTeamWrapper>
+  );
+});
+
 const FixtureTeamWrapper = styled.span`
   flex: 1 1 100%;
   display: flex;
@@ -40,21 +56,5 @@ const StyledTeamName = styled.span`
 //   width: 20px;
 //   box-sizing: content-box;
 // `;
-
-const ScheduleTeam = memo(({ team, isHome = false, isWinner = false, align }) => {
-  return (
-    <FixtureTeamWrapper isHome={isHome}>
-      { isWinner && align === 'right' &&
-        <WinnerDot />
-      }
-      {/* <TeamLogo src={getTeamLogoURL(team.id)} /> */}
-      <DummyTeamLogo size="20px" />
-      <StyledTeamName><TeamName team={team} /></StyledTeamName>
-      { isWinner && align !== 'right' &&
-        <WinnerDot />
-      }
-    </FixtureTeamWrapper>
-  );
-});
 
 export default ScheduleTeam;

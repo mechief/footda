@@ -8,54 +8,6 @@ import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
 
 import ScheduleList from "./scheduleList";
 
-const ListContainer = styled.div`
-  flex: 1 1 auto;
-  position: relative;
-  padding: 20px 0 20px 40px;
-`;
-
-const WeekControler = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 40px;
-  margin-bottom: 20px;
-`;
-
-const WeekTitle = styled.h3`
-  font-size: 18px;
-  font-weight: 500;
-`;
-
-const ScheduleListWrapper = styled.div`
-  overflow: auto;
-  position: relative;
-  height: calc(100% - 60px);
-  padding-right: 4px;
-  &::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-  }
-  &::-webkit-scrollbar-thumb {
-    border-radius: 4px;
-    background-color: rgba(0, 0, 0, .4);
-    box-shadow: 0 0 1px rgba(255, 255, 255, .4);
-  }
-`;
-
-const LoadMoreButton = styled.button`
-  padding: 0.4em;
-  border: none;
-  line-height: 1;
-  background: none;
-  font-size: 20px;
-`;
-
-const NoListData = styled.div`
-  line-height: 100px;
-  text-align: center;
-`;
-
 const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus, calendarMonth, setCalendarMonth }) => {
   const [weekSunday, setWeekSunday] = useState(dayjs(focusDate).day(0).format('YYYY-MM-DD')); // 주 단위 기준 요일: 일요일
   const [filteredList, dates] = useWeekSchedule(weekSunday);
@@ -124,5 +76,53 @@ const ScheduleListSection = ({ focusDate, isScrollToFocus, setIsScrollToFocus, c
     </ListContainer>
   );
 }
+
+const ListContainer = styled.div`
+  flex: 1 1 auto;
+  position: relative;
+  padding: 20px 0 20px 40px;
+`;
+
+const WeekControler = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+  margin-bottom: 20px;
+`;
+
+const WeekTitle = styled.h3`
+  font-size: 18px;
+  font-weight: 500;
+`;
+
+const ScheduleListWrapper = styled.div`
+  overflow: auto;
+  position: relative;
+  height: calc(100% - 60px);
+  padding-right: 4px;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .4);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .4);
+  }
+`;
+
+const LoadMoreButton = styled.button`
+  padding: 0.4em;
+  border: none;
+  line-height: 1;
+  background: none;
+  font-size: 20px;
+`;
+
+const NoListData = styled.div`
+  line-height: 100px;
+  text-align: center;
+`;
 
 export default ScheduleListSection;

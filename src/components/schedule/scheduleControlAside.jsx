@@ -9,6 +9,30 @@ import { GrFilter, GrCalendar } from "react-icons/gr";
 import ScheduleCalendar from "./scheduleCalendar";
 import ScheduleLeagueFilter from "./scheduleLeagueFilter";
 
+const ScheduleControlAside = ({ focusDate, calendarMonth, setCalendarMonth }) => {
+  const dispatch = useDispatch();
+  const tab = useSelector(state => state.userSetting.scheduleAsideType);
+
+  const onClickTab = (tabNum) => {
+    dispatch(setScheduleAsideType(tabNum));
+  }
+
+  return (
+    <StyledControlAside tab={tab}>
+      <TabWrapper>
+        <TabButton onClick={() => onClickTab(0)} active={tab === 0}><GrFilter size='1.2em' /> <span>리그</span></TabButton>
+        <TabButton onClick={() => onClickTab(1)} active={tab === 1}><GrCalendar size='1.2em' /> <span>달력</span></TabButton>
+      </TabWrapper>
+      { tab === 0 &&
+        <ScheduleLeagueFilter />
+      }
+      { tab === 1 &&
+        <ScheduleCalendar focusDate={focusDate} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} />
+      }
+    </StyledControlAside>
+  );
+}
+
 const StyledControlAside = styled.aside`
   flex: 0 0 auto;
   overflow-y: auto;
@@ -43,29 +67,5 @@ const TabButton = styled.button`
     margin-right: 6px;
   }
 `;
-
-const ScheduleControlAside = ({ focusDate, calendarMonth, setCalendarMonth }) => {
-  const dispatch = useDispatch();
-  const tab = useSelector(state => state.userSetting.scheduleAsideType);
-
-  const onClickTab = (tabNum) => {
-    dispatch(setScheduleAsideType(tabNum));
-  }
-
-  return (
-    <StyledControlAside tab={tab}>
-      <TabWrapper>
-        <TabButton onClick={() => onClickTab(0)} active={tab === 0}><GrFilter size='1.2em' /> <span>리그</span></TabButton>
-        <TabButton onClick={() => onClickTab(1)} active={tab === 1}><GrCalendar size='1.2em' /> <span>달력</span></TabButton>
-      </TabWrapper>
-      { tab === 0 &&
-        <ScheduleLeagueFilter />
-      }
-      { tab === 1 &&
-        <ScheduleCalendar focusDate={focusDate} calendarMonth={calendarMonth} setCalendarMonth={setCalendarMonth} />
-      }
-    </StyledControlAside>
-  );
-}
 
 export default ScheduleControlAside;

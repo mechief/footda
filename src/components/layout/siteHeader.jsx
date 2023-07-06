@@ -5,6 +5,27 @@ import { Link } from "react-router-dom";
 
 import SiteHeaderNavLi from "./siteHeaderNavLi";
 
+const SiteHeader = () => {
+  return (
+    <StyledHeader>
+      <HeaderInner>
+        <HeaderLogo>
+          <Link to={'/'}>Footda</Link>
+        </HeaderLogo>
+        <HeaderNav>
+          <HeaderNavUl>
+            <SiteHeaderNavLi link="/" name="홈" />
+            <SiteHeaderNavLi link="/schedule" name="일정" />
+            <SiteHeaderNavLi link="/standing" name="순위" />
+            <SiteHeaderNavLi link="/top_players" name="기록" />
+            {/* <SiteHeaderNavLi link="/mypage" name="마이페이지" /> */}
+          </HeaderNavUl>
+        </HeaderNav>
+      </HeaderInner>
+    </StyledHeader>
+  );
+}
+
 const StyledHeader = styled.header`
   position: fixed;
   top: 0;
@@ -42,26 +63,5 @@ const HeaderNavUl = styled.ul`
   flex-wrap: nowrap;
   gap: 0 12px;
 `;
-
-const SiteHeader = () => {
-  return (
-    <StyledHeader>
-      <HeaderInner>
-        <HeaderLogo>
-          <Link to={'/'}>Footda</Link>
-        </HeaderLogo>
-        <HeaderNav>
-          <HeaderNavUl>
-            <SiteHeaderNavLi link="/" name="홈" />
-            <SiteHeaderNavLi link="/schedule" name="일정" />
-            <SiteHeaderNavLi link="/standing" name="순위" />
-            <SiteHeaderNavLi link="/top_players" name="기록" />
-            {/* <SiteHeaderNavLi link="/mypage" name="마이페이지" /> */}
-          </HeaderNavUl>
-        </HeaderNav>
-      </HeaderInner>
-    </StyledHeader>
-  );
-}
 
 export default SiteHeader;

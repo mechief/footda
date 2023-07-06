@@ -12,39 +12,6 @@ import { getLeagueNameKr } from "../../utils/league"
 
 import { DummyLeagueLogo, DummyAllLeagueLogo } from "../icons/footballIcons";
 
-const FilterButton = styled.button`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 100%;
-  margin-bottom: ${props => props.isAll ? '6px' : '3px'};
-  padding: 6px 16px;
-  border: none;
-  background: ${props => props.isActive ? '#bce3ec' : '#fff'};
-  border-radius: 4px;
-  &:hover {
-    background: ${props => props.isActive ? '#dfebee' : '#dfebee'};
-  }
-`;
-
-const LogoWrap = styled.span`
-  display: inline-block;
-  width: 50px;
-  height: 24px;
-  margin-right: 20px;
-  text-align: center;
-`;
-
-// const LogoImg = styled.img`
-//   display: block;
-//   height: 100%;
-//   margin: 0 auto;
-// `;
-
-const LeagueName = styled.span`
-  font-size: 14px;
-`;
-
 const ScheduleLeagueFilterButton = ({ leagueId }) => {
   const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
   const dispatch = useDispatch();
@@ -100,5 +67,38 @@ const ScheduleLeagueFilterButton = ({ leagueId }) => {
     </FilterButton>
   );
 }
+
+const FilterButton = styled.button`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-bottom: ${props => props.isAll ? '6px' : '3px'};
+  padding: 6px 16px;
+  border: none;
+  background: ${props => props.isActive ? '#bce3ec' : '#fff'};
+  border-radius: 4px;
+  &:hover {
+    background: ${props => props.isActive ? '#dfebee' : '#dfebee'};
+  }
+`;
+
+const LogoWrap = styled.span`
+  display: inline-block;
+  width: 50px;
+  height: 24px;
+  margin-right: 20px;
+  text-align: center;
+`;
+
+// const LogoImg = styled.img`
+//   display: block;
+//   height: 100%;
+//   margin: 0 auto;
+// `;
+
+const LeagueName = styled.span`
+  font-size: 14px;
+`;
 
 export default ScheduleLeagueFilterButton;

@@ -4,6 +4,29 @@ import styled from "styled-components";
 
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai"
 
+const ScheduleCalendarControl = memo(({ currentMonthObj, setCalendarMonth }) => {
+  const onClickPrev = () => {
+    setCalendarMonth(currentMonthObj.subtract(1, 'month').date(1));
+  }
+
+  const onClickNext = () => {
+    setCalendarMonth(currentMonthObj.add(1, 'month').date(1));
+  }
+
+  const onClickToday = () => {
+    setCalendarMonth(dayjs());
+  }
+  
+  return (
+    <Container>
+      <ButtonArrow onClick={onClickPrev}><AiOutlineLeft /><span className="sound-only">이전</span></ButtonArrow>
+      <MonthTitle>{currentMonthObj.format('YY.M')}</MonthTitle>
+      <ButtonArrow onClick={onClickNext}><AiOutlineRight /><span className="sound-only">다음</span></ButtonArrow>
+      <ButtonToday onClick={onClickToday}>오늘</ButtonToday>
+    </Container>
+  );
+});
+
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -38,28 +61,5 @@ const ButtonToday = styled.button`
     background: #dfebee;
   }
 `;
-
-const ScheduleCalendarControl = memo(({ currentMonthObj, setCalendarMonth }) => {
-  const onClickPrev = () => {
-    setCalendarMonth(currentMonthObj.subtract(1, 'month').date(1));
-  }
-
-  const onClickNext = () => {
-    setCalendarMonth(currentMonthObj.add(1, 'month').date(1));
-  }
-
-  const onClickToday = () => {
-    setCalendarMonth(dayjs());
-  }
-  
-  return (
-    <Container>
-      <ButtonArrow onClick={onClickPrev}><AiOutlineLeft /><span className="sound-only">이전</span></ButtonArrow>
-      <MonthTitle>{currentMonthObj.format('YY.M')}</MonthTitle>
-      <ButtonArrow onClick={onClickNext}><AiOutlineRight /><span className="sound-only">다음</span></ButtonArrow>
-      <ButtonToday onClick={onClickToday}>오늘</ButtonToday>
-    </Container>
-  );
-});
 
 export default ScheduleCalendarControl;

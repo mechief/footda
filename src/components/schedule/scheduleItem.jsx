@@ -10,52 +10,6 @@ import { getFormattedRound } from "../../utils/footballRound";
 import ScheduleTeam from "./scheduleTeam";
 import ScheduleScore from "./scheduleScore";
 
-const ItemWrapper = styled.div`
-  margin-bottom: 2px;
-  background: #f1f1f1;
-  border-radius: 4px;
-  &:hover {
-    background: #f5f5f5;
-  }
-`;
-
-const ItemInner = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: stretch;
-  padding: 4px 10px;
-  gap: 0 10px;
-  font-size: 13px;
-`;
-
-const Time = styled.span`
-  display: inline-block;
-  margin-right: 10px;
-`;
-
-const LeagueAndRound = styled.div`
-  margin-top: 6px;
-  color: #777;
-`;
-
-const TeamsAndScore = styled.div`
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  text-align: right;
-`;
-
-const TeamItem = styled.div`
-  display: flex;
-  gap: 0 10px;
-  & > span:first-child {
-    justify-content: flex-end;
-  }
-`;
-
 const ScheduleItem = memo(({ fixture }) => {
   return (
     <ItemWrapper>
@@ -106,5 +60,51 @@ const ScheduleItem = memo(({ fixture }) => {
     </ItemWrapper>
   );
 });
+
+const ItemWrapper = styled.div`
+  margin-bottom: 2px;
+  background: #f1f1f1;
+  border-radius: 4px;
+  &:hover {
+    background: #f5f5f5;
+  }
+`;
+
+const ItemInner = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 4px 10px;
+  gap: 0 10px;
+  font-size: 13px;
+`;
+
+const Time = styled.span`
+  display: inline-block;
+  margin-right: 10px;
+`;
+
+const LeagueAndRound = styled.div`
+  margin-top: 6px;
+  color: #777;
+`;
+
+const TeamsAndScore = styled.div`
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+`;
+
+const TeamItem = styled.div`
+  display: flex;
+  gap: 0 10px;
+  & > span:first-child {
+    justify-content: flex-end;
+  }
+`;
 
 export default ScheduleItem;

@@ -4,33 +4,6 @@ import styled from "styled-components";
 import TopPlayerTableTh from "./topPlayerTableTh";
 import TopPlayerTableTr from "./topPlayerTableTr";
 
-const Table = styled.table`
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 0 2px;
-  & th,
-  & td {
-    text-align: center;
-  }
-  & th {
-    background: #e5eef0;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  & td {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
-  tbody tr:nth-child(odd) td {
-    background: #fafafa;
-  }
-  tbody tr:nth-child(even) td {
-    background: #f5f5f5;
-  }
-`;
-
 const columns = [
   {dataName: 'rank', text: '순위'},
   {dataName: 'name', text: '이름'},
@@ -89,5 +62,32 @@ const TopPlayerTable = ({ playersData, orderData, setOrderData }) => {
     </Table>    
   );
 }
+
+const Table = styled.table`
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0 2px;
+  & th,
+  & td {
+    text-align: center;
+  }
+  & th {
+    background: #e5eef0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  & td {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  tbody tr:nth-child(odd) td {
+    background: #fafafa;
+  }
+  tbody tr:nth-child(even) td {
+    background: #f5f5f5;
+  }
+`;
 
 export default TopPlayerTable;

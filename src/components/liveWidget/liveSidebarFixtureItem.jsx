@@ -9,6 +9,38 @@ import LiveSidebarAddWidgetButton from "./liveSidebarAddWidgetButton";
 import FixtureScore from "../fixture/fixtureScore";
 import LiveSidebarFixtureTeam from "./liveSidebarFixtureTeam";
 
+const LiveSidebarFixtureItem = memo(({ fixture }) => {
+  return (
+    <ItemWrapper>
+      <LiveSidebarAddWidgetButton fixtureId={fixture.fixture.id} />
+      <span>{getLeagueNameKr(fixture.league?.id)}</span>
+      { fixture.fixture?.date && 
+        <span>{dayjs(fixture.fixture.date).format('HH:mm')}</span>
+      }
+      <ItemDetail>
+        { fixture.teams?.home?.id &&
+          <LiveSidebarFixtureTeam team={fixture.teams.home} />
+        }
+        <ItemSummary>
+          <ItemStatus>
+            { fixture.fixture?.status?.short &&
+              getFixtureStatusText(fixture.fixture.status.short)
+            }
+          </ItemStatus>
+          <ItemScore>
+            { getFixtureStatusCode(fixture.fixture.status.short) >= 0 &&
+              <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
+            }
+          </ItemScore>
+        </ItemSummary>
+        { fixture.teams?.away?.id &&
+          <LiveSidebarFixtureTeam team={fixture.teams.away} />
+        }
+      </ItemDetail>
+    </ItemWrapper>
+  );
+});
+
 const ItemWrapper = styled.li`
   display: flex;
   flex-direction: column;
@@ -50,37 +82,5 @@ const ItemScore = styled.span`
   font-size: 18px;
   font-weight: 700;
 `;
-
-const LiveSidebarFixtureItem = memo(({ fixture }) => {
-  return (
-    <ItemWrapper>
-      <LiveSidebarAddWidgetButton fixtureId={fixture.fixture.id} />
-      <span>{getLeagueNameKr(fixture.league?.id)}</span>
-      { fixture.fixture?.date && 
-        <span>{dayjs(fixture.fixture.date).format('HH:mm')}</span>
-      }
-      <ItemDetail>
-        { fixture.teams?.home?.id &&
-          <LiveSidebarFixtureTeam team={fixture.teams.home} />
-        }
-        <ItemSummary>
-          <ItemStatus>
-            { fixture.fixture?.status?.short &&
-              getFixtureStatusText(fixture.fixture.status.short)
-            }
-          </ItemStatus>
-          <ItemScore>
-            { getFixtureStatusCode(fixture.fixture.status.short) >= 0 &&
-              <FixtureScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
-            }
-          </ItemScore>
-        </ItemSummary>
-        { fixture.teams?.away?.id &&
-          <LiveSidebarFixtureTeam team={fixture.teams.away} />
-        }
-      </ItemDetail>
-    </ItemWrapper>
-  );
-});
 
 export default LiveSidebarFixtureItem;

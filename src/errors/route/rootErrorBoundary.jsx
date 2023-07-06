@@ -1,6 +1,48 @@
 import React from "react";
 import { useRouteError, isRouteErrorResponse, Link } from "react-router-dom";
-import styled, {createGlobalStyle} from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
+
+import { NotFoundError } from "../footballAPIError";
+
+const RootErrorBoundary = () => {
+  const error = useRouteError();
+
+  const showErrorSorry = () => {
+    if (isRouteErrorResponse(error)) {
+      if (error.status === 404) {
+        return <ErrorDetail>This page doesn't exist!</ErrorDetail>;
+      }
+  
+      if (error.status === 401) {
+        return <ErrorDetail>You aren't authorized to see this</ErrorDetail>;
+      }
+  
+      if (error.status === 503) {
+        return <ErrorDetail>Looks like our API is down</ErrorDetail>;
+      }
+    } else {
+      if (error instanceof NotFoundError) {
+        return <ErrorDetail>존재하지 않는 페이지를 요청했습니다.</ErrorDetail>
+      }
+    }
+  }
+
+  console.error(error);
+
+  return (
+    <>
+      <GlobalStyle />
+      <StyledErrorBoundary>
+        <ErrorText>에러가 발생했습니다.</ErrorText>
+        { error?.status
+          && <ErrorCode>{error.status}</ErrorCode>
+        }
+        {showErrorSorry()}
+        <StyledLink to='/'>홈으로</StyledLink>
+      </StyledErrorBoundary>
+    </>
+  );
+}
 
 const GlobalStyle = createGlobalStyle`
   html, body, #root {
@@ -45,48 +87,5 @@ const StyledLink = styled(Link)`
   color: #000;
   border-radius: 4px;
 `;
-
-
-import { NotFoundError } from "../footballAPIError";
-
-const RootErrorBoundary = () => {
-  const error = useRouteError();
-
-  const showErrorSorry = () => {
-    if (isRouteErrorResponse(error)) {
-      if (error.status === 404) {
-        return <ErrorDetail>This page doesn't exist!</ErrorDetail>;
-      }
-  
-      if (error.status === 401) {
-        return <ErrorDetail>You aren't authorized to see this</ErrorDetail>;
-      }
-  
-      if (error.status === 503) {
-        return <ErrorDetail>Looks like our API is down</ErrorDetail>;
-      }
-    } else {
-      if (error instanceof NotFoundError) {
-        return <ErrorDetail>존재하지 않는 페이지를 요청했습니다.</ErrorDetail>
-      }
-    }
-  }
-
-  console.error(error);
-
-  return (
-    <>
-      <GlobalStyle />
-      <StyledErrorBoundary>
-        <ErrorText>에러가 발생했습니다.</ErrorText>
-        { error?.status
-          && <ErrorCode>{error.status}</ErrorCode>
-        }
-        {showErrorSorry()}
-        <StyledLink to='/'>홈으로</StyledLink>
-      </StyledErrorBoundary>
-    </>
-  );
-}
 
 export default RootErrorBoundary;

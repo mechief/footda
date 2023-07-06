@@ -3,13 +3,6 @@ import styled from "styled-components";
 
 import PenaltyScore from "./penaltyScore";
 
-const StyledPenaltyScore = styled(PenaltyScore)`
-  display: inline-block;
-  padding-top: 6px;
-  font-size: 14px;
-  color: #555;
-`;
-
 const FixtureScore = memo(({ goals, score, shortStatus }) => {
   return (
     <>
@@ -20,5 +13,12 @@ const FixtureScore = memo(({ goals, score, shortStatus }) => {
     </>
   );
 });
+
+const StyledPenaltyScore = styled(PenaltyScore)`
+  display: inline-block;
+  padding-top: 6px;
+  font-size: 14px;
+  color: #555;
+`;
 
 export default FixtureScore;

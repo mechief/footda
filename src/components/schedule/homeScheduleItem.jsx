@@ -10,6 +10,45 @@ import { getFormattedRound } from "../../utils/footballRound";
 import HomeScheduleScore from "./homeScheduleScore";
 import ScheduleTeam from "./scheduleTeam";
 
+const HomeScheduleItem = memo(({ fixture }) => {
+  return (
+    <ItemWrapper>
+      <Link to={'/fixture/' + fixture.fixture.id} state={fixture}>
+        <ItemInner>
+          <TimeAndStatus>
+            { fixture.fixture?.date && 
+              <Time>{dayjs(fixture.fixture.date).format('HH:mm')}</Time>
+            }
+            { fixture.fixture?.status?.short &&
+              getFixtureStatusText(fixture.fixture.status.short)
+            }
+          </TimeAndStatus>
+          <TeamsAndScore>
+            { fixture.teams?.home?.id &&
+              <ScheduleTeam team={fixture.teams.home} isHome={true} isWinner={fixture.teams?.home?.winner} />
+            }
+            <ScoreWrapper>
+              { getFixtureStatusCode(fixture.fixture.status.short) >= 0
+                ? <HomeScheduleScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
+                : 'vs'
+              }
+            </ScoreWrapper>
+            { fixture.teams?.away?.id &&
+              <ScheduleTeam team={fixture.teams.away} isWinner={fixture.teams?.away?.winner} />
+            }
+          </TeamsAndScore>
+          <LeagueAndRound>
+            <span>{getLeagueNameForList(fixture.league?.id)}</span>
+            { fixture.league?.round && 
+              <span>&nbsp; {getFormattedRound(fixture.league.round)}</span>
+            }
+          </LeagueAndRound>
+        </ItemInner>
+      </Link>
+    </ItemWrapper>
+  );
+});
+
 const ItemWrapper = styled.div`
   margin-bottom: 2px;
   background: #f1f1f1;
@@ -58,44 +97,5 @@ const LeagueAndRound = styled.span`
   text-align: right;
   color: #777;
 `;
-
-const HomeScheduleItem = memo(({ fixture }) => {
-  return (
-    <ItemWrapper>
-      <Link to={'/fixture/' + fixture.fixture.id} state={fixture}>
-        <ItemInner>
-          <TimeAndStatus>
-            { fixture.fixture?.date && 
-              <Time>{dayjs(fixture.fixture.date).format('HH:mm')}</Time>
-            }
-            { fixture.fixture?.status?.short &&
-              getFixtureStatusText(fixture.fixture.status.short)
-            }
-          </TimeAndStatus>
-          <TeamsAndScore>
-            { fixture.teams?.home?.id &&
-              <ScheduleTeam team={fixture.teams.home} isHome={true} isWinner={fixture.teams?.home?.winner} />
-            }
-            <ScoreWrapper>
-              { getFixtureStatusCode(fixture.fixture.status.short) >= 0
-                ? <HomeScheduleScore goals={fixture.goals} score={fixture.score} shortStatus={fixture.fixture.status.short} />
-                : 'vs'
-              }
-            </ScoreWrapper>
-            { fixture.teams?.away?.id &&
-              <ScheduleTeam team={fixture.teams.away} isWinner={fixture.teams?.away?.winner} />
-            }
-          </TeamsAndScore>
-          <LeagueAndRound>
-            <span>{getLeagueNameForList(fixture.league?.id)}</span>
-            { fixture.league?.round && 
-              <span>&nbsp; {getFormattedRound(fixture.league.round)}</span>
-            }
-          </LeagueAndRound>
-        </ItemInner>
-      </Link>
-    </ItemWrapper>
-  );
-});
 
 export default HomeScheduleItem;

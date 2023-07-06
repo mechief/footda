@@ -7,16 +7,6 @@ import { dayOfWeekToKR } from "../../utils/dates"
 
 import HomeScheduleItem from "./homeScheduleItem";
 
-const Container = styled.div`
-  margin-bottom: 15px;
-`;
-
-const DateTitle = styled.h3`
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 400;
-`;
-
 const HomeScheduleSection = ({ date }) => {
   const { isLoading, isError, data, error } = useDateSchedule(date);
 
@@ -41,5 +31,15 @@ const HomeScheduleSection = ({ date }) => {
     </Container>
   );
 }
+
+const Container = styled.div`
+  margin-bottom: 15px;
+`;
+
+const DateTitle = styled.h3`
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 400;
+`;
 
 export default HomeScheduleSection;

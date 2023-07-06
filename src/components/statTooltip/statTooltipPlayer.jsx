@@ -9,13 +9,6 @@ import * as Popover from '@radix-ui/react-popover';
 import StatTooltipPlayerButton from "./statTooltipPlayerButton"
 import StatTooltipPlayerDetail from "./statTooltipPlayerDetail";
 
-const ButtonWrapper = styled.span`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-`;
-
 const StatTooltipPlayer = ({ playerId }) => {
   const activeTooltip = useSelector((state) => state.statTooltip.activeTooltip);
   
@@ -41,5 +34,12 @@ const StatTooltipPlayer = ({ playerId }) => {
     </>
   )
 };
+
+const ButtonWrapper = styled.span`
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+`;
 
 export default StatTooltipPlayer;

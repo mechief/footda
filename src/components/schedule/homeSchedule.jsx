@@ -5,18 +5,6 @@ import useExistsDate from "../../hooks/schedule/useExistsDate";
 
 import HomeScheduleSection from "./homeScheduleSection";
 
-const LoadButton = styled.button`
-  width: 100%;
-  padding: 0.4em;
-  border: none;
-  font-size: 16px;
-  ${props => !props.disabled && css`
-    &:hover {
-      background: #f5f5f5;
-    }
-  `}
-`;
-
 const HomeSchedule = () => {
   const { 
     data, 
@@ -45,5 +33,17 @@ const HomeSchedule = () => {
     </>
   );
 }
+
+const LoadButton = styled.button`
+  width: 100%;
+  padding: 0.4em;
+  border: none;
+  font-size: 16px;
+  ${props => !props.disabled && css`
+    &:hover {
+      background: #f5f5f5;
+    }
+  `}
+`;
 
 export default HomeSchedule;

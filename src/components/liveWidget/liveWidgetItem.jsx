@@ -12,6 +12,45 @@ import LiveWidgetShowFullButton from "./liveWidgetShowFullButton";
 import FixtureScore from "../fixture/fixtureScore";
 import LiveSidebarFixtureTeam from "./liveSidebarFixtureTeam";
 
+const LiveWidgetItem = memo(({ fixtureData }) => {
+  const dispatch = useDispatch();
+
+  const onClickRemove = () => {
+    dispatch(removeLiveWidget(fixtureData.fixture.id));
+  }
+
+  return (
+    <ItemWrapper>
+      <RemoveWidgetButton type="button" onClick={onClickRemove}>닫기</RemoveWidgetButton>
+      <span>{getLeagueNameKr(fixtureData.league?.id)}</span>
+      { fixtureData.fixture?.date && 
+        <span>{dayjs(fixtureData.fixture.date).format('HH:mm')}</span>
+      }
+      <ItemDetail>
+        { fixtureData.teams?.home?.id &&
+          <LiveSidebarFixtureTeam team={fixtureData.teams.home} />
+        }
+        <ItemSummary>
+          <ItemStatus>
+            { fixtureData.fixture?.status?.short &&
+              getFixtureStatusText(fixtureData.fixture.status.short)
+            }
+          </ItemStatus>
+          <ItemScore>
+            { getFixtureStatusCode(fixtureData.fixture.status.short) >= 0 &&
+              <FixtureScore goals={fixtureData.goals} score={fixtureData.score} shortStatus={fixtureData.fixture.status.short} />
+            }
+          </ItemScore>
+        </ItemSummary>
+        { fixtureData.teams?.away?.id &&
+          <LiveSidebarFixtureTeam team={fixtureData.teams.away} />
+        }
+      </ItemDetail>
+      <LiveWidgetShowFullButton fixtureData={fixtureData} />
+    </ItemWrapper>
+  );
+});
+
 const ItemWrapper = styled.li`
   display: flex;
   flex-direction: column;
@@ -62,44 +101,5 @@ const ItemScore = styled.span`
   font-size: 18px;
   font-weight: 700;
 `;
-
-const LiveWidgetItem = memo(({ fixtureData }) => {
-  const dispatch = useDispatch();
-
-  const onClickRemove = () => {
-    dispatch(removeLiveWidget(fixtureData.fixture.id));
-  }
-
-  return (
-    <ItemWrapper>
-      <RemoveWidgetButton type="button" onClick={onClickRemove}>닫기</RemoveWidgetButton>
-      <span>{getLeagueNameKr(fixtureData.league?.id)}</span>
-      { fixtureData.fixture?.date && 
-        <span>{dayjs(fixtureData.fixture.date).format('HH:mm')}</span>
-      }
-      <ItemDetail>
-        { fixtureData.teams?.home?.id &&
-          <LiveSidebarFixtureTeam team={fixtureData.teams.home} />
-        }
-        <ItemSummary>
-          <ItemStatus>
-            { fixtureData.fixture?.status?.short &&
-              getFixtureStatusText(fixtureData.fixture.status.short)
-            }
-          </ItemStatus>
-          <ItemScore>
-            { getFixtureStatusCode(fixtureData.fixture.status.short) >= 0 &&
-              <FixtureScore goals={fixtureData.goals} score={fixtureData.score} shortStatus={fixtureData.fixture.status.short} />
-            }
-          </ItemScore>
-        </ItemSummary>
-        { fixtureData.teams?.away?.id &&
-          <LiveSidebarFixtureTeam team={fixtureData.teams.away} />
-        }
-      </ItemDetail>
-      <LiveWidgetShowFullButton fixtureData={fixtureData} />
-    </ItemWrapper>
-  );
-});
 
 export default LiveWidgetItem;

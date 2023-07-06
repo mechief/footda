@@ -7,15 +7,6 @@ import useScheduleCounts from "../../hooks/schedule/useScheduleCounts";
 import ScheduleCalendarControl from "./scheduleCalendarControl";
 import ScheduleCalendarTr from "./scheduleCalendarTr";
 
-const CalendarTable = styled.table`
-  overflow: hidden;
-  width: 100%;
-  table-layout: fixed;
-  border-radius: 8px;
-  border-spacing: 1px;
-  border-collapse: separate;
-`;
-
 const ScheduleCalendar = memo(({ focusDate, calendarMonth, setCalendarMonth }) => {
   const dayjsObj = dayjs.isDayjs(calendarMonth) ? calendarMonth : dayjs(focusDate);
   const currentMonth = dayjsObj.month();
@@ -47,5 +38,14 @@ const ScheduleCalendar = memo(({ focusDate, calendarMonth, setCalendarMonth }) =
     </>
   );
 });
+
+const CalendarTable = styled.table`
+  overflow: hidden;
+  width: 100%;
+  table-layout: fixed;
+  border-radius: 8px;
+  border-spacing: 1px;
+  border-collapse: separate;
+`;
 
 export default ScheduleCalendar;

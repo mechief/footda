@@ -5,6 +5,21 @@ import styled from "styled-components";
 
 import { getLeagueNameKr } from "../../utils/league";
 
+const StandingLeaguesItem = memo(({ leagueId }) => {
+  const isActive = () => {
+    const match = useMatch("/standing/" + leagueId);
+    const matchDefault = useMatch("/standing");
+    return Boolean(match) ? "active" : (leagueId == 39 && Boolean(matchDefault) ? "active" : "");
+  }
+
+  return (
+    <ItemLink to={`/standing/${leagueId}`} className={isActive()}>
+      <ItemImg src={`https://media-1.api-sports.io/football/leagues/${leagueId}.png`} alt="" />
+      <span>{getLeagueNameKr(leagueId)}</span>
+    </ItemLink>
+  );
+});
+
 const ItemLink = styled(Link)`
   display: flex;
   width: 120px;
@@ -27,20 +42,5 @@ const ItemImg = styled.img`
   height: 60px;
   margin-bottom: 12px;
 `;
-
-const StandingLeaguesItem = memo(({ leagueId }) => {
-  const isActive = () => {
-    const match = useMatch("/standing/" + leagueId);
-    const matchDefault = useMatch("/standing");
-    return Boolean(match) ? "active" : (leagueId == 39 && Boolean(matchDefault) ? "active" : "");
-  }
-
-  return (
-    <ItemLink to={`/standing/${leagueId}`} className={isActive()}>
-      <ItemImg src={`https://media-1.api-sports.io/football/leagues/${leagueId}.png`} alt="" />
-      <span>{getLeagueNameKr(leagueId)}</span>
-    </ItemLink>
-  );
-});
 
 export default StandingLeaguesItem;

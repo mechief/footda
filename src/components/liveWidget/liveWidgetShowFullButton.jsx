@@ -7,14 +7,6 @@ import { addLiveWidget, removeLiveWidget } from "../../slices/liveWidgetSlice";
 
 import { IconOpenInNewReverse } from "../icons/commonIcons";
 
-const ShowFullButton = styled.button`
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  border: none;
-  background: none;
-`;
-
 const LiveWidgetShowFullButton = memo(({ fixtureData }) => {
   const currentFixtureId = useSelector((state) => state.currentFixture.id);
   const dispatch = useDispatch();
@@ -33,5 +25,13 @@ const LiveWidgetShowFullButton = memo(({ fixtureData }) => {
     </ShowFullButton>
   );
 });
+
+const ShowFullButton = styled.button`
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  border: none;
+  background: none;
+`;
 
 export default LiveWidgetShowFullButton;

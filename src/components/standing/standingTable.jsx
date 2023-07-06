@@ -6,33 +6,6 @@ import { getLeagueNameKr, getLeagueRule } from "../../utils/league";
 import StandingTableTh from "./standingTableTh";
 import StandingTableTr from "./standingTableTr";
 
-const Table = styled.table`
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  border-collapse: separate;
-  border-spacing: 0 2px;
-  & th,
-  & td {
-    text-align: center;
-  }
-  & th {
-    background: #e5eef0;
-    font-size: 14px;
-    font-weight: 500;
-  }
-  & td {
-    padding: 6px 12px;
-    font-size: 13px;
-  }
-  tbody tr:nth-child(odd) td {
-    background: #fafafa;
-  }
-  tbody tr:nth-child(even) td {
-    background: #f5f5f5;
-  }
-`;
-
 const columns = [
   {dataName: 'rank', text: '순위'},
   {dataName: 'teamName', text: '팀명'},
@@ -85,5 +58,32 @@ const StandingTable = ({
     </Table>    
   );
 }
+
+const Table = styled.table`
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0 2px;
+  & th,
+  & td {
+    text-align: center;
+  }
+  & th {
+    background: #e5eef0;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  & td {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+  tbody tr:nth-child(odd) td {
+    background: #fafafa;
+  }
+  tbody tr:nth-child(even) td {
+    background: #f5f5f5;
+  }
+`;
 
 export default StandingTable;

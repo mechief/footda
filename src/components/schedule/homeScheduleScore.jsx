@@ -5,18 +5,6 @@ import { getFixtureStatusCode } from "../../utils/fixture";
 
 import PenaltyScore from "../fixture/penaltyScore";
 
-const WinnerScore = styled.strong`
-  font-weight: 700;
-  color: #3b87bb;
-`;
-
-const StyledPenaltyScore = styled(PenaltyScore)`
-  display: inline-block;
-  padding: 0 4px;
-  font-size: 12px;
-  color: #e14444;
-`;
-
 const HomeScheduleFixture = memo(({ goals, score, shortStatus }) => {
 
   const showBasicScore = () => {
@@ -49,5 +37,17 @@ const HomeScheduleFixture = memo(({ goals, score, shortStatus }) => {
     </>
   );
 });
+
+const WinnerScore = styled.strong`
+  font-weight: 700;
+  color: #3b87bb;
+`;
+
+const StyledPenaltyScore = styled(PenaltyScore)`
+  display: inline-block;
+  padding: 0 4px;
+  font-size: 12px;
+  color: #e14444;
+`;
 
 export default HomeScheduleFixture;

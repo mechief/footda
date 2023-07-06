@@ -5,10 +5,6 @@ import ErrorBoundary from "../components/error/errorBoundary";
 
 import HomeSchedule from "../components/schedule/homeSchedule";
 
-const ScheduleFixtureContainer = styled.div`
-  padding: 20px 0;
-`;
-
 const Home = () => {
   return (
     <ScheduleFixtureContainer>
@@ -18,5 +14,9 @@ const Home = () => {
     </ScheduleFixtureContainer>
   );
 }
+
+const ScheduleFixtureContainer = styled.div`
+  padding: 20px 0;
+`;
 
 export default Home;

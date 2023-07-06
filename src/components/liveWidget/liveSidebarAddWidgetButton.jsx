@@ -4,30 +4,6 @@ import styled, { css } from "styled-components";
 
 import { addLiveWidget } from "../../slices/liveWidgetSlice";
 
-const AddWidgetButton = styled.button`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  padding: 2px 4px;
-  border: none;
-  border-radius: 2px;
-  background: #e5caab;
-`;
-
-const AddWidgetSpan = styled.span`
-  display: block;
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  padding: 2px 4px;
-  border: none;
-  border-radius: 2px;
-  background: #c0b4a6;
-  ${props => props.isCurrent && css`
-    background: #c3c4e0;
-  `}
-`;
-
 const LiveSidebarAddWidgetButton = ({ fixtureId }) => {
   const currentFixtureId = useSelector((state) => state.currentFixture.id);
   const widgetFixtureIds = useSelector((state) => state.liveWidget.widgetFixtureIds);
@@ -53,5 +29,29 @@ const LiveSidebarAddWidgetButton = ({ fixtureId }) => {
     </>
   );
 }
+
+const AddWidgetButton = styled.button`
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px 4px;
+  border: none;
+  border-radius: 2px;
+  background: #e5caab;
+`;
+
+const AddWidgetSpan = styled.span`
+  display: block;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  padding: 2px 4px;
+  border: none;
+  border-radius: 2px;
+  background: #c0b4a6;
+  ${props => props.isCurrent && css`
+    background: #c3c4e0;
+  `}
+`;
 
 export default LiveSidebarAddWidgetButton;

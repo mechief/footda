@@ -1,6 +1,12 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
 
+const StandingFormItem = memo(({ matchResult }) => {
+  return (
+    <StyledFormItem matchResult={matchResult}>{matchResult}</StyledFormItem>
+  );
+});
+
 const StyledFormItem = styled.span`
   display: inline-block;
   vertical-align: middle;
@@ -25,11 +31,5 @@ const StyledFormItem = styled.span`
     background: #e55252;
   `}
 `;
-
-const StandingFormItem = memo(({ matchResult }) => {
-  return (
-    <StyledFormItem matchResult={matchResult}>{matchResult}</StyledFormItem>
-  );
-});
 
 export default StandingFormItem;

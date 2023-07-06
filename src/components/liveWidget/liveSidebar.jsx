@@ -6,6 +6,26 @@ import { closeSidebar } from "../../slices/liveWidgetSlice";
 
 import LiveSidebarList from "./liveSidebarList";
 
+const LiveSidebar = () => {
+  const dispatch = useDispatch();
+
+  const onClickClose = () => {
+    dispatch(closeSidebar());
+  }
+
+  return (
+    <LiveSidebarWrapper>
+      <LiveSidebarTitleArea>
+        <LiveSidebarTitle>오늘의 경기</LiveSidebarTitle>
+        <CloseButton type="button" onClick={onClickClose}>닫기</CloseButton>
+      </LiveSidebarTitleArea>
+      <LiveSidebarContent>
+        <LiveSidebarList />
+      </LiveSidebarContent>
+    </LiveSidebarWrapper>
+  );
+}
+
 const LiveSidebarWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -59,25 +79,5 @@ const LiveSidebarContent = styled.div`
   width: 100%;
   padding: 0 10px 20px;
 `;
-
-const LiveSidebar = () => {
-  const dispatch = useDispatch();
-
-  const onClickClose = () => {
-    dispatch(closeSidebar());
-  }
-
-  return (
-    <LiveSidebarWrapper>
-      <LiveSidebarTitleArea>
-        <LiveSidebarTitle>오늘의 경기</LiveSidebarTitle>
-        <CloseButton type="button" onClick={onClickClose}>닫기</CloseButton>
-      </LiveSidebarTitleArea>
-      <LiveSidebarContent>
-        <LiveSidebarList />
-      </LiveSidebarContent>
-    </LiveSidebarWrapper>
-  );
-}
 
 export default LiveSidebar;

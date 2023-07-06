@@ -1,6 +1,36 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
+const StandingTableTh = ({ dataName, text, orderType, setOrderType }) => {
+  const [orderData, orderDirection] = orderType.split(' ');
+
+  const onClickReOrder = () => {
+    if (dataName == 'teamName') {
+      return;
+    }
+
+    if (orderData != dataName) {
+      // rank - asc First, others - desc First
+      setOrderType(dataName + ' ' + (dataName === 'rank' ? 'asc' : 'desc'));
+    } else {
+      setOrderType(dataName + ' ' + (orderDirection === 'asc' ? 'desc' : 'asc'));
+    }
+  }
+
+  return (
+    <th>
+      <ReOrderButton onClick={onClickReOrder} clickable={dataName == 'teamName' ? false : true}>
+        <OrderTextWrapper>
+          <span>{text}</span>
+          {orderData === dataName &&
+            <OrderArrow direction={orderDirection} />
+          }
+        </OrderTextWrapper>
+      </ReOrderButton>
+    </th>
+  );
+}
+
 const ReOrderButton = styled.button`
   display: block;
   width: 100%;
@@ -39,35 +69,5 @@ const OrderArrow = styled.span`
     margin-top: -3px;
   `}
 `;
-
-const StandingTableTh = ({ dataName, text, orderType, setOrderType }) => {
-  const [orderData, orderDirection] = orderType.split(' ');
-
-  const onClickReOrder = () => {
-    if (dataName == 'teamName') {
-      return;
-    }
-
-    if (orderData != dataName) {
-      // rank - asc First, others - desc First
-      setOrderType(dataName + ' ' + (dataName === 'rank' ? 'asc' : 'desc'));
-    } else {
-      setOrderType(dataName + ' ' + (orderDirection === 'asc' ? 'desc' : 'asc'));
-    }
-  }
-
-  return (
-    <th>
-      <ReOrderButton onClick={onClickReOrder} clickable={dataName == 'teamName' ? false : true}>
-        <OrderTextWrapper>
-          <span>{text}</span>
-          {orderData === dataName &&
-            <OrderArrow direction={orderDirection} />
-          }
-        </OrderTextWrapper>
-      </ReOrderButton>
-    </th>
-  );
-}
 
 export default StandingTableTh;

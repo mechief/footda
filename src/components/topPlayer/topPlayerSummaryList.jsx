@@ -3,24 +3,6 @@ import styled from "styled-components";
 
 import TopPlayerSummaryItem from "./topPlayerSummaryItem";
 
-const SummaryListWrapper = styled.div`
-  flex: 1 0 calc(50% - 20px);
-`;
-
-const SummaryTitle = styled.h3`
-  margin-bottom: 20px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-`; 
-
-const SummaryList = styled.ul`
-  padding: 12px 16px;
-  border: 1px solid #eaeaea;
-  background: #f5f5f5;
-  border-radius: 4px;
-`;
-
 const TopPlayerSummaryList = ({ listData, type }) => {
   return (
     <>
@@ -39,5 +21,23 @@ const TopPlayerSummaryList = ({ listData, type }) => {
     </>
   );
 }
+
+const SummaryListWrapper = styled.div`
+  flex: 1 0 calc(50% - 20px);
+`;
+
+const SummaryTitle = styled.h3`
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+`; 
+
+const SummaryList = styled.ul`
+  padding: 12px 16px;
+  border: 1px solid #eaeaea;
+  background: #f5f5f5;
+  border-radius: 4px;
+`;
 
 export default TopPlayerSummaryList;

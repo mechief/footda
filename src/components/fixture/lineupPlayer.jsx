@@ -7,6 +7,61 @@ import StatTooltipPlayer from "../statTooltip/statTooltipPlayer";
 import { HiOutlineArrowLeftCircle, HiOutlineArrowRightCircle } from "react-icons/hi2";
 import { IconGoal, IconAssist, IconYellowCard, IconRedCard } from "../icons/fixtureIcons";
 
+const LineupPlayer = memo(({ player, playerEvent, substTimes, isSubstOut = false }) => {
+  return (
+    <LineupPlayerWrapper isSubstOut={isSubstOut}>
+      { player.pos &&
+        <PlayerPosition>{positionTo2Char(player.pos)}</PlayerPosition>
+      }
+      <PlayerNumber>{player.number}</PlayerNumber>
+      <NameAndEvent>
+        <PlayerName>{player.name}</PlayerName>
+        <PlayerEventWrapper>
+          { substTimes && 
+            <>
+              { substTimes.in[player.id] &&
+                <PlayerEventIcon>
+                  <HiOutlineArrowLeftCircle size="1.25em" />
+                  <SubstTime>{substTimes.in[player.id]}`</SubstTime>
+                </PlayerEventIcon>
+              }
+              { substTimes.out[player.id] &&
+                <PlayerEventIcon>
+                  <HiOutlineArrowRightCircle size="1.25em" />
+                  <SubstTime>{substTimes.out[player.id]}`</SubstTime>
+                </PlayerEventIcon>
+              }
+            </>
+          }
+          { playerEvent && 
+            <>
+              { playerEvent.goal > 0 &&
+                <PlayerEventIcon>
+                  <IconGoal />
+                  <PlayerEventCount>{playerEvent.goal}</PlayerEventCount>
+                </PlayerEventIcon>
+              }
+              { playerEvent.assist > 0 &&
+                <PlayerEventIcon>
+                  <IconAssist />
+                  <PlayerEventCount>{playerEvent.assist}</PlayerEventCount>
+                </PlayerEventIcon>
+              }
+              { playerEvent.yellow &&
+                <IconYellowCard />
+              }
+              { playerEvent.red &&
+                <IconRedCard />
+              }
+            </>
+          }
+        </PlayerEventWrapper>
+      </NameAndEvent>
+      <StatTooltipPlayer playerId={player.id} />
+    </LineupPlayerWrapper>
+  );
+});
+
 const LineupPlayerWrapper = styled.div`
   display: flex;
   flex-wrap: nowrap;
@@ -74,60 +129,5 @@ const PlayerEventCount = styled.span`
   font-size: 11px;
   font-weight: 500;
 `;
-
-const LineupPlayer = memo(({ player, playerEvent, substTimes, isSubstOut = false }) => {
-  return (
-    <LineupPlayerWrapper isSubstOut={isSubstOut}>
-      { player.pos &&
-        <PlayerPosition>{positionTo2Char(player.pos)}</PlayerPosition>
-      }
-      <PlayerNumber>{player.number}</PlayerNumber>
-      <NameAndEvent>
-        <PlayerName>{player.name}</PlayerName>
-        <PlayerEventWrapper>
-          { substTimes && 
-            <>
-              { substTimes.in[player.id] &&
-                <PlayerEventIcon>
-                  <HiOutlineArrowLeftCircle size="1.25em" />
-                  <SubstTime>{substTimes.in[player.id]}`</SubstTime>
-                </PlayerEventIcon>
-              }
-              { substTimes.out[player.id] &&
-                <PlayerEventIcon>
-                  <HiOutlineArrowRightCircle size="1.25em" />
-                  <SubstTime>{substTimes.out[player.id]}`</SubstTime>
-                </PlayerEventIcon>
-              }
-            </>
-          }
-          { playerEvent && 
-            <>
-              { playerEvent.goal > 0 &&
-                <PlayerEventIcon>
-                  <IconGoal />
-                  <PlayerEventCount>{playerEvent.goal}</PlayerEventCount>
-                </PlayerEventIcon>
-              }
-              { playerEvent.assist > 0 &&
-                <PlayerEventIcon>
-                  <IconAssist />
-                  <PlayerEventCount>{playerEvent.assist}</PlayerEventCount>
-                </PlayerEventIcon>
-              }
-              { playerEvent.yellow &&
-                <IconYellowCard />
-              }
-              { playerEvent.red &&
-                <IconRedCard />
-              }
-            </>
-          }
-        </PlayerEventWrapper>
-      </NameAndEvent>
-      <StatTooltipPlayer playerId={player.id} />
-    </LineupPlayerWrapper>
-  );
-});
 
 export default LineupPlayer;

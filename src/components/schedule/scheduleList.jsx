@@ -6,15 +6,6 @@ import { dayOfWeekToKR } from "../../utils/dates"
 
 import ScheduleItem from "./scheduleItem";
 
-const DateTitle = styled.h4`
-  padding: 16px 0 8px;
-  font-size: 16px;
-  font-weight: 400;
-  &:first-of-type {
-    padding-top: 0;
-  }
-`;
-
 const ScheduleList = memo(({ fixtures, date }) => {
   const dayjsDate = useMemo(() => {
     return dayjs(date);
@@ -33,5 +24,14 @@ const ScheduleList = memo(({ fixtures, date }) => {
     </>
   );
 });
+
+const DateTitle = styled.h4`
+  padding: 16px 0 8px;
+  font-size: 16px;
+  font-weight: 400;
+  &:first-of-type {
+    padding-top: 0;
+  }
+`;
 
 export default ScheduleList;

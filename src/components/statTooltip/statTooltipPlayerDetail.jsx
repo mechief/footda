@@ -4,6 +4,62 @@ import styled from "styled-components";
 
 import LeagueStat from "./leagueStat";
 
+const StatTooltipPlayerDetail = ({ playerId }) => {
+  const stat = useSelector((state) => state.statTooltip.players[playerId]);
+
+  const TheadByPosition = () => {
+    if (stat.position == 'Goalkeeper') {
+      return (
+        <tr>
+          <th>&nbsp;</th>
+          <th>경기(선발)</th>
+          <th>출장시간</th>
+          <th>실점</th>
+          <th>선방</th>
+        </tr>
+      );
+    }
+    return (
+      <tr>
+        <th>&nbsp;</th>
+        <th>경기(선발)</th>
+        <th>출장시간</th>
+        <th>득점</th>
+        <th>도움</th>
+      </tr>
+    );
+  }
+  
+  return (
+    <StatTooltipPlayerWrapper>
+      <TooltipProfile>
+        {/* <PlayerPhoto src={stat.player.photo} /> */}
+        <TooltipName>{stat.player.name}</TooltipName>
+        <TooltipAge>{stat.player.age}세</TooltipAge>
+      </TooltipProfile>
+      <LeagueStatTable>
+        <caption>시즌 기록</caption>
+        <LeagueStatThead>{TheadByPosition()}</LeagueStatThead>
+        <LeagueStatTbody>
+          <LeagueStat
+            key="playerTooltip_seasonTotal"
+            leagueStat={stat.seasonTotal}
+            position={stat.position} 
+            isSeasonTotal={true}
+          ></LeagueStat>
+          { stat.statistics.map(leagueStat => 
+            <LeagueStat 
+              key={'playerTooltip_' + leagueStat.summary.leagueId} 
+              leagueStat={leagueStat.summary} 
+              position={stat.position}
+            ></LeagueStat>
+          )}
+        </LeagueStatTbody>
+      </LeagueStatTable>
+    </StatTooltipPlayerWrapper>
+  )
+};
+
 const StatTooltipPlayerWrapper = styled.div`
   max-width: 400px;
   padding: 25px;
@@ -68,62 +124,5 @@ const LeagueStatTbody = styled.tbody`
     }
   }
 `;
-
-
-const StatTooltipPlayerDetail = ({ playerId }) => {
-  const stat = useSelector((state) => state.statTooltip.players[playerId]);
-
-  const TheadByPosition = () => {
-    if (stat.position == 'Goalkeeper') {
-      return (
-        <tr>
-          <th>&nbsp;</th>
-          <th>경기(선발)</th>
-          <th>출장시간</th>
-          <th>실점</th>
-          <th>선방</th>
-        </tr>
-      );
-    }
-    return (
-      <tr>
-        <th>&nbsp;</th>
-        <th>경기(선발)</th>
-        <th>출장시간</th>
-        <th>득점</th>
-        <th>도움</th>
-      </tr>
-    );
-  }
-  
-  return (
-    <StatTooltipPlayerWrapper>
-      <TooltipProfile>
-        {/* <PlayerPhoto src={stat.player.photo} /> */}
-        <TooltipName>{stat.player.name}</TooltipName>
-        <TooltipAge>{stat.player.age}세</TooltipAge>
-      </TooltipProfile>
-      <LeagueStatTable>
-        <caption>시즌 기록</caption>
-        <LeagueStatThead>{TheadByPosition()}</LeagueStatThead>
-        <LeagueStatTbody>
-          <LeagueStat
-            key="playerTooltip_seasonTotal"
-            leagueStat={stat.seasonTotal}
-            position={stat.position} 
-            isSeasonTotal={true}
-          ></LeagueStat>
-          { stat.statistics.map(leagueStat => 
-            <LeagueStat 
-              key={'playerTooltip_' + leagueStat.summary.leagueId} 
-              leagueStat={leagueStat.summary} 
-              position={stat.position}
-            ></LeagueStat>
-          )}
-        </LeagueStatTbody>
-      </LeagueStatTable>
-    </StatTooltipPlayerWrapper>
-  )
-};
 
 export default StatTooltipPlayerDetail;

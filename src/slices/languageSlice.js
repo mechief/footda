@@ -17,7 +17,7 @@ const languageSlice = createSlice({
       
       state[lang].teams = action.payload.teams;
       state[lang].teamsLength = Object.keys(action.payload.teams).length;
-      state.expireTime.teams = Date.now() + 86400; // 1일 후 
+      state.expireTime.teams = Date.now() + 86400000; // 1일 후 
     },
   }
 });

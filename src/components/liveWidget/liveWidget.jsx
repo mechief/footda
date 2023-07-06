@@ -7,19 +7,6 @@ import { getScheduleFixturesByIds } from "../../api/scheduleFixture";
 
 import LiveWidgetItem from "./liveWidgetItem";
 
-const LiveWidgetArea = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  flex-wrap: nowrap;
-  justify-content: flex-start;
-  align-items: center;
-  position: fixed;
-  right: 10px;
-  bottom: 10px;
-  z-index: 50;
-  width: 300px;
-`;
-
 const liveWidgetQuery = (widgetFixtureIds) => ({
   queryKey: ['liveWidget', widgetFixtureIds.join('-')],
   queryFn: async () => getScheduleFixturesByIds(widgetFixtureIds),
@@ -50,5 +37,18 @@ const LiveWidget = () => {
     </>
   );
 }
+
+const LiveWidgetArea = styled.div`
+  display: flex;
+  flex-direction: column-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 50;
+  width: 300px;
+`;
 
 export default LiveWidget;

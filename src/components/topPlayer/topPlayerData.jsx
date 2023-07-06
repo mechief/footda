@@ -5,8 +5,6 @@ import useTopPlayer from "../../hooks/topPlayer/useTopPlayer";
 import TopPlayerSummaryList from "./topPlayerSummaryList";
 import TopPlayerTable from "./topPlayerTable";
 
-import { TopPlayerSummaryWrapper } from "./topPlayerStyled";
-
 const TopPlayerData = ({ leagueId }) => {
   const { data } = useTopPlayer(leagueId);
   const [orderData, setOrderData] = useState('goals');
@@ -29,5 +27,13 @@ const TopPlayerData = ({ leagueId }) => {
     </>
   );
 }
+
+const TopPlayerSummaryWrapper = styled.div`
+  display: flex;
+  gap: 0 40px;
+  justify-content: space-between;
+  max-width: 720px;
+  margin: 0 auto 40px;
+`;
 
 export default TopPlayerData;

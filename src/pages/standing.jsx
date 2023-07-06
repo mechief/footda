@@ -6,11 +6,6 @@ import ErrorBoundary from "../components/error/errorBoundary";
 import StandingLeagues from "../components/standing/standingLeagues";
 import StandingData from "../components/standing/standingData";
 
-import {
-  StandingWrapper,
-  StandingTitle,
-} from "../components/standing/standingStyled";
-
 const Standing = () => {
   const leagueId = Number(useParams().id) || 39;
   
@@ -26,5 +21,16 @@ const Standing = () => {
     </StandingWrapper>
   );
 }
+
+const StandingWrapper = styled.section`
+  padding: 60px 20px;
+`;
+
+const StandingTitle = styled.h2`
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 500;
+`;
 
 export default Standing;

@@ -6,6 +6,41 @@ import styled from "styled-components";
 
 import ScheduleCalendarCountItem from "./scheduleCalendarCountItem";
 
+const ScheduleCalendarTd = memo(({ dateObj, isCurrentMonth, countArray, focusDate }) => {
+  const navigate = useNavigate();
+  const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
+
+  const filteredArray = useMemo(() => {
+    return scheduleLeaguesFilter.length === 0
+      ? countArray.sort((a, b) => a.id - b.id)
+      : countArray.filter(countData => scheduleLeaguesFilter.includes(countData.id)).sort((a, b) => a.id - b.id);
+  }, [countArray]);
+
+  const onClickDate = () => {
+    navigate('/schedule/' + dateObj.format('YYYYMMDD'));
+  }
+
+  return (
+    <StyledTd>
+      <DateButton
+        type="button"
+        isFocusDate={dateObj.format('YYYY-MM-DD') === focusDate}
+        onClick={onClickDate}
+      >
+        <DateText isCurrentMonth={isCurrentMonth}>
+          {dateObj.format('D')}
+          { dateObj.isSame(dayjs(), 'day') && 
+            <DateToday>Today</DateToday>
+          }
+        </DateText>
+        { filteredArray.map(countData => 
+          <ScheduleCalendarCountItem key={`scheduleCountItem_${dateObj.format('YYYY-MM-DD')}_${countData.id}`} countData={countData} />
+        )}
+      </DateButton>
+    </StyledTd>
+  );
+});
+
 const StyledTd = styled.td`
   height: 80px;
   vertical-align: top;
@@ -41,40 +76,5 @@ const DateToday = styled.span`
   right: 0;
   color: #55149c;
 `;
-
-const ScheduleCalendarTd = memo(({ dateObj, isCurrentMonth, countArray, focusDate }) => {
-  const navigate = useNavigate();
-  const scheduleLeaguesFilter = useSelector(state => state.userSetting.scheduleLeaguesFilter);
-
-  const filteredArray = useMemo(() => {
-    return scheduleLeaguesFilter.length === 0
-      ? countArray.sort((a, b) => a.id - b.id)
-      : countArray.filter(countData => scheduleLeaguesFilter.includes(countData.id)).sort((a, b) => a.id - b.id);
-  }, [countArray]);
-
-  const onClickDate = () => {
-    navigate('/schedule/' + dateObj.format('YYYYMMDD'));
-  }
-
-  return (
-    <StyledTd>
-      <DateButton
-        type="button"
-        isFocusDate={dateObj.format('YYYY-MM-DD') === focusDate}
-        onClick={onClickDate}
-      >
-        <DateText isCurrentMonth={isCurrentMonth}>
-          {dateObj.format('D')}
-          { dateObj.isSame(dayjs(), 'day') && 
-            <DateToday>Today</DateToday>
-          }
-        </DateText>
-        { filteredArray.map(countData => 
-          <ScheduleCalendarCountItem key={`scheduleCountItem_${dateObj.format('YYYY-MM-DD')}_${countData.id}`} countData={countData} />
-        )}
-      </DateButton>
-    </StyledTd>
-  );
-});
 
 export default ScheduleCalendarTd;

@@ -3,6 +3,15 @@ import styled from "styled-components";
 
 import { getLeagueNameForList } from "../../utils/league";
 
+const ScheduleCalendarCountItem = memo(({ countData }) => {
+  return (
+    <StyledCountItem>
+      <LeagueName>{getLeagueNameForList(countData.id)}</LeagueName>
+      <Count>{countData.count}</Count>
+    </StyledCountItem>
+  );
+});
+
 const StyledCountItem = styled.div`
   display: flex;
   justify-content: space-between;
@@ -24,14 +33,5 @@ const Count = styled.span`
   padding-left: 4px;
   flex: 0 0 auto;
 `;
-
-const ScheduleCalendarCountItem = memo(({ countData }) => {
-  return (
-    <StyledCountItem>
-      <LeagueName>{getLeagueNameForList(countData.id)}</LeagueName>
-      <Count>{countData.count}</Count>
-    </StyledCountItem>
-  );
-});
 
 export default ScheduleCalendarCountItem;
