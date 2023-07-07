@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
+import styled from "styled-components";
 
 import ErrorBoundary from "../components/error/errorBoundary";
 
