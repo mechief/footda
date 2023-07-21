@@ -48,8 +48,8 @@ const FixtureEventSummary = memo(({ events, isHome = false }) => {
       { penaltyShootout.length > 0 &&
         <StyledPenaltyShootout isHome={isHome}>
           <div>승부차기</div>
-          { penaltyShootout.map(v => 
-            <span key={`penaltyShootout_${v.player.id}_${v.time.elapsed}`}>{v.detail === 'Penalty' ? 'O' : 'X'}</span>
+          { penaltyShootout.map((v, i) => 
+            <span key={`penaltyShootout_${v.player.id}_${i}`}>{v.detail === 'Penalty' ? 'O' : 'X'}</span>
           )}
         </StyledPenaltyShootout>
       }
