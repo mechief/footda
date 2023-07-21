@@ -13,10 +13,17 @@ export const getFormattedRound = (round) => {
     formattedRound = '준결승';
   } else if (round === 'Final') {
     formattedRound = '결승';
+  } else if (round === 'Play-offs') {
+    formattedRound = '플레이오프';
+  } else if (round.includes('Qualifying Round')) {
+    formattedRound = formattedRound.replace('Qualifying Round', '예선전');
+    formattedRound = formattedRound.replace(/st|nd|rd/, '차');
   } else if (round === 'Relegation Decider') {
     formattedRound = '강등 결정전';
   } else if (round === 'Relegation Round') {
     formattedRound = '승강전';
+  } else if (/1st|2nd|rd/i.test(round) && round.includes('Round')) {
+    formattedRound = round.replace(/\D/g, '') + 'R';
   }
 
   return formattedRound;
