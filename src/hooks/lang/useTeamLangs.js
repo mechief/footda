@@ -6,7 +6,7 @@ import { setTeams } from "../../slices/languageSlice";
 
 const useTeamLangs = (lang = 'ko-kr') => {
   const dispatch = useDispatch();
-  const langTeamsExpireTime = useSelector((state) => state.language.expireTime.teams);
+  const langTeamsExpireTime = useSelector((state) => state.language?.expireTime?.teams);
 
   useEffect(() => {
     if (!langTeamsExpireTime || Date.now() > langTeamsExpireTime) {
