@@ -6,8 +6,7 @@ const SiteFooter = () => {
     <footer>
       <FooterInner>
         <FooterLogo>Footda</FooterLogo>
-        <Copyright>이 사이트는 포트폴리오 용으로 제작되었습니다.</Copyright>
-        {/* <Copyright>ⓒ 2023. Seonmin Choe All rights reserved</Copyright> */}
+        <Copyright>ⓒ 2023. Seonmin Choe</Copyright>
       </FooterInner>
     </footer>
   );
