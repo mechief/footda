@@ -15,11 +15,11 @@ const TopPlayerData = ({ leagueId }) => {
       { data && 
         <>
           <TopPlayerSummaryWrapper>
-            <TopPlayerSummaryList key='summary_goal' listData={data[0]} type='goals' />
-            <TopPlayerSummaryList key='summary_assist' listData={data[1]} type='assists' />
+            <TopPlayerSummaryList key='summary_goal' listData={data?.scorers} type='goals' />
+            <TopPlayerSummaryList key='summary_assist' listData={data?.assists} type='assists' />
           </TopPlayerSummaryWrapper>
           <TopPlayerTable 
-            playersData={orderData === 'goals' ? data[0] : data[1]}
+            playersData={orderData === 'goals' ? data?.scorers : data?.assists}
             orderData={orderData}
             setOrderData={setOrderData}
           />
