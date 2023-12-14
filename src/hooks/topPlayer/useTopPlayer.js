@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-import { getTopPlayers } from "../../apiFootball/topPlayers"
+import { getTopPlayers } from "../../api/topPlayers";
 
 // 기본값: 프리미어 리그
 const useTopPlayer = (leagueId) => {
